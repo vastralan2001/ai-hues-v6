@@ -95,6 +95,31 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 .tag-status-done{background:var(--green-bg);color:var(--green)}
 .wish-time{font-size:12px;color:var(--text-muted);margin-left:auto}
 
+/* ===== TOP RANKING ===== */
+.top-ranking{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin:0 auto 20px;max-width:900px;box-shadow:var(--shadow)}
+.top-ranking-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.top-ranking-title{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.top-ranking-title .trophy{font-size:20px}
+.top-ranking-link{font-size:13px;color:var(--accent);font-weight:600;text-decoration:none}
+.top-ranking-link:hover{text-decoration:underline}
+.top-list{display:flex;flex-direction:column;gap:8px}
+.top-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);background:var(--surface);transition:all .2s;cursor:pointer}
+.top-item:hover{background:var(--surface-hover)}
+.top-rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0}
+.top-rank.gold{background:linear-gradient(135deg,#d4a843,#f0c864);color:#fff}
+.top-rank.silver{background:linear-gradient(135deg,#94a3b8,#cbd5e1);color:#fff}
+.top-rank.bronze{background:linear-gradient(135deg,#b45309,#d97706);color:#fff}
+.top-rank.normal{background:var(--surface);color:var(--text-muted);border:1px solid var(--border)}
+.top-info{flex:1;min-width:0}
+.top-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-votes{font-size:12px;color:var(--text-muted)}
+.top-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;max-width:200px}
+.top-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.top-bar-fill.gold{background:linear-gradient(90deg,#d4a843,#f0c864)}
+.top-bar-fill.silver{background:linear-gradient(90deg,#94a3b8,#cbd5e1)}
+.top-bar-fill.bronze{background:linear-gradient(90deg,#b45309,#d97706)}
+.top-bar-fill.normal{background:var(--accent-light)}
+
 /* Empty State */
 .empty{text-align:center;padding:60px 32px;color:var(--text-muted)}
 .empty-icon{font-size:48px;margin-bottom:12px}
@@ -178,6 +203,17 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
         <span class="submit-hint" data-zh="提交后所有人都能看到，可以投票支持">Everyone can see and vote after submission</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TOP 5 RANKING -->
+<section style="max-width:1300px;margin:0 auto;padding:0 32px">
+  <div class="top-ranking" id="topRanking">
+    <div class="top-ranking-header">
+      <span class="top-ranking-title"><span class="trophy">🏆</span> <span data-zh="热门需求 TOP 5">Top 5 Requests</span></span>
+      <a href="./ranking.html" class="top-ranking-link" data-zh="查看完整排行榜 →">Full Leaderboard →</a>
+    </div>
+    <div class="top-list" id="topList"></div>
   </div>
 </section>
 
@@ -275,11 +311,43 @@ const defaultWishes = [
 let currentFilter = 'all';
 let currentSort = 'votes';
 
+// ===== TOP RANKING =====
+function renderTopRanking() {
+  const wishes = getWishes();
+  const isZh = document.documentElement.lang === 'zh';
+  wishes.sort((a,b) => b.votes - a.votes);
+  const top5 = wishes.slice(0,5);
+  const maxVotes = top5[0]?.votes || 1;
+
+  const list = document.getElementById('topList');
+  const rankClasses = ['gold','silver','bronze','normal','normal'];
+  const rankLabels = ['1','2','3','4','5'];
+
+  list.innerHTML = top5.map((w,i) => {
+    const rc = rankClasses[i];
+    const name = isZh && w.zhName ? w.zhName : w.name;
+    const pct = Math.round((w.votes / maxVotes) * 100);
+    return `<div class="top-item" onclick="scrollToWish('${w.id}')">
+      <span class="top-rank ${rc}">${rankLabels[i]}</span>
+      <div class="top-info">
+        <span class="top-name">${name}</span>
+        <span class="top-votes">${w.votes} votes</span>
+      </div>
+      <div class="top-bar"><div class="top-bar-fill ${rc}" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+function scrollToWish(id) {
+  const el = document.querySelector(`[data-wish-id="${id}"]`);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.animation='pulseHighlight 1.5s ease';setTimeout(()=>el.style.animation='',1500);}
+}
+
 // ===== INIT =====
 function init() {
   if (!localStorage.getItem(STORAGE_KEY)) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultWishes));
   }
+  renderTopRanking();
   render();
 }
 

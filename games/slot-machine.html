@@ -199,6 +199,71 @@
       .credit-value{font-size:1.3rem}
       .slot-title{font-size:0.85rem;letter-spacing:2px}
     }
+
+    /* ===== STATS PANEL ===== */
+    .panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;opacity:0;visibility:hidden;transition:all 0.3s ease;display:flex;align-items:center;justify-content:center;padding:16px}
+    .panel-overlay.active{opacity:1;visibility:visible}
+    .panel{background:linear-gradient(180deg,#2a1810,#1a0a0a);border:2px solid var(--vegas-gold-dark);border-radius:var(--radius);max-width:520px;width:100%;max-height:85vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+    .panel-header{padding:16px 20px;border-bottom:1px solid rgba(212,168,48,0.15);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:linear-gradient(180deg,#2a1810,#1a0a0a);z-index:2;border-radius:var(--radius) var(--radius) 0 0}
+    .panel-title{font-size:1.1rem;font-weight:800;color:var(--vegas-gold);text-transform:uppercase;letter-spacing:2px}
+    .panel-close{width:32px;height:32px;border-radius:8px;background:rgba(212,168,48,0.1);border:1px solid var(--vegas-gold-dark);color:var(--vegas-gold);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+    .panel-close:hover{background:rgba(212,168,48,0.2)}
+    .panel-body{padding:16px 20px}
+
+    /* ===== STAT CARDS ===== */
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+    @media(max-width:480px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+    .stat-card{background:rgba(8,4,4,0.6);border:1px solid #1a1010;border-radius:10px;padding:12px;text-align:center;transition:all 0.2s}
+    .stat-card:hover{border-color:var(--vegas-gold-dark)}
+    .stat-value{font-size:1.4rem;font-weight:900;color:var(--vegas-gold);text-shadow:0 0 10px rgba(212,168,48,0.2);line-height:1.2}
+    .stat-label{font-size:0.7rem;color:rgba(212,168,48,0.6);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px}
+
+    /* ===== HISTORY LIST ===== */
+    .history-section{margin-top:12px}
+    .history-title{font-size:0.8rem;font-weight:700;color:var(--vegas-gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+    .history-list{display:flex;flex-direction:column;gap:6px}
+    .history-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(8,4,4,0.5);border:1px solid #1a1010;border-radius:8px;transition:all 0.2s}
+    .history-item:hover{border-color:var(--vegas-gold-dark);background:rgba(8,4,4,0.7)}
+    .history-item.jackpot{border-color:rgba(212,168,48,0.3);background:rgba(212,168,48,0.08)}
+    .history-symbol{font-size:1.6rem;width:36px;text-align:center;flex-shrink:0}
+    .history-info{flex:1;min-width:0}
+    .history-name{font-size:0.75rem;color:#fff;font-weight:700}
+    .history-detail{font-size:0.7rem;color:rgba(212,168,48,0.5);display:flex;align-items:center;gap:8px}
+    .history-won{font-size:0.85rem;font-weight:800;color:var(--vegas-gold);flex-shrink:0;text-shadow:0 0 6px rgba(212,168,48,0.2)}
+    .history-won.jackpot{color:#ffd700;font-size:1rem}
+    .history-empty{text-align:center;padding:20px;color:rgba(212,168,48,0.4);font-size:0.8rem}
+
+    /* ===== LEADERBOARD ===== */
+    .leaderboard-list{display:flex;flex-direction:column;gap:5px}
+    .lb-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(8,4,4,0.5);border:1px solid #1a1010;border-radius:8px;transition:all 0.2s;position:relative;overflow:hidden}
+    .lb-row:hover{border-color:var(--vegas-gold-dark)}
+    .lb-row.current-player{border-color:var(--accent);background:rgba(109,40,217,0.08)}
+    .lb-row.current-player::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:3px 0 0 3px}
+    .lb-rank{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:800;flex-shrink:0}
+    .lb-rank.gold{background:linear-gradient(135deg,#ffd700,#d4a830);color:#2a1810}
+    .lb-rank.silver{background:linear-gradient(135deg,#c0c0c0,#909090);color:#2a1810}
+    .lb-rank.bronze{background:linear-gradient(135deg,#cd7f32,#a06020);color:#fff}
+    .lb-rank.normal{background:rgba(212,168,48,0.1);color:var(--vegas-gold)}
+    .lb-info{flex:1;min-width:0}
+    .lb-name{font-size:0.8rem;color:#fff;font-weight:700}
+    .lb-detail{font-size:0.7rem;color:rgba(212,168,48,0.5)}
+    .lb-won{font-size:0.85rem;font-weight:800;color:var(--vegas-gold);flex-shrink:0}
+
+    /* ===== RECORD BUTTONS ===== */
+    .record-section{display:flex;justify-content:center;gap:8px;margin-top:16px}
+    .record-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(212,168,48,0.08);border:1px solid var(--vegas-gold-dark);border-radius:var(--radius-sm);color:var(--vegas-gold);font-size:0.8rem;font-weight:700;cursor:pointer;transition:all 0.2s}
+    .record-btn:hover{background:rgba(212,168,48,0.15);transform:translateY(-1px)}
+
+    /* ===== SESSION STATS ===== */
+    .session-stats{display:flex;justify-content:center;gap:16px;padding:10px 0;margin-top:8px;flex-wrap:wrap}
+    .session-item{text-align:center}
+    .session-value{font-size:1rem;font-weight:800;color:var(--vegas-gold)}
+    .session-label{font-size:0.65rem;color:rgba(212,168,48,0.5);text-transform:uppercase;letter-spacing:0.5px}
+
+    /* ===== SCROLLBAR ===== */
+    .panel::-webkit-scrollbar{width:6px}
+    .panel::-webkit-scrollbar-track{background:transparent}
+    .panel::-webkit-scrollbar-thumb{background:var(--vegas-gold-dark);border-radius:3px}
   </style>
 </head>
 <body>
@@ -282,6 +347,22 @@
         <!-- Message -->
         <div class="message-area" id="messageArea"></div>
 
+        <!-- Session Stats -->
+        <div class="session-stats" id="sessionStats" style="display:none">
+          <div class="session-item">
+            <div class="session-value" id="sessionWin">0</div>
+            <div class="session-label">Credits Won</div>
+          </div>
+          <div class="session-item">
+            <div class="session-value" id="sessionWins">0</div>
+            <div class="session-label">Wins</div>
+          </div>
+          <div class="session-item">
+            <div class="session-value" id="sessionRate">0%</div>
+            <div class="session-label">Win Rate</div>
+          </div>
+        </div>
+
         <!-- Spin Section -->
         <div class="spin-section">
           <button class="spin-btn" id="spinBtn" onclick="spin()">SPIN</button>
@@ -295,6 +376,16 @@
             <span id="spinsText">3 / 3</span>
           </div>
           <div class="spins-reset" id="spinsReset"></div>
+        </div>
+
+        <!-- Record Buttons -->
+        <div class="record-section">
+          <button class="record-btn" id="myRecordsBtn" onclick="showMyRecords()">
+            <span>&#128203;</span> My Records
+          </button>
+          <button class="record-btn" id="leaderboardBtn" onclick="showLeaderboard()">
+            <span>&#127942;</span> Leaderboard
+          </button>
         </div>
 
         <!-- Paytable -->
@@ -354,6 +445,66 @@
     </div>
   </main>
 
+  <!-- ===== MY RECORDS PANEL ===== -->
+  <div class="panel-overlay" id="recordsOverlay">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">&#128203; My Records</span>
+        <button class="panel-close" onclick="closePanel('recordsOverlay')">&times;</button>
+      </div>
+      <div class="panel-body">
+        <!-- Stats Grid -->
+        <div class="stat-grid" id="statGrid">
+          <div class="stat-card">
+            <div class="stat-value" id="statTotalSpins">0</div>
+            <div class="stat-label">Total Spins</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statTotalWins">0</div>
+            <div class="stat-label">Total Wins</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statWinRate">0%</div>
+            <div class="stat-label">Win Rate</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statTotalWon">0</div>
+            <div class="stat-label">Credits Won</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statBiggestWin">0</div>
+            <div class="stat-label">Biggest Win</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statJackpots">0</div>
+            <div class="stat-label">Jackpots</div>
+          </div>
+        </div>
+        <!-- History -->
+        <div class="history-section">
+          <div class="history-title">&#127991; Recent Win History (10)</div>
+          <div class="history-list" id="historyList">
+            <div class="history-empty">No wins yet. Start spinning!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LEADERBOARD PANEL ===== -->
+  <div class="panel-overlay" id="leaderboardOverlay">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">&#127942; Leaderboard</span>
+        <button class="panel-close" onclick="closePanel('leaderboardOverlay')">&times;</button>
+      </div>
+      <div class="panel-body">
+        <div class="history-title" style="margin-bottom:10px">&#11088; Top Players - Most Credits Won</div>
+        <div class="leaderboard-list" id="leaderboardList"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ============================================
     // LUCKY SLOTS - SLOT MACHINE GAME
@@ -398,6 +549,30 @@
     // ===== CREDIT SYSTEM =====
     const CREDIT_KEY = 'aihues_credit';
     const SPINS_KEY = 'aihues_daily_spins';
+
+    // ===== SLOTS STATS & HISTORY KEYS =====
+    const SLOTS_HISTORY_KEY = 'aihues_slots_history';
+    const SLOTS_STATS_KEY = 'aihues_slots_stats';
+    const SLOTS_LEADERBOARD_KEY = 'aihues_slots_leaderboard';
+
+    // ===== DEFAULT LEADERBOARD DATA =====
+    const defaultSlotsLeaderboard = [
+      {name:'LuckyStar',won:1250,spins:200,date:'2026-05-18'},
+      {name:'SlotKing',won:980,spins:150,date:'2026-05-17'},
+      {name:'FortuneX',won:850,spins:120,date:'2026-05-16'},
+      {name:'GoldRush',won:720,spins:100,date:'2026-05-15'},
+      {name:'JackpotJ',won:680,spins:180,date:'2026-05-14'},
+      {name:'SpinQueen',won:550,spins:90,date:'2026-05-13'},
+      {name:'Lucky7',won:480,spins:85,date:'2026-05-12'},
+      {name:'DiamondD',won:420,spins:70,date:'2026-05-11'},
+      {name:'BellMaster',won:350,spins:60,date:'2026-05-10'},
+      {name:'CoinFlip',won:280,spins:50,date:'2026-05-09'},
+    ];
+
+    // ===== SESSION STATS =====
+    let sessionSpins = 0;
+    let sessionWins = 0;
+    let sessionCreditsWon = 0;
 
     function getCredit() {
       return parseInt(localStorage.getItem(CREDIT_KEY) || '100');
@@ -446,6 +621,153 @@
         spinBtn.disabled = isSpinning;
         spinBtn.textContent = isSpinning ? 'SPINNING' : 'SPIN';
       }
+    }
+
+    // ===== STATS & HISTORY SYSTEM =====
+    function getSlotsStats() {
+      try {
+        return JSON.parse(localStorage.getItem(SLOTS_STATS_KEY)) || { totalSpins:0, totalWins:0, totalCreditWon:0, totalCreditSpent:0, biggestWin:0, jackpotCount:0, winRate:'0%' };
+      } catch(e) { return { totalSpins:0, totalWins:0, totalCreditWon:0, totalCreditSpent:0, biggestWin:0, jackpotCount:0, winRate:'0%' }; }
+    }
+    function saveSlotsStats(stats) {
+      try { localStorage.setItem(SLOTS_STATS_KEY, JSON.stringify(stats)); } catch(e) {}
+    }
+    function getSlotsHistory() {
+      try { return JSON.parse(localStorage.getItem(SLOTS_HISTORY_KEY)) || []; } catch(e) { return []; }
+    }
+    function saveSlotsHistory(history) {
+      try { localStorage.setItem(SLOTS_HISTORY_KEY, JSON.stringify(history.slice(-20))); } catch(e) {}
+    }
+    function addWinHistory(symbol, symbolName, lineCount, creditWon, isJackpot) {
+      const history = getSlotsHistory();
+      history.push({
+        date: new Date().toISOString(),
+        symbol: symbol,
+        symbolName: symbolName,
+        lineCount: lineCount,
+        creditWon: creditWon,
+        isJackpot: isJackpot
+      });
+      saveSlotsHistory(history);
+    }
+    function updateStatsAfterSpin(won, creditWon, isJackpot) {
+      const stats = getSlotsStats();
+      stats.totalSpins = (stats.totalSpins || 0) + 1;
+      stats.totalCreditSpent = (stats.totalCreditSpent || 0) + 1;
+      if (won) {
+        stats.totalWins = (stats.totalWins || 0) + 1;
+        stats.totalCreditWon = (stats.totalCreditWon || 0) + creditWon;
+        if (creditWon > (stats.biggestWin || 0)) stats.biggestWin = creditWon;
+        if (isJackpot) stats.jackpotCount = (stats.jackpotCount || 0) + 1;
+      }
+      const rate = stats.totalSpins > 0 ? Math.round((stats.totalWins / stats.totalSpins) * 100) : 0;
+      stats.winRate = rate + '%';
+      saveSlotsStats(stats);
+    }
+    function updateLeaderboard(playerName, totalWon, totalSpins) {
+      try {
+        let board = JSON.parse(localStorage.getItem(SLOTS_LEADERBOARD_KEY)) || defaultSlotsLeaderboard;
+        const today = new Date().toISOString().slice(0,10);
+        // Check if player already on board
+        const existing = board.findIndex(function(b) { return b.name === playerName; });
+        if (existing >= 0) {
+          if (totalWon > board[existing].won) {
+            board[existing].won = totalWon;
+            board[existing].spins = totalSpins;
+            board[existing].date = today;
+          }
+        } else {
+          board.push({name:playerName,won:totalWon,spins:totalSpins,date:today});
+        }
+        board.sort(function(a,b){return b.won - a.won});
+        board = board.slice(0,10);
+        localStorage.setItem(SLOTS_LEADERBOARD_KEY, JSON.stringify(board));
+        return board;
+      } catch(e) { return defaultSlotsLeaderboard; }
+    }
+    function getLeaderboard() {
+      try {
+        const board = localStorage.getItem(SLOTS_LEADERBOARD_KEY);
+        if (board) return JSON.parse(board);
+        localStorage.setItem(SLOTS_LEADERBOARD_KEY, JSON.stringify(defaultSlotsLeaderboard));
+        return defaultSlotsLeaderboard;
+      } catch(e) { return defaultSlotsLeaderboard; }
+    }
+
+    // ===== PANEL FUNCTIONS =====
+    function showMyRecords() {
+      renderStats();
+      renderHistory();
+      document.getElementById('recordsOverlay').classList.add('active');
+    }
+    function showLeaderboard() {
+      renderLeaderboard();
+      document.getElementById('leaderboardOverlay').classList.add('active');
+    }
+    function closePanel(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+    // Close panel on overlay click
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('panel-overlay')) e.target.classList.remove('active');
+    });
+
+    function renderStats() {
+      const stats = getSlotsStats();
+      document.getElementById('statTotalSpins').textContent = stats.totalSpins || 0;
+      document.getElementById('statTotalWins').textContent = stats.totalWins || 0;
+      document.getElementById('statWinRate').textContent = stats.winRate || '0%';
+      document.getElementById('statTotalWon').textContent = stats.totalCreditWon || 0;
+      document.getElementById('statBiggestWin').textContent = stats.biggestWin || 0;
+      document.getElementById('statJackpots').textContent = stats.jackpotCount || 0;
+    }
+    function renderHistory() {
+      const history = getSlotsHistory();
+      const list = document.getElementById('historyList');
+      if (history.length === 0) {
+        list.innerHTML = '<div class="history-empty">No wins yet. Start spinning!</div>';
+        return;
+      }
+      // Show last 10
+      const recent = history.slice(-10).reverse();
+      let html = '';
+      for (let i = 0; i < recent.length; i++) {
+        const h = recent[i];
+        const dateStr = new Date(h.date).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+        html += '<div class="history-item' + (h.isJackpot ? ' jackpot' : '') + '">';
+        html += '<div class="history-symbol">' + h.symbol + '</div>';
+        html += '<div class="history-info">';
+        html += '<div class="history-name">' + h.symbolName + (h.isJackpot ? ' &#127881; JACKPOT' : '') + '</div>';
+        html += '<div class="history-detail">' + h.lineCount + ' line' + (h.lineCount > 1 ? 's' : '') + ' &#8226; ' + dateStr + '</div>';
+        html += '</div>';
+        html += '<div class="history-won' + (h.isJackpot ? ' jackpot' : '') + '">+' + h.creditWon + '</div>';
+        html += '</div>';
+      }
+      list.innerHTML = html;
+    }
+    function renderLeaderboard() {
+      const board = getLeaderboard();
+      const list = document.getElementById('leaderboardList');
+      let html = '';
+      for (let i = 0; i < board.length; i++) {
+        const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : 'normal';
+        html += '<div class="lb-row">';
+        html += '<div class="lb-rank ' + rankClass + '">' + (i + 1) + '</div>';
+        html += '<div class="lb-info">';
+        html += '<div class="lb-name">' + board[i].name + '</div>';
+        html += '<div class="lb-detail">' + board[i].spins + ' spins &#8226; ' + board[i].date + '</div>';
+        html += '</div>';
+        html += '<div class="lb-won">' + board[i].won + '</div>';
+        html += '</div>';
+      }
+      list.innerHTML = html;
+    }
+    function updateSessionStatsDisplay() {
+      document.getElementById('sessionWin').textContent = sessionCreditsWon;
+      document.getElementById('sessionWins').textContent = sessionWins;
+      const rate = sessionSpins > 0 ? Math.round((sessionWins / sessionSpins) * 100) : 0;
+      document.getElementById('sessionRate').textContent = rate + '%';
+      document.getElementById('sessionStats').style.display = sessionSpins > 0 ? 'flex' : 'none';
     }
 
     // ===== MESSAGE =====
@@ -508,6 +830,7 @@
 
       isSpinning = true;
       useSpin();
+      sessionSpins++;
       document.getElementById('spinBtn').classList.add('spinning');
       clearWinHighlights();
       playSpinSound();
@@ -611,6 +934,24 @@
         // Apply win
         addCredit(totalWin);
 
+        // Determine winning symbol info
+        const firstLine = winningLines[0];
+        const winSymIdx = reels[firstLine.cells[0][0]][firstLine.cells[0][1]];
+        const winSymbol = SYMBOLS[winSymIdx];
+
+        // Save to history & stats
+        addWinHistory(winSymbol.emoji, winSymbol.name, winningLines.length, totalWin, isJackpot);
+        updateStatsAfterSpin(true, totalWin, isJackpot);
+
+        // Update session stats
+        sessionWins++;
+        sessionCreditsWon += totalWin;
+        updateSessionStatsDisplay();
+
+        // Update leaderboard (track current player as "You")
+        const stats = getSlotsStats();
+        updateLeaderboard('You', stats.totalCreditWon, stats.totalSpins);
+
         // Show highlights for winning lines
         for (const line of winningLines) {
           highlightLine(line);
@@ -629,6 +970,9 @@
         }
         playWinSound(isJackpot);
       } else {
+        // Update stats even on loss
+        updateStatsAfterSpin(false, 0, false);
+        updateSessionStatsDisplay();
         showMessage('No match this time. Try again!', 'lose');
       }
     }

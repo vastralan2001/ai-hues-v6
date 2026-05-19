@@ -42,15 +42,39 @@ a{color:var(--accent);text-decoration:none}
 .hero>p{color:var(--text-secondary);font-size:16px;line-height:1.6;margin-bottom:20px}
 
 /* Compact Agent */
-.agent-box{max-width:560px;margin:0 auto 16px;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:4px;display:flex;align-items:center;gap:6px;box-shadow:var(--shadow);transition:all .2s}
-.agent-box:focus-within{border-color:var(--accent-light);box-shadow:0 4px 20px rgba(109,40,217,0.1)}
-.agent-box input{flex:1;border:none;outline:none;padding:10px 12px;font-size:14px;background:transparent;color:var(--text)}
-.agent-box input::placeholder{color:var(--text-muted);font-size:13px}
-.agent-box button{padding:10px 20px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
+.agent-box{max-width:640px;margin:0 auto 16px;position:relative}
+.agent-box-inner{background:var(--bg);border:2px solid var(--border);border-radius:var(--radius);padding:6px;display:flex;align-items:center;gap:6px;box-shadow:var(--shadow);transition:all .3s}
+.agent-box-inner:focus-within{border-color:var(--accent);box-shadow:0 4px 24px rgba(109,40,217,0.15)}
+.agent-box-inner.thinking{border-color:var(--accent);animation:thinkingPulse 1.5s ease infinite}
+@keyframes thinkingPulse{0%,100%{box-shadow:0 4px 24px rgba(109,40,217,0.15)}50%{box-shadow:0 4px 32px rgba(109,40,217,0.3)}}
+.agent-icon{width:36px;height:36px;border-radius:10px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0;transition:all .3s}
+.agent-icon.thinking{animation:aiRotate 2s linear infinite}
+@keyframes aiRotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.agent-box input{flex:1;border:none;outline:none;padding:10px 8px;font-size:15px;background:transparent;color:var(--text)}
+.agent-box input::placeholder{color:var(--text-muted);font-size:14px}
+.agent-box button{padding:10px 22px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
 .agent-box button:hover{box-shadow:0 4px 16px rgba(109,40,217,0.35)}
 .agent-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:4px}
 .agent-tag{padding:5px 12px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s}
 .agent-tag:hover{border-color:var(--accent-light);color:var(--accent);background:rgba(109,40,217,0.04);transform:translateY(-1px)}
+.ai-dropdown{position:absolute;top:100%;left:0;right:0;margin-top:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-hover);overflow:hidden;z-index:50;display:none;max-height:360px;overflow-y:auto}
+.ai-dropdown.show{display:block;animation:aiSlideIn .2s ease}
+@keyframes aiSlideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.ai-result-item{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;transition:all .15s;border-bottom:1px solid var(--surface)}
+.ai-result-item:hover{background:var(--surface);border-left:3px solid var(--accent);padding-left:13px}
+.ai-result-item:last-child{border-bottom:none}
+.ai-result-icon{width:36px;height:36px;border-radius:9px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ai-result-info{flex:1;min-width:0}
+.ai-result-name{font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ai-result-desc{font-size:12px;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.ai-result-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--surface);color:var(--text-muted);flex-shrink:0}
+.ai-thinking{padding:16px;display:flex;align-items:center;gap:10px;color:var(--text-secondary);font-size:14px}
+.ai-thinking .dots{display:flex;gap:4px}
+.ai-thinking .dots span{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:aiDot 1.4s ease infinite both}
+.ai-thinking .dots span:nth-child(1){animation-delay:0s}
+.ai-thinking .dots span:nth-child(2){animation-delay:0.2s}
+.ai-thinking .dots span:nth-child(3){animation-delay:0.4s}
+@keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
 
 /* ===== CATEGORIES (right below hero) ===== */
 .cat-section{max-width:1300px;margin:0 auto;padding:0 32px 40px}
@@ -189,10 +213,14 @@ a{color:var(--accent);text-decoration:none}
  <p data-zh="35+ AI 工具、小游戏和实用工具，像人一样自然。告诉我们你需要什么。">
  35+ AI tools, mini games & utilities that just work. Tell us what you need.
  </p>
- <!-- Compact Agent -->
+ <!-- AI Agent Search -->
  <div class="agent-box">
- <input type="text" id="agentInput" placeholder="e.g. 'parse JWT' or 'test regex'..." data-zh-placeholder="例如：解析JWT、测试正则、生成二维码..." onkeydown="if(event.key==='Enter')agentSearch()">
- <button onclick="agentSearch()" data-zh="查找">Find</button>
+ <div class="agent-box-inner" id="searchInner">
+ <div class="agent-icon" id="searchIcon">🤖</div>
+ <input type="text" id="agentInput" placeholder="e.g. 'parse JWT' or 'test regex'..." data-zh-placeholder="例如：解析JWT、测试正则、生成二维码..." oninput="aiSearch()" onkeydown="if(event.key==='Enter')aiGo()" autocomplete="off">
+ <button onclick="aiGo()" data-zh="查找">Ask AI</button>
+ </div>
+ <div class="ai-dropdown" id="aiDropdown"></div>
  </div>
  <div class="agent-tags">
  <span class="agent-tag" onclick="goTool('tools/jwt.html')">JWT</span>
@@ -419,27 +447,68 @@ a{color:var(--accent);text-decoration:none}
 
 <script src="js/i18n.js"></script>
 <script>
-function goTool(url){window.location.href=url}
-function agentSearch(){
- const input=document.getElementById('agentInput').value.trim().toLowerCase();
- if(!input)return;
- const toolMap={
-  jwt:'tools/jwt.html',json:'tools/json.html',regex:'tools/regex.html',
-  uuid:'tools/uuid.html',time:'tools/timestamp.html',stamp:'tools/timestamp.html',
-  markdown:'tools/markdown.html',md:'tools/markdown.html',qr:'tools/qrcode.html',
-  qrcode:'tools/qrcode.html',code:'tools/qrcode.html',base64:'tools/base64.html',
-  diff:'tools/diff.html',word:'tools/word-count.html',count:'tools/word-count.html',
-  sha:'tools/sha256.html',hash:'tools/sha256.html',md5:'tools/sha256.html',
-  fullwidth:'tools/fullwidth.html',width:'tools/fullwidth.html',half:'tools/fullwidth.html',
-  ab:'tools/chi-squared.html',chi:'tools/chi-squared.html',test:'tools/chi-squared.html',
-  sql:'tools/sql.html',seo:'tools/seo-title.html',
-  fortune:'games/daily-luck.html',luck:'games/daily-luck.html',daily:'games/daily-luck.html',
-  slot:'games/slot-machine.html',slots:'games/slot-machine.html',machine:'games/slot-machine.html',
-  basketball:'games/basketball.html',hoops:'games/basketball.html',ball:'games/basketball.html'
- };
- for(const[key,val]of Object.entries(toolMap)){if(input.includes(key)){goTool(val);return}}
- alert('Tool not found. Try: jwt, json, regex, uuid, timestamp, markdown, qrcode, sha256, fortune, slots, hoops');
+// ===== AI AGENT SEARCH =====
+const TOOL_DB=[
+  {name:'JWT Parser',zhName:'JWT解析器',url:'tools/jwt.html',icon:'🔐',cat:'Developer',desc:'Decode and inspect JWT tokens',zhDesc:'解码JWT令牌',keywords:'jwt token parse decode auth bearer header payload signature json web token authentication'},{name:'JSON Formatter',zhName:'JSON格式化',url:'tools/json.html',icon:'📋',cat:'Developer',desc:'Format, validate and beautify JSON',zhDesc:'格式化JSON',keywords:'json format pretty beautify validate editor highlight tree'},{name:'Regex Tester',zhName:'正则测试器',url:'tools/regex.html',icon:'🔍',cat:'Developer',desc:'Test and debug regular expressions',zhDesc:'正则表达式测试',keywords:'regex regexp regular expression pattern match test replace pattern matching'},{name:'UUID Generator',zhName:'UUID生成器',url:'tools/uuid.html',icon:'🆔',cat:'Developer',desc:'Generate random UUIDs in bulk',zhDesc:'生成UUID',keywords:'uuid guid generate id identifier unique random v4'},{name:'Timestamp',zhName:'时间戳转换',url:'tools/timestamp.html',icon:'⏱️',cat:'Developer',desc:'Unix timestamp and human date converter',zhDesc:'Unix时间戳转换',keywords:'timestamp epoch time date convert unix utc timezone'},{name:'Markdown',zhName:'Markdown预览',url:'tools/markdown.html',icon:'📝',cat:'Writing',desc:'Live Markdown preview with GFM',zhDesc:'Markdown预览',keywords:'markdown md preview render editor github gfm'},{name:'QR Code',zhName:'二维码生成',url:'tools/qrcode.html',icon:'📱',cat:'Growth',desc:'Generate QR codes for URLs and WiFi',zhDesc:'生成二维码',keywords:'qr code qrcode generate url wifi email barcode scan'},{name:'SHA256',zhName:'SHA256哈希',url:'tools/sha256.html',icon:'🔒',cat:'Developer',desc:'Hash text and files with SHA-256',zhDesc:'SHA256哈希',keywords:'sha256 sha1 md5 hash checksum file crypto digest'},{name:'Fullwidth',zhName:'全角半角转换',url:'tools/fullwidth.html',icon:'↔️',cat:'Writing',desc:'Fullwidth and halfwidth converter',zhDesc:'全角半角转换',keywords:'fullwidth halfwidth convert width space clean text format'},{name:'A/B Test',zhName:'A/B测试',url:'tools/chi-squared.html',icon:'📊',cat:'Growth',desc:'Statistical significance calculator',zhDesc:'A/B测试统计',keywords:'ab test chi square significance statistics conversion rate'},{name:'Word Count',zhName:'字数统计',url:'tools/word-count.html',icon:'📊',cat:'Writing',desc:'Real-time word count and reading time',zhDesc:'字数统计',keywords:'word count character reading time text statistics'},{name:'Base64',zhName:'Base64',url:'tools/base64.html',icon:'🔢',cat:'Developer',desc:'Base64 encode and decode',zhDesc:'Base64编解码',keywords:'base64 encode decode binary text conversion'},{name:'Diff',zhName:'文本对比',url:'tools/diff.html',icon:'📑',cat:'Writing',desc:'Compare text differences',zhDesc:'对比文本差异',keywords:'diff compare difference text line'},{name:'Daily Fortune',zhName:'日历幸运签',url:'games/daily-luck.html',icon:'📅',cat:'Game',desc:'Daily fortune draw with wisdom quotes',zhDesc:'每日幸运签',keywords:'fortune luck daily draw card game wisdom relax fun'},{name:'Lucky Slots',zhName:'幸运老虎机',url:'games/slot-machine.html',icon:'🎰',cat:'Game',desc:'Slot machine with free daily spins',zhDesc:'老虎机',keywords:'slot machine slots casino spin reel game jackpot'},{name:'Hoops',zhName:'投篮挑战',url:'games/basketball.html',icon:'🏀',cat:'Game',desc:'Basketball shooting game',zhDesc:'投篮游戏',keywords:'basketball hoops shoot game sport challenge score'}
+];
+
+let searchTimer=null;
+function aiSearch(){
+  clearTimeout(searchTimer);
+  const input=document.getElementById('agentInput').value.trim();
+  const dd=document.getElementById('aiDropdown');
+  const inner=document.getElementById('searchInner');
+  const icon=document.getElementById('searchIcon');
+  if(!input){dd.classList.remove('show');inner.classList.remove('thinking');icon.classList.remove('thinking');icon.textContent='🤖';return}
+  inner.classList.add('thinking');icon.classList.add('thinking');icon.textContent='⚡';
+  dd.innerHTML='<div class="ai-thinking"><span>AI thinking</span><div class="dots"><span></span><span></span><span></span></div></div>';
+  dd.classList.add('show');
+  searchTimer=setTimeout(()=>showResults(input),400);
 }
+function showResults(query){
+  const inner=document.getElementById('searchInner');
+  const icon=document.getElementById('searchIcon');
+  inner.classList.remove('thinking');icon.classList.remove('thinking');icon.textContent='🤖';
+  const q=query.toLowerCase();
+  const isZh=/[\u4e00-\u9fff]/.test(q);
+  let results=TOOL_DB.map(t=>{
+    let score=0;
+    const name=isZh&&t.zhName?t.zhName.toLowerCase():t.name.toLowerCase();
+    const desc=isZh&&t.zhDesc?t.zhDesc.toLowerCase():t.desc.toLowerCase();
+    const kw=t.keywords.toLowerCase();
+    if(name===q)score+=100;
+    else if(name.startsWith(q))score+=80;
+    else if(name.includes(q))score+=60;
+    else if(desc.includes(q))score+=40;
+    else if(kw.includes(q))score+=30;
+    const words=q.split(/\s+/).filter(w=>w.length>1);
+    let wordScore=0;
+    for(const w of words){if(name.includes(w))wordScore+=25;if(desc.includes(w))wordScore+=15;if(kw.includes(w))wordScore+=10}
+    score+=Math.min(wordScore,50);
+    return{...t,score,displayName:isZh&&t.zhName?t.zhName:t.name,displayDesc:isZh&&t.zhDesc?t.zhDesc:t.desc};
+  }).filter(t=>t.score>0).sort((a,b)=>b.score-a.score).slice(0,8);
+  const dd=document.getElementById('aiDropdown');
+  if(results.length===0){
+    dd.innerHTML='<div class="ai-thinking"><span>No matching tools found. Try different keywords.</span></div>';
+    return;
+  }
+  dd.innerHTML=results.map((r,i)=>'<div class="ai-result-item" onclick="goTool(\''+r.url+'\')">'+
+    '<div class="ai-result-icon">'+r.icon+'</div>'+
+    '<div class="ai-result-info"><div class="ai-result-name">'+r.displayName+'</div><div class="ai-result-desc">'+r.displayDesc+'</div></div>'+
+    '<span class="ai-result-tag">'+r.cat+'</span></div>').join('');
+}
+function aiGo(){
+  const input=document.getElementById('agentInput').value.trim();
+  if(!input)return;
+  const dd=document.getElementById('aiDropdown');
+  if(dd.classList.contains('show')){
+    const first=dd.querySelector('.ai-result-item');
+    if(first){first.click();return}
+  }
+  aiSearch();setTimeout(()=>{const f=document.querySelector('.ai-result-item');if(f)f.click()},500);
+}
+function goTool(url){window.location.href=url}
+document.addEventListener('click',function(e){if(!e.target.closest('.agent-box'))document.getElementById('aiDropdown').classList.remove('show')});
 // Credit
 function loadCredit(){const c=localStorage.getItem('aihues_credit');if(c)document.getElementById('creditDisplay').textContent=c}
 loadCredit();

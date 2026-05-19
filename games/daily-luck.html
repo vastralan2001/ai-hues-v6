@@ -373,6 +373,90 @@ main{position:relative;z-index:1;min-height:calc(100vh - 60px)}
 @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(212,168,67,0.2)}50%{box-shadow:0 0 40px rgba(212,168,67,0.4)}}
 @keyframes slideDown{from{opacity:0;max-height:0}to{opacity:1;max-height:200px}}
 
+/* ============ Stats Distribution Bar Chart ============ */
+.stats-section{margin-top:24px;margin-bottom:24px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.stats-section-title{font-size:16px;font-weight:700;color:var(--text-secondary);margin-bottom:16px;text-align:center}
+.bar-chart{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:13px}
+.bar-label{min-width:48px;text-align:right;font-weight:600;color:var(--text-secondary)}
+.bar-track{flex:1;height:22px;background:rgba(255,255,255,0.04);border-radius:11px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:11px;transition:width 0.8s ease;min-width:4px}
+.bar-fill.dg{background:linear-gradient(90deg,#d4a843,#f0c864)}
+.bar-fill.ji{background:linear-gradient(90deg,#059669,#34d399)}
+.bar-fill.zj{background:linear-gradient(90deg,#2563eb,#60a5fa)}
+.bar-fill.xj{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.bar-fill.p{background:linear-gradient(90deg,#64748b,#94a3b8)}
+.bar-value{min-width:32px;text-align:left;color:var(--text-muted);font-size:12px}
+.bar-legend{display:flex;justify-content:center;gap:12px;margin-top:12px;flex-wrap:wrap;font-size:11px;color:var(--text-muted)}
+.bar-legend span{display:flex;align-items:center;gap:4px}
+.bar-legend .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.stats-summary{display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:13px;color:var(--text-muted);flex-wrap:wrap}
+.stats-summary .num{color:var(--gold);font-weight:700;font-size:16px}
+
+/* ============ Leaderboard ============ */
+.leaderboard-section{margin-top:24px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.leaderboard-title{font-size:16px;font-weight:700;color:var(--text-secondary);margin-bottom:16px;text-align:center}
+.leaderboard-list{display:flex;flex-direction:column;gap:8px}
+.leaderboard-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;transition:all .2s}
+.leaderboard-item:hover{background:rgba(255,255,255,0.06);border-color:var(--border-hover)}
+.leaderboard-rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
+.rank-1{background:linear-gradient(135deg,#FFD700,#FFA500);color:#1a1325}
+.rank-2{background:linear-gradient(135deg,#C0C0C0,#E8E8E8);color:#1a1325}
+.rank-3{background:linear-gradient(135deg,#CD7F32,#F4A460);color:#1a1325}
+.rank-default{background:var(--surface-hover);color:var(--text-secondary)}
+.leaderboard-name{flex:1;font-weight:600;color:var(--text)}
+.leaderboard-streak{color:var(--gold);font-weight:600;min-width:50px;text-align:right}
+.leaderboard-credit{color:var(--text-muted);min-width:55px;text-align:right;font-size:12px}
+.leaderboard-date{color:var(--text-muted);min-width:70px;text-align:right;font-size:11px}
+.leaderboard-empty{text-align:center;color:var(--text-muted);padding:16px;font-size:13px}
+
+/* ============ Calendar View ============ */
+.calendar-section{margin-top:24px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.calendar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.calendar-title{font-size:16px;font-weight:700;color:var(--text-secondary)}
+.calendar-nav{display:flex;align-items:center;gap:8px}
+.calendar-nav button{padding:4px 12px;border-radius:var(--radius-sm);background:var(--surface-hover);border:1px solid var(--border);color:var(--text-secondary);font-size:13px;cursor:pointer;transition:all .2s}
+.calendar-nav button:hover{border-color:var(--gold);color:var(--gold)}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.calendar-day-label{text-align:center;font-size:11px;color:var(--text-muted);font-weight:600;padding:4px 0}
+.calendar-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:var(--radius-sm);background:rgba(255,255,255,0.02);border:1px solid transparent;font-size:12px;color:var(--text-secondary);cursor:pointer;transition:all .2s;position:relative}
+.calendar-cell:hover{background:rgba(255,255,255,0.05);border-color:var(--border-hover)}
+.calendar-cell.today{border-color:var(--gold)}
+.calendar-cell .day-num{font-size:13px;font-weight:500}
+.calendar-cell .fortune-dot{width:6px;height:6px;border-radius:50%;margin-top:3px}
+.calendar-cell .fortune-dot.dg{background:var(--gold)}
+.calendar-cell .fortune-dot.ji{background:#34d399}
+.calendar-cell .fortune-dot.zj{background:#60a5fa}
+.calendar-cell .fortune-dot.xj{background:#a78bfa}
+.calendar-cell .fortune-dot.p{background:#94a3b8}
+.calendar-cell.other-month{opacity:0.3}
+.calendar-cell.future{opacity:0.3;cursor:default}
+.calendar-cell.future:hover{background:rgba(255,255,255,0.02);border-color:transparent}
+.calendar-detail{margin-top:12px;padding:12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text-secondary);display:none}
+.calendar-detail.active{display:block;animation:fadeInUp 0.3s ease}
+
+/* ============ Share Card Canvas Modal ============ */
+.share-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:400;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+.share-modal.active{display:flex;animation:fadeIn 0.3s ease}
+.share-modal-inner{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:480px;width:90%;text-align:center;position:relative}
+.share-modal-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:16px}
+.share-modal canvas{max-width:100%;border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:16px}
+.share-modal-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.share-modal .close-btn{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--surface-hover);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s}
+.share-modal .close-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* ============ Tab Buttons ============ */
+.tab-bar{display:flex;gap:6px;justify-content:center;margin-top:16px;margin-bottom:8px;flex-wrap:wrap}
+.tab-btn{padding:8px 18px;border-radius:var(--radius-sm);background:transparent;border:1px solid var(--border);color:var(--text-secondary);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
+.tab-btn:hover{border-color:var(--gold);color:var(--gold)}
+.tab-btn.active{background:rgba(212,168,67,0.12);border-color:rgba(212,168,67,0.3);color:var(--gold)}
+
+/* ============ Toggle View Buttons ============ */
+.view-toggle{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
+.view-toggle-btn{padding:6px 16px;border-radius:var(--radius-sm);background:var(--surface-hover);border:1px solid var(--border);color:var(--text-muted);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
+.view-toggle-btn:hover{border-color:var(--border-hover);color:var(--text-secondary)}
+.view-toggle-btn.active{background:rgba(212,168,67,0.1);border-color:rgba(212,168,67,0.25);color:var(--gold)}
+
 /* ============ Responsive ============ */
 @media(max-width:768px){
   .tool-header h1{font-size:28px}
@@ -433,6 +517,11 @@ main{position:relative;z-index:1;min-height:calc(100vh - 60px)}
       <span data-zh="抽签">DRAW FORTUNE</span>
       <span>✦</span>
     </button>
+    <div style="margin-top:20px">
+      <button class="btn btn-secondary" onclick="showLeaderboard()">
+        <span>🏆</span> <span data-zh="排行榜">Leaderboard</span>
+      </button>
+    </div>
   </div>
 
   <!-- Shake Tube Stage -->
@@ -493,6 +582,9 @@ main{position:relative;z-index:1;min-height:calc(100vh - 60px)}
       <button class="btn btn-primary" onclick="shareFortune()">
         <span>📤</span> <span data-zh="分享我的运势">Share My Fortune</span>
       </button>
+      <button class="btn btn-secondary" onclick="generateShareCard()">
+        <span>🎨</span> <span data-zh="生成分享卡片">Create Share Card</span>
+      </button>
       <button class="btn btn-secondary" onclick="showHistory()">
         <span>📜</span> <span data-zh="历史记录">History</span>
       </button>
@@ -514,12 +606,76 @@ main{position:relative;z-index:1;min-height:calc(100vh - 60px)}
     </div>
   </div>
 
+  <!-- Leaderboard Panel -->
+  <div class="leaderboard-section" id="leaderboard-section" style="display:none">
+    <div class="leaderboard-title">🏆 <span data-zh="排行榜">Leaderboard</span></div>
+    <div class="leaderboard-list" id="leaderboard-list"></div>
+    <div class="tab-bar" style="margin-top:16px;margin-bottom:0">
+      <button class="btn btn-secondary" onclick="hideLeaderboard()" data-zh="返回">Back</button>
+    </div>
+  </div>
+
   <!-- History Section -->
   <div class="history-section" id="history-section" style="display:none">
     <div class="history-title" data-zh="📜 最近30天抽签记录">📜 Last 30 Days</div>
-    <div class="history-list" id="history-list"></div>
+    <div class="view-toggle">
+      <button class="view-toggle-btn active" id="view-list-btn" onclick="switchView('list')" data-zh="列表">List</button>
+      <button class="view-toggle-btn" id="view-stats-btn" onclick="switchView('stats')" data-zh="统计">Stats</button>
+      <button class="view-toggle-btn" id="view-calendar-btn" onclick="switchView('calendar')" data-zh="日历">Calendar</button>
+    </div>
+    <!-- List View -->
+    <div id="history-list-view">
+      <div class="history-list" id="history-list"></div>
+    </div>
+    <!-- Stats View -->
+    <div id="history-stats-view" style="display:none">
+      <div class="stats-section">
+        <div class="stats-section-title" data-zh="运势分布">Fortune Distribution</div>
+        <div class="bar-chart" id="stats-bar-chart"></div>
+        <div class="bar-legend">
+          <span><span class="dot" style="background:var(--gold)"></span> <span data-zh="大吉">Great</span></span>
+          <span><span class="dot" style="background:#34d399"></span> <span data-zh="吉">Good</span></span>
+          <span><span class="dot" style="background:#60a5fa"></span> <span data-zh="中吉">Mod.</span></span>
+          <span><span class="dot" style="background:#a78bfa"></span> <span data-zh="小吉">Small</span></span>
+          <span><span class="dot" style="background:#94a3b8"></span> <span data-zh="平">Neutral</span></span>
+        </div>
+        <div class="stats-summary" id="stats-summary"></div>
+      </div>
+    </div>
+    <!-- Calendar View -->
+    <div id="history-calendar-view" style="display:none">
+      <div class="calendar-section">
+        <div class="calendar-header">
+          <div class="calendar-title" id="calendar-month-title"></div>
+          <div class="calendar-nav">
+            <button onclick="changeCalendarMonth(-1)">◀</button>
+            <button onclick="changeCalendarMonth(0)" data-zh="今天">Today</button>
+            <button onclick="changeCalendarMonth(1)">▶</button>
+          </div>
+        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+        <div class="calendar-detail" id="calendar-detail"></div>
+      </div>
+    </div>
     <div style="text-align:center">
       <span class="streak-badge">🔥 <span data-zh="连续">Streak</span>: <span id="streak-badge-num">0</span> <span data-zh="天">days</span></span>
+    </div>
+  </div>
+
+  <!-- Share Card Modal -->
+  <div class="share-modal" id="share-modal" onclick="if(event.target===this)hideShareModal()">
+    <div class="share-modal-inner">
+      <button class="close-btn" onclick="hideShareModal()">✕</button>
+      <div class="share-modal-title" data-zh="分享卡片">Share Card</div>
+      <canvas id="share-card-canvas" width="600" height="800"></canvas>
+      <div class="share-modal-actions">
+        <button class="btn btn-primary" onclick="downloadShareCard()">
+          <span>⬇</span> <span data-zh="下载图片">Download</span>
+        </button>
+        <button class="btn btn-secondary" onclick="hideShareModal()">
+          <span data-zh="关闭">Close</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -603,8 +759,35 @@ const LS_KEY_HISTORY = 'daily-luck-history';
 const LS_KEY_LAST_DRAW = 'daily-luck-last-draw';
 const LS_KEY_CREDITS = 'daily-luck-credits';
 
+// New localStorage keys with aihues_daily_ prefix
+const LS_KEY_STATS = 'aihues_daily_stats';
+const LS_KEY_LEADERBOARD = 'aihues_daily_leaderboard';
+
+const defaultDailyLeaderboard = [
+  {name:'FortuneHunter',streak:23,totalCredits:580,date:'2026-05-18'},
+  {name:'LuckMaster',streak:18,totalCredits:450,date:'2026-05-17'},
+  {name:'DailyDraw',streak:15,totalCredits:380,date:'2026-05-16'},
+  {name:'BlessedOne',streak:12,totalCredits:320,date:'2026-05-15'},
+  {name:'WishMaker',streak:10,totalCredits:280,date:'2026-05-14'},
+  {name:'StarGazer',streak:8,totalCredits:220,date:'2026-05-13'},
+  {name:'MoonChild',streak:7,totalCredits:190,date:'2026-05-12'},
+  {name:'SunWalker',streak:5,totalCredits:150,date:'2026-05-11'},
+  {name:'WindDancer',streak:4,totalCredits:120,date:'2026-05-10'},
+  {name:'NewHope',streak:3,totalCredits:80,date:'2026-05-09'},
+];
+
+const levelColors = {
+  '大吉': {css:'var(--gold)',fill:'#d4a843',class:'dg'},
+  '吉':   {css:'#34d399',fill:'#34d399',class:'ji'},
+  '中吉': {css:'#60a5fa',fill:'#60a5fa',class:'zj'},
+  '小吉': {css:'#a78bfa',fill:'#a78bfa',class:'xj'},
+  '平':   {css:'#94a3b8',fill:'#94a3b8',class:'p'},
+};
+
 let isDrawing = false;
 let currentFortune = null;
+let calendarCurrentDate = new Date();
+let shareCardCanvasDataUrl = '';
 
 // ===================== UTILS =====================
 
@@ -792,6 +975,98 @@ function launchConfetti() {
   animateConfetti();
 }
 
+// ===================== STATS & LEADERBOARD STORAGE =====================
+
+function getStats() {
+  try {
+    const raw = localStorage.getItem(LS_KEY_STATS);
+    if (raw) return JSON.parse(raw);
+  } catch(e) { /* ignore */ }
+  return { distribution: {}, summary: {} };
+}
+
+function saveStats(stats) {
+  try {
+    localStorage.setItem(LS_KEY_STATS, JSON.stringify(stats));
+  } catch(e) { /* ignore */ }
+}
+
+function computeStats() {
+  const history = getHistory();
+  const distribution = {'大吉':0,'吉':0,'中吉':0,'小吉':0,'平':0};
+  let totalDraws = 0;
+  let totalCredits = 0;
+  let bestDay = null;
+  let bestQuote = '';
+
+  history.forEach(h => {
+    totalDraws++;
+    totalCredits += h.credits || 0;
+    if (distribution[h.level] !== undefined) distribution[h.level]++;
+    if (!bestDay || (h.credits || 0) > bestDay.credits) {
+      bestDay = {date: new Date(h.date).toISOString().split('T')[0], level: h.level, credits: h.credits || 0};
+    }
+    if (!bestQuote && h.quote) bestQuote = h.quote;
+  });
+
+  // Calculate streaks
+  const sortedDates = history.map(h => new Date(h.date)).sort((a,b) => b-a);
+  let currentStreak = calculateStreak();
+  let longestStreak = 0;
+
+  const dateSet = new Set(history.map(h => new Date(h.date).toDateString()));
+  const today = new Date(); today.setHours(0,0,0,0);
+  let check = new Date(today);
+  // Find longest streak from history
+  let tempStreak = 0;
+  let maxStreak = 0;
+  // Check all dates for longest streak
+  const allDates = Array.from(dateSet).map(d => new Date(d)).sort((a,b) => a-b);
+  if (allDates.length > 0) {
+    tempStreak = 1;
+    maxStreak = 1;
+    for (let i = 1; i < allDates.length; i++) {
+      const prev = new Date(allDates[i-1]); prev.setHours(0,0,0,0);
+      const curr = new Date(allDates[i]); curr.setHours(0,0,0,0);
+      const diff = (curr - prev) / (1000*60*60*24);
+      if (diff === 1) {
+        tempStreak++;
+        maxStreak = Math.max(maxStreak, tempStreak);
+      } else {
+        tempStreak = 1;
+      }
+    }
+    longestStreak = maxStreak;
+  }
+
+  const stats = {
+    distribution,
+    summary: {totalDraws,totalCredits,bestDay:bestDay||{date:'',level:'',credits:0},currentStreak,longestStreak,bestQuote}
+  };
+  saveStats(stats);
+  return stats;
+}
+
+function getLeaderboard() {
+  try {
+    const raw = localStorage.getItem(LS_KEY_LEADERBOARD);
+    if (raw) return JSON.parse(raw);
+  } catch(e) { /* ignore */ }
+  // Initialize with defaults
+  localStorage.setItem(LS_KEY_LEADERBOARD, JSON.stringify(defaultDailyLeaderboard));
+  return [...defaultDailyLeaderboard];
+}
+
+function saveLeaderboard(data) {
+  try {
+    localStorage.setItem(LS_KEY_LEADERBOARD, JSON.stringify(data.slice(0,10)));
+  } catch(e) { /* ignore */ }
+}
+
+function getLevelColor(level) {
+  return levelColors[level] || {css:'var(--gold)',fill:'#d4a843',class:'dg'};
+}
+
 // ===================== STORAGE =====================
 
 function getHistory() {
@@ -974,6 +1249,7 @@ function revealFortune() {
   }, 600);
 
   updateStreakDisplay();
+  updateStatsAfterDraw(fortune);
   isDrawing = false;
 
   // Re-enable button
@@ -1107,10 +1383,437 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
+// ===================== STATS UPDATE AFTER DRAW =====================
+
+function updateStatsAfterDraw(fortune) {
+  const stats = getStats();
+  if (!stats.distribution) stats.distribution = {};
+  if (!stats.distribution[fortune.level]) stats.distribution[fortune.level] = 0;
+  stats.distribution[fortune.level]++;
+
+  const s = stats.summary || {};
+  s.totalDraws = (s.totalDraws || 0) + 1;
+  s.totalCredits = (s.totalCredits || 0) + fortune.credits;
+  if (!s.bestDay || fortune.credits > s.bestDay.credits) {
+    s.bestDay = {date: new Date().toISOString().split('T')[0], level: fortune.level, credits: fortune.credits};
+  }
+  if (fortune.quoteZh && (!s.bestQuote || Math.random() > 0.7)) {
+    s.bestQuote = fortune.quoteZh;
+  }
+  s.currentStreak = calculateStreak();
+  // Update longest streak
+  const history = getHistory();
+  const dateSet = new Set(history.map(h => new Date(h.date).toDateString()));
+  let maxStreak = 0, tempStreak = 0;
+  const allDates = Array.from(dateSet).map(d => new Date(d)).sort((a,b) => a-b);
+  if (allDates.length > 0) {
+    tempStreak = 1; maxStreak = 1;
+    for (let i = 1; i < allDates.length; i++) {
+      const prev = new Date(allDates[i-1]); prev.setHours(0,0,0,0);
+      const curr = new Date(allDates[i]); curr.setHours(0,0,0,0);
+      const diff = (curr - prev) / (1000*60*60*24);
+      if (diff === 1) { tempStreak++; maxStreak = Math.max(maxStreak, tempStreak); }
+      else { tempStreak = 1; }
+    }
+  }
+  s.longestStreak = maxStreak;
+  stats.summary = s;
+  saveStats(stats);
+
+  // Update leaderboard with current user
+  updateLeaderboardWithUser(s.currentStreak || 0, s.totalCredits || 0);
+}
+
+function updateLeaderboardWithUser(streak, totalCredits) {
+  const board = getLeaderboard();
+  const today = new Date().toISOString().split('T')[0];
+  const existing = board.find(b => b.name === 'You');
+  if (existing) {
+    existing.streak = Math.max(existing.streak, streak);
+    existing.totalCredits = totalCredits;
+    existing.date = today;
+  } else {
+    board.push({name:'You',streak,totalCredits,date:today});
+  }
+  board.sort((a,b) => { if (b.streak !== a.streak) return b.streak - a.streak; return b.totalCredits - a.totalCredits; });
+  saveLeaderboard(board.slice(0,10));
+}
+
+// ===================== LEADERBOARD UI =====================
+
+function showLeaderboard() {
+  document.getElementById('opening-screen').style.display = 'none';
+  document.getElementById('leaderboard-section').style.display = 'block';
+  renderLeaderboard();
+}
+
+function hideLeaderboard() {
+  document.getElementById('leaderboard-section').style.display = 'none';
+  if (!document.getElementById('fortune-stage').classList.contains('active') && !document.getElementById('already-drawn').classList.contains('active')) {
+    document.getElementById('opening-screen').style.display = 'block';
+  }
+}
+
+function renderLeaderboard() {
+  const list = document.getElementById('leaderboard-list');
+  const board = getLeaderboard();
+  if (board.length === 0) {
+    list.innerHTML = '<div class="leaderboard-empty">No data yet</div>';
+    return;
+  }
+  list.innerHTML = board.map((entry, idx) => {
+    const rankClass = idx === 0 ? 'rank-1' : idx === 1 ? 'rank-2' : idx === 2 ? 'rank-3' : 'rank-default';
+    return `
+      <div class="leaderboard-item">
+        <div class="leaderboard-rank ${rankClass}">${idx+1}</div>
+        <div class="leaderboard-name">${entry.name}</div>
+        <div class="leaderboard-streak">🔥 ${entry.streak}</div>
+        <div class="leaderboard-credit">${entry.totalCredits} pts</div>
+        <div class="leaderboard-date">${entry.date}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===================== VIEW SWITCHING (List / Stats / Calendar) =====================
+
+function switchView(view) {
+  document.getElementById('view-list-btn').classList.toggle('active', view === 'list');
+  document.getElementById('view-stats-btn').classList.toggle('active', view === 'stats');
+  document.getElementById('view-calendar-btn').classList.toggle('active', view === 'calendar');
+  document.getElementById('history-list-view').style.display = view === 'list' ? 'block' : 'none';
+  document.getElementById('history-stats-view').style.display = view === 'stats' ? 'block' : 'none';
+  document.getElementById('history-calendar-view').style.display = view === 'calendar' ? 'block' : 'none';
+  if (view === 'stats') renderStatsChart();
+  if (view === 'calendar') renderCalendar();
+}
+
+// ===================== STATS BAR CHART =====================
+
+function renderStatsChart() {
+  const stats = computeStats();
+  const dist = stats.distribution || {};
+  const total = Object.values(dist).reduce((s,v) => s+v, 0) || 1;
+  const levels = ['大吉','吉','中吉','小吉','平'];
+  const container = document.getElementById('stats-bar-chart');
+  container.innerHTML = levels.map(lv => {
+    const count = dist[lv] || 0;
+    const pct = Math.round((count/total)*100);
+    const cfg = levelColors[lv];
+    return `
+      <div class="bar-row">
+        <span class="bar-label">${lv}</span>
+        <div class="bar-track">
+          <div class="bar-fill ${cfg.class}" style="width:${pct}%"></div>
+        </div>
+        <span class="bar-value">${count}</span>
+      </div>
+    `;
+  }).join('');
+  const s = stats.summary || {};
+  document.getElementById('stats-summary').innerHTML = `
+    <span><span class="num">${s.totalDraws||0}</span> <span data-zh="总抽签">Total Draws</span></span>
+    <span><span class="num">${s.totalCredits||0}</span> <span data-zh="总积分">Total Credits</span></span>
+    <span><span class="num">${s.currentStreak||0}</span> <span data-zh="当前连续">Current Streak</span></span>
+    <span><span class="num">${s.longestStreak||0}</span> <span data-zh="最长连续">Longest Streak</span></span>
+  `;
+}
+
+// ===================== CALENDAR VIEW =====================
+
+function renderCalendar() {
+  const year = calendarCurrentDate.getFullYear();
+  const month = calendarCurrentDate.getMonth();
+  document.getElementById('calendar-month-title').textContent =
+    new Date(year, month, 1).toLocaleDateString('en-US', {year:'numeric', month:'long'});
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const daysInPrevMonth = new Date(year, month, 0).getDate();
+  const grid = document.getElementById('calendar-grid');
+
+  // Day labels
+  const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  let html = dayLabels.map(d => `<div class="calendar-day-label">${d}</div>`).join('');
+
+  // Previous month days
+  for (let i = firstDay - 1; i >= 0; i--) {
+    html += `<div class="calendar-cell other-month"><span class="day-num">${daysInPrevMonth - i}</span></div>`;
+  }
+
+  // Current month days
+  const history = getHistory();
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const historyMap = {};
+  history.forEach(h => {
+    const d = new Date(h.date);
+    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    historyMap[key] = h;
+  });
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const cellDate = new Date(year, month, d);
+    const isToday = cellDate.toDateString() === today.toDateString();
+    const isFuture = cellDate > today;
+    const key = `${year}-${month}-${d}`;
+    const entry = historyMap[key];
+    const lc = entry ? (levelColors[entry.level] || levelColors['平']) : null;
+
+    let cls = 'calendar-cell';
+    if (isToday) cls += ' today';
+    if (isFuture) cls += ' future';
+
+    if (entry && !isFuture) {
+      html += `<div class="${cls}" onclick="showCalendarDetail('${key}')">
+        <span class="day-num">${d}</span>
+        <span class="fortune-dot ${lc.class}"></span>
+      </div>`;
+    } else {
+      html += `<div class="${cls}"><span class="day-num">${d}</span></div>`;
+    }
+  }
+
+  // Next month days to fill grid
+  const totalCells = firstDay + daysInMonth;
+  const remaining = (7 - (totalCells % 7)) % 7;
+  for (let d = 1; d <= remaining; d++) {
+    html += `<div class="calendar-cell other-month"><span class="day-num">${d}</span></div>`;
+  }
+
+  grid.innerHTML = html;
+}
+
+function changeCalendarMonth(delta) {
+  if (delta === 0) {
+    calendarCurrentDate = new Date();
+  } else {
+    calendarCurrentDate.setMonth(calendarCurrentDate.getMonth() + delta);
+  }
+  renderCalendar();
+}
+
+function showCalendarDetail(key) {
+  const history = getHistory();
+  const entry = history.find(h => {
+    const d = new Date(h.date);
+    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}` === key;
+  });
+  if (!entry) return;
+  const detail = document.getElementById('calendar-detail');
+  detail.innerHTML = `
+    <strong>${entry.level}</strong> — ${entry.quote}<br>
+    <small style="color:var(--text-muted)">Credits: +${entry.credits} | Lucky #: ${entry.luckyNumber || '-'} | Color: ${entry.color ? entry.color.nameZh : '-'}</small>
+  `;
+  detail.classList.add('active');
+}
+
+// ===================== SHARE CARD (Canvas) =====================
+
+function generateShareCard() {
+  if (!currentFortune) {
+    showToast(getLang() === 'zh' ? '请先抽签' : 'Please draw a fortune first');
+    return;
+  }
+
+  const canvas = document.getElementById('share-card-canvas');
+  canvas.width = 600;
+  canvas.height = 800;
+  const ctx = canvas.getContext('2d');
+  const result = currentFortune;
+
+  // Background: deep purple gradient
+  const grad = ctx.createLinearGradient(0,0,600,800);
+  grad.addColorStop(0, '#1a0a2e');
+  grad.addColorStop(0.5, '#0f0a1e');
+  grad.addColorStop(1, '#1a1028');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,600,800);
+
+  // Decorative circles
+  ctx.save();
+  ctx.globalAlpha = 0.08;
+  ctx.fillStyle = '#d4a843';
+  ctx.beginPath();
+  ctx.arc(100, 200, 120, 0, Math.PI*2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(500, 600, 80, 0, Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+
+  // Golden border (double)
+  ctx.strokeStyle = 'rgba(212,168,67,0.6)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(24,24,552,752);
+  ctx.strokeStyle = '#d4a843';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(32,32,536,736);
+
+  // Corner ornaments
+  drawCornerOrnament(ctx, 32, 32, 1, 1);
+  drawCornerOrnament(ctx, 568, 32, -1, 1);
+  drawCornerOrnament(ctx, 32, 768, 1, -1);
+  drawCornerOrnament(ctx, 568, 768, -1, -1);
+
+  // Title
+  ctx.fillStyle = '#d4a843';
+  ctx.font = 'bold 52px "Noto Serif SC", serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('每日运势', 300, 130);
+  ctx.font = 'italic 18px serif';
+  ctx.fillStyle = 'rgba(212,168,67,0.5)';
+  ctx.fillText('Daily Fortune', 300, 158);
+
+  // Horizontal golden line
+  ctx.strokeStyle = 'rgba(212,168,67,0.4)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(120, 175); ctx.lineTo(480, 175);
+  ctx.stroke();
+
+  // Date
+  const dateStr = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric'});
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '18px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(dateStr, 300, 210);
+
+  // Fortune level (large text)
+  const lvColor = (levelColors[result.level] || levelColors['大吉']).fill;
+  ctx.fillStyle = lvColor;
+  ctx.font = 'bold 80px "Noto Serif SC", serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(result.level, 300, 310);
+
+  // Level English name
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.font = '20px serif';
+  ctx.fillText(result.levelEn || '', 300, 340);
+
+  // Divider
+  ctx.strokeStyle = lvColor;
+  ctx.lineWidth = 2;
+  ctx.globalAlpha = 0.5;
+  ctx.beginPath();
+  ctx.moveTo(180, 370); ctx.lineTo(420, 370);
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  // Quote with word wrap
+  ctx.fillStyle = '#e2e8f0';
+  ctx.font = '28px "Noto Serif SC", serif';
+  wrapText(ctx, result.quoteZh || result.quote || '', 300, 420, 480, 38);
+
+  // Quote English (if available)
+  if (result.quoteEn) {
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.font = '16px serif';
+    wrapText(ctx, result.quoteEn, 300, 480, 460, 24);
+  }
+
+  // Lucky Color
+  const colorY = 560;
+  ctx.fillStyle = '#7a6a99';
+  ctx.font = '14px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('幸运色 Lucky Color', 130, colorY);
+  const colorDot = result.color ? result.color.hex : '#d4a843';
+  ctx.fillStyle = colorDot;
+  ctx.fillRect(130, colorY+10, 28, 28);
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(130, colorY+10, 28, 28);
+  ctx.fillStyle = '#e2e8f0';
+  ctx.font = '18px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(result.color ? result.color.nameZh : '', 168, colorY+30);
+
+  // Lucky Number
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#7a6a99';
+  ctx.font = '14px sans-serif';
+  ctx.fillText('幸运数字 Lucky Number', 470, colorY);
+  ctx.fillStyle = '#d4a843';
+  ctx.font = 'bold 36px sans-serif';
+  ctx.fillText(String(result.luckyNumber || ''), 470, colorY+36);
+
+  // Credits earned
+  ctx.textAlign = 'center';
+  ctx.fillStyle = 'rgba(212,168,67,0.3)';
+  ctx.font = '14px sans-serif';
+  ctx.fillText('REWARD', 300, 660);
+  ctx.fillStyle = '#d4a843';
+  ctx.font = 'bold 32px sans-serif';
+  ctx.fillText('+' + (result.credits || 0) + ' Credits', 300, 690);
+
+  // AIHues Logo
+  ctx.fillStyle = '#8b5cf6';
+  ctx.font = '16px sans-serif';
+  ctx.fillText('AIHues · Find your AI vibe', 300, 745);
+
+  shareCardCanvasDataUrl = canvas.toDataURL('image/png');
+  document.getElementById('share-modal').classList.add('active');
+}
+
+function drawCornerOrnament(ctx, x, y, sx, sy) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(sx, sy);
+  ctx.strokeStyle = '#d4a843';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, 20); ctx.lineTo(0, 0); ctx.lineTo(20, 0);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  ctx.textAlign = 'center';
+  const chars = text.split('');
+  let line = '';
+  let lines = [];
+  for (let i = 0; i < chars.length; i++) {
+    const testLine = line + chars[i];
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxWidth && line.length > 0) {
+      lines.push(line);
+      line = chars[i];
+    } else {
+      line = testLine;
+    }
+  }
+  lines.push(line);
+  lines.forEach((ln, idx) => {
+    ctx.fillText(ln, x, y + idx * lineHeight);
+  });
+}
+
+function hideShareModal() {
+  document.getElementById('share-modal').classList.remove('active');
+}
+
+function downloadShareCard() {
+  if (!shareCardCanvasDataUrl) return;
+  const link = document.createElement('a');
+  link.download = 'fortune-' + new Date().toISOString().split('T')[0] + '.png';
+  link.href = shareCardCanvasDataUrl;
+  link.click();
+  showToast('Downloaded!');
+}
+
 // ===================== INIT =====================
 
 function init() {
   updateStreakDisplay();
+
+  // Initialize leaderboard if empty
+  try {
+    const raw = localStorage.getItem(LS_KEY_LEADERBOARD);
+    if (!raw) {
+      localStorage.setItem(LS_KEY_LEADERBOARD, JSON.stringify(defaultDailyLeaderboard));
+    }
+  } catch(e) { /* ignore */ }
 
   // Check if already drawn today
   if (hasDrawnToday()) {
