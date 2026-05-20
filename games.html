@@ -37,6 +37,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 .nav-links a:hover,.nav-links a.active{color:var(--accent)}
 .nav-cta{padding:9px 20px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:14px;font-weight:600;box-shadow:0 2px 8px rgba(109,40,217,0.25);transition:all .2s;display:flex;align-items:center;gap:6px;text-decoration:none}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(109,40,217,0.35)}
+.theme-btn{width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text-secondary)}.theme-btn:hover{border-color:var(--accent-light);color:var(--accent)}
 [data-theme="dark"] .nav{background:rgba(10,10,18,0.92);border-bottom-color:var(--border)}
 
 /* ===== HERO ===== */
@@ -100,6 +101,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
       <a href="ranking.html" data-zh="排行榜">Ranking</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
+            <div id="theme-selector" style="display:flex;gap:4px;align-items:center"></div>
       <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN / 中文</button>
       <a href="login.html" class="nav-cta" data-zh="登录">Login</a>
     </div>

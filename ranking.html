@@ -34,6 +34,7 @@ a{color:var(--accent);text-decoration:none}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(109,40,217,0.35)}
 .lang-btn{padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
 .lang-btn:hover{border-color:var(--accent-light);color:var(--accent)}
+.theme-btn{width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text-secondary)}.theme-btn:hover{border-color:var(--accent-light);color:var(--accent)}
 
 /* ===== HERO ===== */
 .hero{text-align:center;padding:56px 32px 32px;position:relative;overflow:hidden}
@@ -169,6 +170,7 @@ a{color:var(--accent);text-decoration:none}
       <a href="./ranking.html" class="active" data-zh="排行榜">Leaderboard</a>
     </div>
     <div style="display:flex;gap:10px;align-items:center">
+            <div id="theme-selector" style="display:flex;gap:4px;align-items:center"></div>
       <button class="lang-btn" onclick="toggleLang()" data-zh="En">中文</button>
       <a href="#" class="nav-cta"><span data-zh="登录">Login</span></a>
     </div>

@@ -33,6 +33,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(109,40,217,0.35)}
 .lang-btn{padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
 .lang-btn:hover{border-color:var(--accent-light);color:var(--accent)}
+.theme-btn{width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text-secondary)}.theme-btn:hover{border-color:var(--accent-light);color:var(--accent)}
 
 /* ===== HERO ===== */
 .hero{text-align:center;padding:60px 32px 40px;position:relative;overflow:hidden;background:var(--surface);border-bottom:1px solid var(--border)}
@@ -153,6 +154,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
       <a href="./wishlist.html" class="active" data-zh="许愿单">Wishlist</a>
     </div>
     <div style="display:flex;gap:10px;align-items:center">
+            <div id="theme-selector" style="display:flex;gap:4px;align-items:center"></div>
       <button class="lang-btn" onclick="toggleLang()" data-zh="EN">中文</button>
       <a href="./login.html" class="nav-cta" data-zh="登录">Login</a>
     </div>
@@ -243,7 +245,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
   </div>
 </footer>
 
-<script src="./js/i18n.js"></script>
+<script src="./js/i18n.js"></script
+<script src="js/theme-system.js"></script>>
 <script>
 // ===== DATA =====
 const STORAGE_KEY = 'aihues_wishlist';

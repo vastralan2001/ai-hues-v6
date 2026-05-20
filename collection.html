@@ -30,6 +30,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 .nav-links a:hover{color:var(--text)}
 .nav-cta{padding:9px 20px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:14px;font-weight:600;box-shadow:0 2px 8px rgba(109,40,217,0.25);transition:all .2s;display:flex;align-items:center;gap:6px;text-decoration:none}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(109,40,217,0.35)}
+.theme-btn{width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text-secondary)}.theme-btn:hover{border-color:var(--accent-light);color:var(--accent)}
 .nav-credits{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:var(--gold-bg);border:1px solid var(--gold-border);font-size:13px;font-weight:700;color:var(--gold)}
 
 /* ===== HERO ===== */
@@ -226,7 +227,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
     <a href="index.html" class="logo"><div class="logo-mark">H</div><span>AIHues</span></a>
     <div class="nav-links">
       <a href="index.html#categories">Categories</a>
-      <a href="index.html#tools">Tools</a>
+      <a href="tools.html">Tools</a>
       <a href="discover.html">Discover</a>
       <a href="wishlist.html">Wishlist</a>
       <a href="index.html#categories" style="color:var(--accent);font-weight:600">Collection</a>
@@ -234,7 +235,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
       <a href="login.html">Profile</a>
       <div class="nav-credits" id="navCredits">0 cr</div>
     </div>
-    <a href="index.html#agent" class="nav-cta">Try Agent</a>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div id="theme-selector" style="display:flex;gap:4px;align-items:center"></div>
+      <button class="lang-btn" onclick="toggleLang()" data-zh="EN">中文</button>
+    </div>
   </div>
 </nav>
 
