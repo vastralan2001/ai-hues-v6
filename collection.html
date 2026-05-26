@@ -7,29 +7,29 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#ffffff;--surface:#f8f9fb;--surface-hover:#f1f3f7;
-  --border:#e8ecf1;--border-hover:#d1d8e0;
-  --text:#0f172a;--text-secondary:#475569;--text-muted:#94a3b8;
-  --accent:#6d28d9;--accent-light:#8b5cf6;--accent-gradient:linear-gradient(135deg,#6d28d9,#8b5cf6);
+  --bg:#faf9f6;--surface:#ffffff;--surface-hover:#f5f0e8;
+  --border:#e8ecf1;--border-hover:#e7d5c0;
+  --text:#0f172a;--text-secondary:#475569;--text-muted:#a08b7a;
+  --accent:#b45309;--accent-light:#d97706;--accent-gradient:linear-gradient(135deg,#b45309,#d97706);
   --green:#059669;--green-bg:#ecfdf5;
   --gold:#d97706;--gold-bg:#fffbeb;--gold-border:#fbbf24;
   --red:#dc2626;--red-bg:#fef2f2;
   --radius:14px;--radius-sm:10px;
   --shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);
-  --shadow-hover:0 4px 12px rgba(109,40,217,0.12),0 8px 32px rgba(0,0,0,0.08);
+  --shadow-hover:0 4px 12px rgba(180,83,9,0.12),0 8px 32px rgba(0,0,0,0.08);
 }
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 
 /* ===== NAV ===== */
-.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border)}
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1300px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:var(--text);letter-spacing:-1px;text-decoration:none}
-.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700;box-shadow:0 2px 8px rgba(109,40,217,0.3)}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700;box-shadow:0 2px 8px rgba(180,83,9,0.3)}
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500;transition:color .2s;text-decoration:none}
 .nav-links a:hover{color:var(--text)}
-.nav-cta{padding:9px 20px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:14px;font-weight:600;box-shadow:0 2px 8px rgba(109,40,217,0.25);transition:all .2s;display:flex;align-items:center;gap:6px;text-decoration:none}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(109,40,217,0.35)}
+.nav-cta{padding:9px 20px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:14px;font-weight:600;box-shadow:0 2px 8px rgba(180,83,9,0.25);transition:all .2s;display:flex;align-items:center;gap:6px;text-decoration:none}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(180,83,9,0.35)}
 .theme-btn{width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text-secondary)}.theme-btn:hover{border-color:var(--accent-light);color:var(--accent)}
 .nav-credits{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:var(--gold-bg);border:1px solid var(--gold-border);font-size:13px;font-weight:700;color:var(--gold)}
 
@@ -56,13 +56,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 /* ===== GACHA MACHINE ===== */
 .gacha-section{max-width:1300px;margin:0 auto;padding:50px 32px}
 .gacha-machine{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden}
-.gacha-machine::before{content:'';position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(109,40,217,0.06),transparent 70%);border-radius:50%;pointer-events:none}
+.gacha-machine::before{content:'';position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(180,83,9,0.06),transparent 70%);border-radius:50%;pointer-events:none}
 .gacha-header{margin-bottom:32px}
 .gacha-header h2{font-size:26px;font-weight:700;margin-bottom:6px}
 .gacha-header p{color:var(--text-secondary);font-size:14px}
 
 /* Draw Button */
-.draw-btn{padding:16px 48px;border-radius:var(--radius-sm);background:var(--accent-gradient);color:#fff;font-size:18px;font-weight:700;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(109,40,217,0.35);position:relative;overflow:hidden;margin-bottom:32px}
+.draw-btn{padding:16px 48px;border-radius:var(--radius-sm);background:var(--accent-gradient);color:#fff;font-size:18px;font-weight:700;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(180,83,9,0.35);position:relative;overflow:hidden;margin-bottom:32px}
 .draw-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(109,40,217,0.45)}
 .draw-btn:active{transform:translateY(0)}
 .draw-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
@@ -79,7 +79,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 @keyframes cardShake{0%,100%{transform:translateX(0) rotateY(0)}20%{transform:translateX(-8px) rotateY(-5deg)}40%{transform:translateX(8px) rotateY(5deg)}60%{transform:translateX(-5px) rotateY(-3deg)}80%{transform:translateX(5px) rotateY(3deg)}}
 
 .card-front,.card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius-sm);display:flex;flex-direction:column;align-items:center;justify-content:center}
-.card-front{background:var(--accent-gradient);box-shadow:0 4px 16px rgba(109,40,217,0.25)}
+.card-front{background:var(--accent-gradient);box-shadow:0 4px 16px rgba(180,83,9,0.25)}
 .card-front .card-logo{width:56px;height:56px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#fff;margin-bottom:12px}
 .card-front .card-label{font-size:14px;font-weight:600;color:rgba(255,255,255,0.9)}
 .card-front .card-sub{font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px}
@@ -112,7 +112,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 .rarity-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px}
 .rarity-common .rarity-badge{background:#f1f5f9;color:#64748b}
 .rarity-uncommon .rarity-badge{background:var(--green-bg);color:var(--green)}
-.rarity-rare .rarity-badge{background:rgba(109,40,217,0.1);color:var(--accent)}
+.rarity-rare .rarity-badge{background:rgba(180,83,9,0.1);color:var(--accent)}
 .rarity-legendary .rarity-badge{background:var(--gold-bg);color:var(--gold)}
 
 .tool-icon{width:52px;height:52px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 10px;background:var(--surface)}
@@ -170,7 +170,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
 .popup h3{font-size:22px;font-weight:700;margin-bottom:8px}
 .popup p{color:var(--text-secondary);font-size:14px;margin-bottom:20px}
 .popup-btn{padding:12px 32px;border-radius:var(--radius-sm);background:var(--accent-gradient);color:#fff;font-size:15px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
-.popup-btn:hover{box-shadow:0 4px 16px rgba(109,40,217,0.35)}
+.popup-btn:hover{box-shadow:0 4px 16px rgba(180,83,9,0.35)}
 .popup-credits{font-size:36px;font-weight:800;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:12px 0}
 .popup-cards{display:flex;justify-content:center;gap:12px;margin:20px 0}
 .popup-card{width:80px;height:110px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:600;border:2px solid var(--border);background:var(--surface)}
@@ -233,7 +233,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,Bl
       <a href="index.html#categories" style="color:var(--accent);font-weight:600">Collection</a>
       <a href="login.html">Login</a>
       <a href="login.html">Profile</a>
-      <div class="nav-credits" id="navCredits">0 cr</div>
+      <div class="nav-credits" id="navCredits">0 cr      <a href="article.html" data-zh="文章">Articles</a>
+    </div>
     </div>
     <div style="display:flex;gap:10px;align-items:center">
       <div id="theme-selector" style="display:flex;gap:4px;align-items:center"></div>
@@ -709,7 +710,7 @@ function showCreditFloat(text,x,y){
 }
 
 function spawnConfetti(){
-  const colors = ['#6d28d9','#8b5cf6','#059669','#d97706','#2563eb','#dc2626','#f59e0b','#10b981'];
+  const colors = ['#6d28d9','#d97706','#059669','#d97706','#2563eb','#dc2626','#f59e0b','#10b981'];
   for(let i=0;i<60;i++){
     const c = document.createElement('div');
     c.className = 'confetti-piece';

@@ -602,7 +602,7 @@
       'gap:12px',
       'min-width:260px',
       'max-width:340px',
-      'box-shadow:0 8px 32px rgba(109,40,217,0.15)',
+      'box-shadow:0 8px 32px rgba(180,83,9,0.15)',
       'font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif',
       'font-size:14px',
       'pointer-events:auto',
@@ -719,7 +719,7 @@
         card.style.opacity = '0.55';
         card.style.filter = 'grayscale(0.6)';
       } else {
-        card.style.borderColor = 'rgba(109,40,217,0.25)';
+        card.style.borderColor = 'rgba(180,83,9,0.25)';
       }
       // Hover effect via JS to avoid external CSS dependency
       card.addEventListener('mouseenter', function () {

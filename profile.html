@@ -12,7 +12,7 @@
   --text: #0f172a;
   --text-secondary: #475569;
   --accent: #6d28d9;
-  --accent-light: #8b5cf6;
+  --accent-light: #d97706;
   --accent-bg: #f3e8ff;
   --success: #10b981;
   --success-bg: #d1fae5;
@@ -25,14 +25,14 @@
   --radius: 14px;
   --radius-sm: 10px;
   --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
-  --shadow-lg: 0 8px 32px rgba(109,40,217,0.12);
+  --shadow-lg: 0 8px 32px rgba(180,83,9,0.12);
   --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -44,7 +44,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255,255,255,0.92);
+  background: rgba(250,249,246,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
@@ -130,10 +130,10 @@ nav {
 .user-avatar {
   width: 96px; height: 96px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light), #a78bfa);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light), #f59e0b);
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-size: 36px; font-weight: 800;
-  box-shadow: 0 4px 20px rgba(109,40,217,0.25);
+  box-shadow: 0 4px 20px rgba(180,83,9,0.25);
   position: relative;
 }
 .level-ring {
@@ -546,7 +546,7 @@ nav {
   transform: translateY(-2px);
   box-shadow: var(--shadow);
 }
-.achievement-card.unlocked { border-color: rgba(109,40,217,0.25); }
+.achievement-card.unlocked { border-color: rgba(180,83,9,0.25); }
 .achievement-card.locked {
   opacity: 0.55;
   filter: grayscale(0.6);
@@ -679,7 +679,7 @@ nav {
   font-family: inherit;
   transition: var(--transition);
 }
-.levelup-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(109,40,217,0.35); }
+.levelup-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(180,83,9,0.35); }
 
 /* ===== PARTICLES CANVAS ===== */
 #particles {
@@ -746,7 +746,9 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
         <a href="index.html#categories" class="nav-link">Categories</a>
         <a href="../wishlist.html" class="nav-link">Wishlist</a>
         <a href="login.html" class="nav-link active">Profile</a>
-      </div>
+      
+      <a href="article.html">Articles</a>
+    </div>
     </div>
     <div class="nav-right">
       <a href="../login.html" class="nav-link" style="margin-right:4px;">Log out</a>
@@ -1151,7 +1153,7 @@ function triggerParticles(sourceEl) {
       life: 1,
       decay: 0.015 + Math.random() * 0.015,
       size: 3 + Math.random() * 5,
-      color: ['#6d28d9','#8b5cf6','#10b981','#3b82f6','#f59e0b'][Math.floor(Math.random()*5)]
+      color: ['#6d28d9','#d97706','#10b981','#3b82f6','#f59e0b'][Math.floor(Math.random()*5)]
     });
   }
 }

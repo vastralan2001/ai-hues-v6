@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-zh="文章 — AIHues">Articles — AIHues</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --bg:#faf9f6;--surface:#ffffff;--surface-hover:#f5f0e8;
+ --border:#e8ecf1;--border-hover:#e7d5c0;
+ --text:#0f172a;--text-secondary:#475569;--text-muted:#a08b7a;
+ --accent:#b45309;--accent-light:#d97706;--accent-gradient:linear-gradient(135deg,#b45309,#d97706);
+ --green:#059669;--green-bg:#ecfdf5;--blue:#2563eb;--blue-bg:#eff6ff;--orange:#ea580c;
+ --radius:14px;--radius-sm:10px;
+ --shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);
+ --shadow-hover:0 4px 12px rgba(180,83,9,0.12),0 8px 32px rgba(0,0,0,0.08);
+}
+[data-theme="dark"] {
+  --bg:#1a1410;
+ --surface:#12121f;
+ --surface-hover:#1a1a2e;
+ --border:#2a2a40;
+ --border-hover:#3a3a55;
+ --text:#e8eaf0;
+ --text-secondary:#9ca3af;
+ --text-muted:#6b7280;
+ --accent:#d97706;
+ --accent-light:#f59e0b;
+ --accent-gradient:linear-gradient(135deg,#b45309,#d97706);
+ --shadow:0 1px 3px rgba(0,0,0,0.2),0 4px 16px rgba(0,0,0,0.3);
+ --shadow-hover:0 4px 12px rgba(217,119,6,0.15),0 8px 32px rgba(0,0,0,0.4);
+}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+::selection{background:rgba(180,83,9,0.15);color:var(--accent)}
+
+/* ===== NAV ===== */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:var(--text);letter-spacing:-1px;text-decoration:none}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700;box-shadow:0 2px 8px rgba(180,83,9,0.3)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500;transition:color .2s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--accent);font-weight:600}
+.nav-cta{padding:9px 20px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:14px;font-weight:600;box-shadow:0 2px 8px rgba(180,83,9,0.25);transition:all .2s;display:flex;align-items:center;gap:6px;text-decoration:none}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(180,83,9,0.35)}
+.lang-btn{padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:var(--accent-light);color:var(--accent)}
+.theme-btn{width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-btn:hover{border-color:var(--accent-light)}
+
+/* Dark mode nav */
+[data-theme="dark"] .nav{background:rgba(25,18,12,0.92);border-bottom-color:var(--border)}
+
+/* ===== ARTICLE HERO ===== */
+.article-hero{text-align:center;padding:80px 32px 48px;position:relative;overflow:hidden;background:var(--surface);border-bottom:1px solid var(--border)}
+.article-hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(180,83,9,0.06) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.article-hero-inner{max-width:720px;margin:0 auto;position:relative}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;font-size:14px;color:var(--text-muted);flex-wrap:wrap}
+.article-meta .dot{width:4px;height:4px;border-radius:50%;background:var(--text-muted)}
+.article-category{display:inline-block;padding:6px 14px;border-radius:20px;background:var(--tag);color:var(--tag-color);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
+.article-hero h1{font-size:42px;font-weight:700;line-height:1.15;letter-spacing:-0.5px;margin-bottom:20px;font-family:Georgia,'Times New Roman',serif}
+.article-hero .subtitle{font-size:18px;color:var(--text-secondary);line-height:1.6;max-width:600px;margin:0 auto}
+
+/* Author */
+.author-box{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700}
+.author-info{text-align:left}
+.author-name{font-size:15px;font-weight:700;color:var(--text)}
+.author-title{font-size:13px;color:var(--text-muted)}
+
+/* ===== ARTICLE CONTENT ===== */
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 32px}
+.article-body{font-size:17px;line-height:1.8;color:var(--text-secondary)}
+.article-body h2{font-size:28px;font-weight:700;color:var(--text);margin:40px 0 16px;font-family:Georgia,'Times New Roman',serif;letter-spacing:-0.3px}
+.article-body h3{font-size:22px;font-weight:700;color:var(--text);margin:32px 0 12px;font-family:Georgia,'Times New Roman',serif}
+.article-body p{margin-bottom:20px}
+.article-body blockquote{border-left:3px solid var(--accent);padding-left:20px;margin:24px 0;font-style:italic;color:var(--text-secondary);font-size:18px}
+.article-body ul,.article-body ol{margin:20px 0;padding-left:24px}
+.article-body li{margin-bottom:8px}
+.article-body code{background:var(--surface-hover);padding:2px 8px;border-radius:4px;font-size:15px;font-family:'SF Mono',Monaco,monospace;color:var(--accent)}
+.article-body pre{background:var(--surface-hover);padding:20px;border-radius:var(--radius-sm);overflow-x:auto;margin:20px 0;border:1px solid var(--border)}
+.article-body pre code{background:none;padding:0;font-size:14px;color:var(--text-secondary)}
+.article-body img{max-width:100%;border-radius:var(--radius-sm);margin:24px 0;box-shadow:var(--shadow)}
+.article-body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.article-body a:hover{color:var(--accent-light)}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+.article-body strong{color:var(--text)}
+
+/* ===== TAGS ===== */
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid var(--border)}
+.article-tag{padding:6px 14px;border-radius:20px;background:var(--surface-hover);color:var(--text-secondary);font-size:13px;font-weight:500;transition:all .2s}
+.article-tag:hover{background:var(--accent);color:#fff}
+
+/* ===== RELATED ARTICLES ===== */
+.related-section{padding:48px 32px;background:var(--surface);border-top:1px solid var(--border)}
+.related-inner{max-width:1100px;margin:0 auto}
+.related-title{font-size:22px;font-weight:700;margin-bottom:24px;color:var(--text);font-family:Georgia,'Times New Roman',serif}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.related-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .2s;cursor:pointer}
+.related-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow-hover)}
+.related-card .category{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);margin-bottom:8px}
+.related-card h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.4;font-family:Georgia,'Times New Roman',serif}
+.related-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.related-card .date{font-size:12px;color:var(--text-muted);margin-top:12px}
+
+/* ===== COMMENTS PLACEHOLDER ===== */
+.comments-section{max-width:720px;margin:0 auto;padding:48px 32px}
+.comments-title{font-size:22px;font-weight:700;margin-bottom:24px;color:var(--text);font-family:Georgia,'Times New Roman',serif}
+.comments-placeholder{text-align:center;padding:48px 32px;background:var(--surface);border-radius:var(--radius);border:1px dashed var(--border);color:var(--text-muted)}
+.comments-placeholder-icon{font-size:32px;margin-bottom:12px}
+.comments-placeholder p{font-size:14px}
+
+/* ===== FOOTER ===== */
+.footer{border-top:1px solid var(--border);padding:48px 32px}
+.footer-inner{max-width:1300px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;flex-wrap:wrap;gap:24px}
+.footer-brand .logo{font-size:20px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.footer-brand p{color:var(--text-muted);font-size:14px}
+.footer-links{display:flex;gap:40px;flex-wrap:wrap}
+.footer-col h4{font-size:14px;margin-bottom:12px}
+.footer-col a{display:block;color:var(--text-muted);font-size:14px;margin-bottom:8px;text-decoration:none}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{text-align:center;color:var(--text-muted);font-size:13px;padding-top:24px;border-top:1px solid var(--border)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .article-hero h1{font-size:30px}
+  .article-hero{padding:48px 20px 32px}
+  .article-wrap{padding:32px 20px}
+  .article-body{font-size:16px}
+  .article-body h2{font-size:24px}
+  .related-grid{grid-template-columns:1fr}
+  .nav-inner{padding:0 20px}
+  .comments-section{padding:32px 20px}
+  .footer{padding:32px 20px}
+}
+</style>
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="./index.html" class="logo"><div class="logo-mark">H</div><span>AIHues</span></a>
+    <div class="nav-links">
+      <a href="./index.html" data-zh="首页">Home</a>
+      <a href="./index.html#categories" data-zh="分类">Categories</a>
+      <a href="./index.html#new-tools" data-zh="工具">Tools</a>
+      <a href="./index.html#games" data-zh="游戏">Games</a>
+      <a href="./article.html" class="active" data-zh="文章">Articles</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div id="theme-selector" style="display:flex;gap:4px;align-items:center"></div>
+      <button class="lang-btn" onclick="toggleLang()" data-zh="En">中文</button>
+      <a href="./login.html" class="nav-cta" data-zh="登录">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE HERO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <span class="article-category" data-zh="产品更新">Product Update</span>
+    <h1 data-zh="找到你的 AI vibe：AIHues 的设计理念">Finding Your AI Vibe: The Design Philosophy of AIHues</h1>
+    <p class="subtitle" data-zh="我们为什么选择了暖色调和衬线字体，以及这背后的思考。">Why we chose warm tones and serif fonts, and the thinking behind it.</p>
+    <div class="author-box">
+      <div class="author-avatar">A</div>
+      <div class="author-info">
+        <div class="author-name" data-zh="AIHues 团队">AIHues Team</div>
+        <div class="author-title" data-zh="2026年5月 · 5分钟阅读">May 2026 · 5 min read</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE CONTENT -->
+<article class="article-wrap">
+  <div class="article-body">
+    <p data-zh="在 AI 工具层出不穷的今天，我们注意到一个被忽视的问题：大多数工具界面都冷冰冰的，像是实验室里的仪器，而不是你桌上的伙伴。">In today's flood of AI tools, we noticed an overlooked problem: most tool interfaces are cold, like laboratory instruments rather than companions on your desk.</p>
+    
+    <p data-zh="所以我们开始思考：如果 AI 工具也能有温度呢？">So we started thinking: what if AI tools could have warmth too?</p>
+    
+    <h2 data-zh="暖色，不只是颜色">Warmth Is More Than Color</h2>
+    
+    <p data-zh="我们选择暖黄色和琥珀色作为基调，不是因为它们在流行，而是因为它们让人联想到午后阳光、纸质书页、手写的笔记。">We chose warm yellows and ambers not because they're trending, but because they evoke afternoon sunlight, paper pages, handwritten notes.</p>
+    
+    <blockquote data-zh=""">"Good design is invisible. It feels like coming home."</blockquote>
+    
+    <p data-zh="衬线字体 Georgia 的加入，让界面多了一份书卷气。在数字世界里，它像是一页被翻开的纸质书。">The addition of serif font Georgia brings a scholarly quality to the interface. In the digital world, it feels like an opened page of paper.</p>
+    
+    <h2 data-zh="17 款工具，一个理念">17 Tools, One Philosophy</h2>
+    
+    <p data-zh="从 Base64 编码器到投篮游戏，每一款工具都遵循同样的设计语言：">From the Base64 encoder to the basketball game, every tool follows the same design language:</p>
+    
+    <ul>
+      <li data-zh="温暖的背景，减少视觉疲劳">Warm backgrounds to reduce visual fatigue</li>
+      <li data-zh="琥珀色的强调，引导注意力">Amber accents to guide attention</li>
+      <li data-zh="足够的留白，让思考有空间">Generous whitespace to give thinking room</li>
+      <li data-zh="衬线字体，增添人文气息">Serif fonts for a humanistic touch</li>
+    </ul>
+    
+    <h2 data-zh="下一步">What's Next</h2>
+    
+    <p data-zh="我们正在开发更多工具，包括 Markdown 编辑器、密码生成器和颜色转换器。每一个都会保持同样的温暖风格。">We're developing more tools, including a Markdown editor, password generator, and color converter. Each will maintain the same warm aesthetic.</p>
+    
+    <p data-zh="如果你有什么想法，欢迎去许愿单告诉我们。">If you have any ideas, feel free to tell us on the Wishlist.</p>
+    
+    <hr>
+    
+    <div class="article-tags">
+      <span class="article-tag">Design</span>
+      <span class="article-tag">AI</span>
+      <span class="article-tag">Product</span>
+      <span class="article-tag">UX</span>
+    </div>
+  </div>
+</article>
+
+<!-- RELATED ARTICLES -->
+<section class="related-section">
+  <div class="related-inner">
+    <h2 class="related-title" data-zh="更多文章">More Articles</h2>
+    <div class="related-grid">
+      <div class="related-card" onclick="location.href='#'">
+        <div class="category" data-zh="教程">Tutorial</div>
+        <h3 data-zh="如何用 Base64 编码器处理图片">How to Use the Base64 Encoder for Images</h3>
+        <p data-zh="一步步教你把图片转成 Base64 字符串，无需上传服务器。">A step-by-step guide to converting images to Base64 strings without uploading to a server.</p>
+        <div class="date" data-zh="2026年4月">April 2026</div>
+      </div>
+      <div class="related-card" onclick="location.href='#'">
+        <div class="category" data-zh="幕后">Behind the Scenes</div>
+        <h3 data-zh="老虎机游戏是怎么做出来的">How We Built the Slot Machine Game</h3>
+        <p data-zh="纯 CSS 动画 + JavaScript 随机数，没有一张图片。">Pure CSS animations + JavaScript random numbers, not a single image used.</p>
+        <div class="date" data-zh="2026年3月">March 2026</div>
+      </div>
+      <div class="related-card" onclick="location.href='#'">
+        <div class="category" data-zh="思考">Thoughts</div>
+        <h3 data-zh="为什么我们需要更多「小而美」的 AI 工具">Why We Need More Small & Beautiful AI Tools</h3>
+        <p data-zh="不是每个问题都需要一个 100B 参数的模型来解决。">Not every problem needs a 100B parameter model to solve.</p>
+        <div class="date" data-zh="2026年2月">February 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENTS PLACEHOLDER -->
+<section class="comments-section">
+  <h2 class="comments-title" data-zh="讨论">Discussion</h2>
+  <div class="comments-placeholder">
+    <div class="comments-placeholder-icon">💬</div>
+    <p data-zh="评论功能即将上线。有想法？去许愿单告诉我们！">Comments coming soon. Have thoughts? Tell us on the Wishlist!</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><div class="logo-mark">H</div><span>AIHues</span></div>
+        <p data-zh="找到你的 AI vibe。17款工具 + 3款游戏，像人一样自然。">Find your AI vibe. 17 tools + 3 games<br>that feel human.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 data-zh="产品">Product</h4>
+          <a href="./index.html" data-zh="全部工具">Tools</a>
+          <a href="./index.html#categories" data-zh="分类">Categories</a>
+          <a href="./wishlist.html" data-zh="许愿单">Wishlist</a>
+          <a href="./pricing.html" data-zh="定价">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-zh="游戏">Games</h4>
+          <a href="./games/daily-luck.html" data-zh="日历幸运签">Daily Fortune</a>
+          <a href="./games/slot-machine.html" data-zh="老虎机">Lucky Slots</a>
+          <a href="./games/basketball.html" data-zh="投篮挑战">Hoops Challenge</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-zh="公司">Company</h4>
+          <a href="#" data-zh="关于">About</a>
+          <a href="./article.html" data-zh="博客">Blog</a>
+          <a href="#" data-zh="条款">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" data-zh="找到你的 AI vibe · 基于 Kimi 构建">&copy; 2026 AIHues &middot; Find your AI vibe &middot; Built on Kimi</div>
+  </div>
+</footer>
+
+<script src="./js/i18n.js"></script>
+<script src="js/theme-system.js"></script>
+<script>
+// Simple i18n toggle
+let isChinese = false;
+function toggleLang() {
+  isChinese = !isChinese;
+  document.documentElement.lang = isChinese ? 'zh' : 'en';
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    if (isChinese) {
+      if (!el.dataset.en) el.dataset.en = el.textContent;
+      el.textContent = el.dataset.zh;
+    } else {
+      el.textContent = el.dataset.en || el.textContent;
+    }
+  });
+  const btn = document.querySelector('.lang-btn');
+  if (btn) btn.textContent = isChinese ? 'En' : '中文';
+}
+</script>
+<script>
+// Register Service Worker for offline support
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js')
+    .then(reg => console.log('SW registered:', reg.scope))
+    .catch(err => console.log('SW registration failed:', err));
+}
+</script>
+</body>
+</html>

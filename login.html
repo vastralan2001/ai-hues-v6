@@ -8,17 +8,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#ffffff;--surface:#f8f9fb;--surface-hover:#f1f3f7;
-      --border:#e8ecf1;--border-hover:#d1d8e0;
-      --text:#0f172a;--text-secondary:#475569;--text-muted:#94a3b8;
-      --accent:#6d28d9;--accent-light:#8b5cf6;--accent-gradient:linear-gradient(135deg,#6d28d9,#8b5cf6);
+      --bg:#faf9f6;--surface:#ffffff;--surface-hover:#f5f0e8;
+      --border:#e8ecf1;--border-hover:#e7d5c0;
+      --text:#0f172a;--text-secondary:#475569;--text-muted:#a08b7a;
+      --accent:#b45309;--accent-light:#d97706;--accent-gradient:linear-gradient(135deg,#b45309,#d97706);
       --green:#059669;--green-bg:#ecfdf5;--blue:#2563eb;--orange:#ea580c;--red:#dc2626;
       --radius:14px;--radius-sm:10px;
       --shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);
-      --shadow-hover:0 4px 12px rgba(109,40,217,0.12),0 8px 32px rgba(0,0,0,0.08);
+      --shadow-hover:0 4px 12px rgba(180,83,9,0.12),0 8px 32px rgba(0,0,0,0.08);
     }
     *{margin:0;padding:0;box-sizing:border-box}
-    html,body{height:100%;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text)}
+    html,body{height:100%;font-family:Georgia,'Times New Roman',serif;color:var(--text)}
     body{display:flex;overflow:hidden}
 
     /* ========== LEFT BRAND PANEL ========== */
@@ -30,7 +30,7 @@
     }
     .brand-panel::before{
       content:'';position:absolute;top:-30%;right:-30%;width:80%;height:80%;
-      background:radial-gradient(circle,rgba(109,40,217,0.35) 0%,transparent 70%);
+      background:radial-gradient(circle,rgba(180,83,9,0.35) 0%,transparent 70%);
       pointer-events:none;
     }
     .brand-panel::after{
@@ -66,7 +66,7 @@
     .stat-item{text-align:center}
     .stat-number{
       font-size:28px;font-weight:700;
-      background:linear-gradient(135deg,#a78bfa,#8b5cf6);
+      background:linear-gradient(135deg,#f59e0b,#d97706);
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       background-clip:text;
     }
@@ -137,16 +137,16 @@
       font-size:16px;font-weight:600;font-family:inherit;
       border:none;cursor:pointer;transition:all .25s ease;
       display:flex;align-items:center;justify-content:center;gap:10px;
-      background:linear-gradient(135deg,#6d28d9,#8b5cf6,#a78bfa);
+      background:linear-gradient(135deg,#6d28d9,#d97706,#f59e0b);
       background-size:200% 200%;
       color:#fff;
-      box-shadow:0 4px 16px rgba(109,40,217,0.35),0 8px 32px rgba(109,40,217,0.2);
+      box-shadow:0 4px 16px rgba(180,83,9,0.35),0 8px 32px rgba(109,40,217,0.2);
       margin-bottom:10px;
       animation:gradientShift 4s ease infinite;
     }
     .kimi-btn:hover{
       transform:translateY(-2px);
-      box-shadow:0 8px 24px rgba(109,40,217,0.45),0 12px 40px rgba(109,40,217,0.25);
+      box-shadow:0 8px 24px rgba(109,40,217,0.45),0 12px 40px rgba(180,83,9,0.25);
     }
     .kimi-btn:active{transform:translateY(0)}
     .kimi-section{width:100%}
@@ -220,11 +220,11 @@
     }
     .btn-primary{
       background:var(--accent-gradient);color:#fff;
-      box-shadow:0 2px 8px rgba(109,40,217,0.25);
+      box-shadow:0 2px 8px rgba(180,83,9,0.25);
     }
     .btn-primary:hover{
       transform:translateY(-2px);
-      box-shadow:0 6px 20px rgba(109,40,217,0.35);
+      box-shadow:0 6px 20px rgba(180,83,9,0.35);
     }
     .btn-primary:active{transform:translateY(0)}
 
@@ -340,7 +340,8 @@
         <a href="./index.html" data-zh="首页">Home</a>
         <a href="./tools.html" data-zh="工具">Tools</a>
         <a href="./games.html" data-zh="游戏">Games</a>
-      </div>
+            <a href="article.html" data-zh="文章">Articles</a>
+    </div>
     </nav>
 
     <!-- Form Area -->

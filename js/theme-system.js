@@ -21,7 +21,8 @@
    *  Theme Configuration
    * ======================== */
   var THEMES = [
-    { id: 'light',   name: '\u9ED8\u8BA4\u6D45\u8272', color: '#ffffff' },
+  { id: 'claude',   name: '暖色琥珀', color: '#d97706' },
+    { id: 'light',   name: '默认浅色', color: '#faf9f6' },
     { id: 'dark',    name: '\u6697\u591C\u7D2B',     color: '#14141f' },
     { id: 'forest',  name: '\u68EE\u6797\u7EFF',     color: '#4caf50' },
     { id: 'sunset',  name: '\u65E5\u843D\u6A59',     color: '#ff8c42' },
@@ -31,7 +32,7 @@
 
   var STORAGE_KEY = 'aihues_theme_preset';
   var THEME_ATTR  = 'data-theme';
-  var DEFAULT_THEME = 'light';
+  var DEFAULT_THEME = 'claude';
 
   /* ========================
    *  Internal Helpers

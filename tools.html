@@ -7,20 +7,20 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
- --bg:#ffffff;--surface:#f8f9fb;--surface-hover:#f1f3f7;
- --border:#e8ecf1;--border-hover:#d1d8e0;
- --text:#0f172a;--text-secondary:#475569;--text-muted:#94a3b8;
- --accent:#6d28d9;--accent-light:#8b5cf6;--accent-gradient:linear-gradient(135deg,#6d28d9,#8b5cf6);
+ --bg:#faf9f6;--surface:#ffffff;--surface-hover:#f5f0e8;
+ --border:#e8ecf1;--border-hover:#e7d5c0;
+ --text:#0f172a;--text-secondary:#475569;--text-muted:#a08b7a;
+ --accent:#b45309;--accent-light:#d97706;--accent-gradient:linear-gradient(135deg,#b45309,#d97706);
  --green:#059669;--blue:#2563eb;--orange:#ea580c;--red:#dc2626;
  --radius:14px;--radius-sm:10px;
  --shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);
- --shadow-hover:0 4px 12px rgba(109,40,217,0.12),0 8px 32px rgba(0,0,0,0.08);
+ --shadow-hover:0 4px 12px rgba(180,83,9,0.12),0 8px 32px rgba(0,0,0,0.08);
 }
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1300px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:var(--text);letter-spacing:-1px;text-decoration:none}
 .logo-mark{width:34px;height:34px;border-radius:10px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700}
@@ -37,13 +37,13 @@ a{color:var(--accent);text-decoration:none}
 /* SEARCH */
 .search-wrap{max-width:600px;margin:24px auto 0}
 .search-box{background:var(--bg);border:2px solid var(--border);border-radius:var(--radius);padding:4px;display:flex;align-items:center;gap:6px;box-shadow:var(--shadow)}
-.search-box:focus-within{border-color:var(--accent);box-shadow:0 4px 20px rgba(109,40,217,0.15)}
+.search-box:focus-within{border-color:var(--accent);box-shadow:0 4px 20px rgba(180,83,9,0.15)}
 .search-box input{flex:1;border:none;outline:none;padding:12px 16px;font-size:16px;background:transparent;color:var(--text)}
 .search-box input::placeholder{color:var(--text-muted);font-size:15px}
 .cat-pills{display:flex;gap:10px;flex-wrap:wrap;max-width:1300px;margin:0 auto;padding:0 32px 20px;justify-content:center}
 .cat-pill{padding:8px 16px;border-radius:20px;background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
 .cat-pill:hover{border-color:var(--accent-light);color:var(--accent)}
-.cat-pill.active{background:var(--accent-gradient);color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(109,40,217,0.25)}
+.cat-pill.active{background:var(--accent-gradient);color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(180,83,9,0.25)}
 .cat-pill b{font-weight:700;margin-left:4px}
 .count-bar{max-width:1300px;margin:0 auto;padding:16px 32px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--surface)}
 .count-item{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text-secondary)}
@@ -92,7 +92,8 @@ a{color:var(--accent);text-decoration:none}
  <a href="games.html">游戏</a>
  <a href="wishlist.html">许愿单</a>
  <a href="ranking.html">排行榜</a>
- </div>
+       <a href="article.html" data-zh="文章">Articles</a>
+    </div>
  <div style="display:flex;gap:10px;align-items:center">
  <div id="theme-selector" style="display:flex;gap:4px;align-items:center"></div>
  <button class="lang-btn" onclick="toggleLang()" data-zh="En">中文</button>

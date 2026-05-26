@@ -21,11 +21,55 @@
 }
 
 /* ========================
+ *  Theme 0: claude (Claude Warm — Default)
+ *  Warm cream, serif feel, amber accent
+ * ======================== */
+[data-theme="claude"],
+:root:not([data-theme]) {
+  --bg:            #faf9f6;
+  --surface:       #ffffff;
+  --text:          #1d1d1f;
+  --text-secondary:#5a4a3a;
+  --text-muted:    #a08b7a;
+  --accent:        #b45309;
+  --accent-light:  #d97706;
+  --accent-gradient: linear-gradient(135deg, #b45309, #d97706);
+  --border:        rgba(0, 0, 0, 0.08);
+  --shadow:        0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover:  0 8px 24px rgba(180, 83, 9, 0.15);
+  --radius:        12px;
+  --success:       #34c759;
+  --warning:       #ff9500;
+  --error:         #ff3b30;
+  --tag:           #fff3e0;
+  --tag-color:     #b45309;
+  --input-bg:      #f5f0e8;
+}
+
+[data-theme="claude"] .hero-bg,
+[data-theme="claude"] .bg-gradient {
+  --accent-gradient: linear-gradient(135deg, #b45309, #d97706);
+}
+
+[data-theme="claude"] .tool-card:hover {
+  box-shadow: 0 8px 24px rgba(180, 83, 9, 0.15);
+}
+
+[data-theme="claude"] .category-tag {
+  background: #fff3e0;
+  color: #b45309;
+}
+
+[data-theme="claude"] ::selection {
+  background: rgba(180, 83, 9, 0.15);
+  color: #b45309;
+}
+
+/* ========================
  *  Theme 1: light (Default Light)
  *  Clean, bright, purple accent
  * ======================== */
-[data-theme="light"],
-:root:not([data-theme]) {
+[data-theme="light"] {
   --bg:            #f5f5f7;
   --surface:       #ffffff;
   --text:          #1d1d1f;
@@ -47,18 +91,18 @@
 }
 
 /* ========================
- *  Theme 2: dark (Night Purple)
- *  Deep dark, purple glow
+ *  Theme 2: dark (Warm Dark)
+ *  Deep warm dark, amber glow
  * ======================== */
 [data-theme="dark"] {
-  --bg:            #0a0a0f;
+  --bg:            #1a1410;
   --surface:       #14141f;
   --text:          #f0f0f5;
   --text-secondary:#b0b0c0;
   --text-muted:    #6e6e80;
-  --accent:        #8b5cf6;
-  --accent-light:  #a78bfa;
-  --accent-gradient: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  --accent:        #d97706;
+  --accent-light:  #f59e0b;
+  --accent-gradient: linear-gradient(135deg, #b45309, #d97706);
   --border:        rgba(255, 255, 255, 0.08);
   --shadow:        0 2px 12px rgba(0, 0, 0, 0.3);
   --shadow-hover:  0 8px 24px rgba(0, 0, 0, 0.5);
@@ -67,7 +111,7 @@
   --warning:       #ff9f0a;
   --error:         #ff453a;
   --tag:           #1f1a30;
-  --tag-color:     #a78bfa;
+  --tag-color:     #f59e0b;
   --input-bg:      #1c1c2e;
 }
 
@@ -346,6 +390,7 @@ body {
   transform: scale(1.12);
 }
 
+.aihues-theme-btn[data-theme-btn="claude"]   { background: #faf9f6; border-color: #d97706; }
 .aihues-theme-btn[data-theme-btn="light"]   { background: #ffffff; border-color: #d0d0d0; }
 .aihues-theme-btn[data-theme-btn="dark"]    { background: #14141f; border-color: #3a3a50; }
 .aihues-theme-btn[data-theme-btn="forest"]  { background: #4caf50; border-color: #2d7a2d; }
@@ -353,6 +398,7 @@ body {
 .aihues-theme-btn[data-theme-btn="ocean"]   { background: #42a5f5; border-color: #1a6fc4; }
 .aihues-theme-btn[data-theme-btn="minimal"] { background: #e0e0e0; border-color: #888888; }
 
+.aihues-theme-btn[data-theme-btn="claude"].active   { border-color: #b45309; box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.2); }
 .aihues-theme-btn[data-theme-btn="light"].active   { border-color: #6d28d9; box-shadow: 0 0 0 2px rgba(109, 40, 217, 0.2); }
 .aihues-theme-btn[data-theme-btn="dark"].active    { border-color: #8b5cf6; box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3); }
 .aihues-theme-btn[data-theme-btn="forest"].active  { border-color: #2d7a2d; box-shadow: 0 0 0 2px rgba(45, 122, 45, 0.2); }
