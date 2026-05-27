@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 编解码：为什么程序员离不开它？｜AIHues</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --bg:#faf9f6;--surface:#ffffff;--surface-hover:#f5f0e8;
+ --border:#e8ecf1;--border-hover:#e7d5c0;
+ --text:#0f172a;--text-secondary:#475569;--text-muted:#a08b7a;
+ --accent:#b45309;--accent-light:#d97706;--accent-gradient:linear-gradient(135deg,#b45309,#d97706);
+ --radius:14px;--radius-sm:10px;
+ --shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.04);
+ --shadow-hover:0 4px 12px rgba(180,83,9,0.12),0 8px 32px rgba(0,0,0,0.08);
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;line-height:1.8;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:-0.3px}
+::selection{background:rgba(180,83,9,0.15);color:var(--accent)}
+a{color:var(--accent);text-decoration:none}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:var(--text);letter-spacing:-1px;text-decoration:none}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500;transition:color .2s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{padding:9px 20px;border-radius:10px;background:var(--accent-gradient);color:#fff;font-size:14px;font-weight:600;text-decoration:none}
+
+/* ARTICLE */
+.article-hero{text-align:center;padding:80px 32px 48px;background:var(--surface);border-bottom:1px solid var(--border)}
+.article-hero-inner{max-width:720px;margin:0 auto}
+.article-category{display:inline-block;padding:6px 14px;border-radius:20px;background:#fff3e0;color:var(--accent);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
+.article-hero h1{font-size:38px;font-weight:700;line-height:1.2;margin-bottom:16px}
+.article-hero .subtitle{font-size:18px;color:var(--text-secondary)}
+.author-box{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700}
+.author-info{text-align:left}
+.author-name{font-size:15px;font-weight:700}
+.author-title{font-size:13px;color:var(--text-muted)}
+
+/* CONTENT */
+.article-wrap{max-width:720px;margin:0 auto;padding:48px 32px}
+.article-body{font-size:16.5px;line-height:1.9;color:var(--text-secondary)}
+.article-body h2{font-size:26px;font-weight:700;color:var(--text);margin:48px 0 20px;padding-bottom:12px;border-bottom:2px solid var(--border)}
+.article-body h3{font-size:20px;font-weight:700;color:var(--text);margin:32px 0 14px}
+.article-body p{margin-bottom:20px}
+.article-body strong{color:var(--text);font-weight:600}
+.article-body blockquote{border-left:3px solid var(--accent);padding:16px 24px;margin:28px 0;background:var(--surface-hover);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-style:italic;color:var(--text-secondary)}
+.article-body ul,.article-body ol{margin:20px 0;padding-left:28px}
+.article-body li{margin-bottom:10px}
+.article-body code{background:var(--surface-hover);padding:2px 8px;border-radius:4px;font-size:14px;font-family:'SF Mono',Monaco,monospace;color:var(--accent)}
+.article-body pre{background:#1e1e2e;padding:20px;border-radius:var(--radius-sm);overflow-x:auto;margin:20px 0;color:#e4e4e7;font-size:14px;font-family:'SF Mono',Monaco,monospace}
+.article-body pre code{background:none;padding:0;color:inherit}
+
+/* SCREENSHOT PLACEHOLDERS */
+.screenshot{width:100%;border-radius:var(--radius-sm);margin:24px 0;border:1px solid var(--border);background:var(--surface);overflow:hidden}
+.screenshot-header{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--surface-hover);border-bottom:1px solid var(--border)}
+.screenshot-dot{width:12px;height:12px;border-radius:50%}
+.screenshot-dot.red{background:#ff5f57}.screenshot-dot.yellow{background:#febc2e}.screenshot-dot.green{background:#28c840}
+.screenshot-title{font-size:13px;color:var(--text-muted);margin-left:4px}
+.screenshot-body{padding:40px;text-align:center;color:var(--text-muted);font-size:14px}
+.screenshot-body img{max-width:100%;border-radius:4px}
+.screenshot-caption{text-align:center;font-size:13px;color:var(--text-muted);margin-top:8px;font-style:italic}
+
+/* STEPS */
+.step{display:flex;gap:16px;margin:28px 0;padding:20px;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--accent-gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.step-content{flex:1}
+.step-content h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+.step-content p{font-size:14px;color:var(--text-secondary);line-height:1.7}
+
+/* TOOL LINK */
+.tool-cta{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0;padding:28px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);text-align:center}
+.tool-cta a{padding:12px 28px;background:var(--accent-gradient);color:#fff;border-radius:10px;font-weight:600;text-decoration:none;transition:all .2s}
+.tool-cta a:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.tool-cta .or{color:var(--text-muted);font-size:14px}
+
+/* TAGS */
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid var(--border)}
+.article-tag{padding:6px 14px;border-radius:20px;background:var(--surface-hover);color:var(--text-secondary);font-size:13px;transition:all .2s}
+.article-tag:hover{background:var(--accent);color:#fff}
+
+/* RELATED */
+.related-section{padding:48px 32px;background:var(--surface);border-top:1px solid var(--border)}
+.related-inner{max-width:1100px;margin:0 auto}
+.related-title{font-size:22px;font-weight:700;margin-bottom:24px;font-family:Georgia,serif}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.related-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .2s;cursor:pointer}
+.related-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow-hover)}
+.related-card .cat{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.related-card h3{font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.4;font-family:Georgia,serif}
+.related-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:48px 32px}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px}
+.footer-brand .logo{font-size:20px;margin-bottom:8px}
+.footer-brand p{color:var(--text-muted);font-size:14px}
+.footer-bottom{text-align:center;color:var(--text-muted);font-size:13px;padding-top:24px;border-top:1px solid var(--border);margin-top:24px}
+
+@media(max-width:768px){
+  .article-hero h1{font-size:28px}
+  .article-wrap{padding:32px 20px}
+  .related-grid{grid-template-columns:1fr}
+  .nav-inner{padding:0 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">H</div><span>AIHues</span></a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="tools.html">工具</a>
+      <a href="games.html">游戏</a>
+      <a href="article.html" style="color:var(--accent);font-weight:600">文章</a>
+    </div>
+    <a href="tools/base64.html" class="nav-cta">打开工具 →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <span class="article-category">开发工具</span>
+    <h1>Base64 编解码：为什么程序员离不开它？</h1>
+    <p class="subtitle">从一行命令到即开即用的网页工具，Base64 比你想象的更常用。</p>
+    <div class="author-box">
+      <div class="author-avatar">H</div>
+      <div class="author-info">
+        <div class="author-name">AIHues 团队</div>
+        <div class="author-title">2026年5月 · 阅读约 4 分钟</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<article class="article-wrap">
+  <div class="article-body">
+
+    <p>如果你做过前端开发、写过 API 接口、或者发过一封带图片的邮件，那么你一定已经用过 Base64 了——只是你可能不知道。</p>
+
+    <h2>什么是 Base64？</h2>
+
+    <p>Base64 是一种编码方式，它把<strong>二进制数据</strong>（比如图片、文件）转换成<strong>纯文本字符串</strong>。为什么需要这个转换？因为很多系统只能安全地处理文本，不能直接传输二进制。</p>
+
+    <blockquote>
+      举个例子：你想在 HTML 里直接嵌入一张小图标，而不想让它作为一个单独文件存在。这时候，把图片转成 Base64，然后放进 <code>&lt;img src="data:image/png;base64,..."&gt;</code> 里，就能一张 HTML 文件走天下。
+    </blockquote>
+
+    <div class="screenshot">
+      <div class="screenshot-header">
+        <div class="screenshot-dot red"></div><div class="screenshot-dot yellow"></div><div class="screenshot-dot green"></div>
+        <span class="screenshot-title">Base64 编码效果示意</span>
+      </div>
+      <div class="screenshot-body">
+        <pre>原始图片（二进制）:
+[无法直接显示的乱码数据]
+
+Base64 编码后:
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeT
+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5QYcEgQf1t1i7gAAAB1JREFUOMtj
+YBgFgwAwMf7//x+e0MzIyMjwHwYGAA5aAwgN1Yl5AAAAAElFTkSuQmCC</pre>
+      </div>
+    </div>
+    <div class="screenshot-caption">一张 16×16 的小图标，编码后变成一段可复制的字符串</div>
+
+    <h2>5 个最常见的使用场景</h2>
+
+    <h3>1. 内嵌图片到 HTML/CSS</h3>
+    <p>前端开发中，把小图标转成 Base64 直接写进 CSS，可以减少 HTTP 请求。</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>打开 AIHues 的 Base64 工具</h4>
+        <p>访问 <a href="tools/base64.html">tools/base64.html</a>，你会看到一个左右分栏的界面。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>粘贴你的图片 URL 或代码</h4>
+        <p>左边输入框放原始内容——可以是一段文字、一个图片 URL、或者直接在右边上传图片文件。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>一键获取结果</h4>
+        <p>右边实时显示编码结果。点击复制按钮，直接粘贴到你的代码里。</p>
+      </div>
+    </div>
+
+    <div class="screenshot">
+      <div class="screenshot-header">
+        <div class="screenshot-dot red"></div><div class="screenshot-dot yellow"></div><div class="screenshot-dot green"></div>
+        <span class="screenshot-title">AIHues Base64 工具界面</span>
+      </div>
+      <div class="screenshot-body">
+        [界面截图占位：左右分栏，左侧输入区，右侧输出区，中间有 Encode / Decode 切换按钮，底部有复制按钮]
+      </div>
+    </div>
+
+    <h3>2. API 接口里的图片传输</h3>
+    <p>很多 REST API 不方便直接传文件，于是让前端把图片转 Base64，然后放到 JSON 里传过去。</p>
+
+    <pre>{
+  "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...",
+  "username": "moonshot"
+}</pre>
+
+    <h3>3. 邮件正文嵌入图片</h3>
+    <p>发 HTML 邮件时，把 logo 和签名图转成 Base64，收件人不需要「下载附件」就能看到完整的邮件。</p>
+
+    <h3>4. 数据 URI 和 Data URL</h3>
+    <p>浏览器地址栏里可以直接输入 <code>data:text/html;base64,...</code> 来打开一个小页面，完全不依赖服务器。</p>
+
+    <h3>5. 简单「加密」混淆</h3>
+    <p>Base64 <strong>不是加密</strong>，但它能把敏感字符串变得不那么一眼可读。比如把一些配置信息编码后存入环境变量。</p>
+
+    <h2>AIHues 的 Base64 工具有什么不同？</h2>
+
+    <ul>
+      <li><strong>实时双向转换</strong>：输入左边，右边立即出结果；反过来也行</li>
+      <li><strong>支持图片拖拽</strong>：直接把图片拖进去，自动编码</li>
+      <li><strong>自动识别格式</strong>：检测是文本还是图片，给出对应的 Data URI</li>
+      <li><strong>一键复制</strong>：结果旁边就有复制按钮</li>
+      <li><strong>文件下载</strong>：编码结果可以直接保存为 .txt 文件</li>
+      <li><strong>本地运行</strong>：不上传任何数据到服务器，隐私绝对安全</li>
+    </ul>
+
+    <div class="tool-cta">
+      <a href="tools/base64.html">🚀 立即体验 Base64 工具</a>
+      <span class="or">或</span>
+      <a href="tools/image-to-base64.html" style="background:var(--surface);color:var(--accent);border:1px solid var(--border)">📷 图片专版工具</a>
+    </div>
+
+    <h2>总结</h2>
+
+    <p>Base64 是一个「看似不起眼，但无处不在」的工具。从网页开发到 API 设计，从邮件营销到数据存储，它都在默默工作。</p>
+
+    <p>在 AIHues 上，你不需要记住任何命令，打开页面就能用。这就是我们做这些工具的初心——<strong>让技术变得触手可及</strong>。</p>
+
+    <div class="article-tags">
+      <span class="article-tag">Base64</span>
+      <span class="article-tag">前端开发</span>
+      <span class="article-tag">API 设计</span>
+      <span class="article-tag">实用工具</span>
+    </div>
+
+  </div>
+</article>
+
+<!-- RELATED -->
+<section class="related-section">
+  <div class="related-inner">
+    <h2 class="related-title">更多文章</h2>
+    <div class="related-grid">
+      <div class="related-card" onclick="location.href='#'">
+        <div class="cat">开发工具</div>
+        <h3>JWT 解析器：理解 Token 里的秘密</h3>
+        <p>拆解 JSON Web Token 的三段结构，看懂你的登录凭证里到底存了什么。</p>
+      </div>
+      <div class="related-card" onclick="location.href='#'">
+        <div class="cat">AI 写作</div>
+        <h3>AI 文本人性化：让机器味消失</h3>
+        <p>AI 生成的内容总有一股「机器味」？这个工具帮你一键润色，读起来像人写的。</p>
+      </div>
+      <div class="related-card" onclick="location.href='#'">
+        <div class="cat">开发工具</div>
+        <h3>正则测试器：和正则和解</h3>
+        <p>可视化实时匹配，高亮显示结果，再也不用猜你的正则对不对。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-mark">H</div><span>AIHues</span></div>
+      <p>找到你的 AI vibe。17+ 工具 + 3 款游戏，像人一样自然。</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 AIHues · 基于 Kimi 构建</div>
+</footer>
+
+</body>
+</html>
