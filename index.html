@@ -286,15 +286,6 @@ a{color:var(--accent);text-decoration:none}
  <div class="tools-grid" id="growthGrid"></div>
 </section>
 
-<!-- AI TOOLS -->
-<section style="margin-top:36px">
- <div class="section-header">
-   <h2>🛠️ AI 工具 <span class="section-count">57</span></h2>
- </div>
- <div class="ai-cat-grid" id="aiCatGrid"></div>
- <div class="tools-grid" id="aiGrid"></div>
-</section>
-
 <!-- AI PRODUCTS -->
 <section id="aiProductsSection" style="margin-top:36px">
  <div class="section-header">
@@ -319,12 +310,21 @@ a{color:var(--accent);text-decoration:none}
  <div class="tools-grid" id="designGrid"></div>
 </section>
 
-<!-- EFFICIENCY TOOLS -->
-<section id="efficiencySection" style="margin-top:36px">
+<!-- DEV TOOLS -->
+<section id="devSection" style="margin-top:36px">
  <div class="section-header">
-   <h2>⚡ 效率工具 <span class="section-count" id="efficiencyCount">8</span></h2>
+   <h2>💻 开发者工具 <span class="section-count">27</span></h2>
  </div>
- <div class="tools-grid" id="efficiencyGrid"></div>
+ <div class="ai-cat-grid" id="aiCatGrid"></div>
+ <div class="tools-grid" id="aiGrid"></div>
+</section>
+
+<!-- UTILITY TOOLS -->
+<section id="utilitySection" style="margin-top:36px">
+ <div class="section-header">
+   <h2>🛠️ 常用小工具 <span class="section-count" id="utilityCount">15</span></h2>
+ </div>
+ <div class="tools-grid" id="utilityGrid"></div>
 </section>
 
 <!-- GAMES -->
@@ -452,48 +452,42 @@ const GROWTH_TOOLS=[
 ];
 
 const SIDEBAR_GROUPS=[
-{id:'all',name:'全部工具',icon:'📂',section:'growthSection',children:[]},
-{id:'growth',name:'🚀 出海增长',icon:'',section:'growthSection',children:[
- {id:'社媒监听',name:'社媒监听',count:4},
- {id:'社区目录',name:'社区目录',count:20},
- {id:'KOL管理',name:'KOL管理',count:5},
- {id:'社媒触达',name:'社媒触达',count:5},
- {id:'Reddit',name:'Reddit',count:7},
- {id:'SEO',name:'SEO',count:3},
- {id:'链接追踪',name:'链接追踪',count:3},
- {id:'UGC管理',name:'UGC管理',count:5},
- {id:'社区发现',name:'社区发现',count:2},
- {id:'内容创作',name:'内容创作',count:3},
- {id:'分析埋点',name:'分析埋点',count:2},
- {id:'邮件营销',name:'邮件营销',count:1},
- {id:'广告投放',name:'广告投放',count:2},
- {id:'用户调研',name:'用户调研',count:1},
- {id:'媒体PR',name:'媒体PR',count:1},
- {id:'网络拓展',name:'网络拓展',count:1},
- {id:'增长服务',name:'增长服务',count:1},
- {id:'开发工具',name:'开发工具',count:1}
-]},
-{id:'ai-products',name:'🤖 AI 产品',icon:'',section:'aiProductsSection',children:[
- {id:'大语言模型',name:'大语言模型',count:5},
- {id:'图像生成',name:'图像生成',count:2},
- {id:'AI 编程',name:'AI 编程',count:2},
- {id:'AI 搜索',name:'AI 搜索',count:2},
- {id:'视频生成',name:'视频生成',count:2},
- {id:'音乐生成',name:'音乐生成',count:1},
- {id:'语音合成',name:'语音合成',count:1},
- {id:'开发框架',name:'开发框架',count:1}
-]},
-{id:'dev',name:'💻 开发者工具',icon:'',section:'aiSection',children:[
- {id:'开发工具',name:'开发工具',count:24},
- {id:'AI 写作',name:'AI 写作',count:12},
- {id:'图像处理',name:'图像处理',count:6},
- {id:'数据分析',name:'数据分析',count:8},
- {id:'效率工具',name:'效率工具',count:7}
-]},
-{id:'design',name:'🎨 设计工具',icon:'',section:'designSection',children:[]},
-{id:'oss',name:'⭐ 开源追踪',icon:'',section:'ossSection',children:[]},
-{id:'efficiency',name:'⚡ 效率工具',icon:'',section:'efficiencySection',children:[]},
-{id:'games',name:'🎮 小游戏',icon:'',section:'gamesSection',children:[]}
+  {id:'all',name:'📂 全部工具',icon:'',section:'',children:[]},
+  {id:'growth',name:'🚀 出海增长工具',icon:'',section:'growthSection',children:[
+    {id:'社媒监听',name:'社媒监听',count:4},
+    {id:'社区目录',name:'社区目录',count:20},
+    {id:'KOL管理',name:'KOL管理',count:5},
+    {id:'社媒触达',name:'社媒触达',count:5},
+    {id:'Reddit',name:'Reddit',count:7},
+    {id:'SEO',name:'SEO',count:3},
+    {id:'链接追踪',name:'链接追踪',count:3},
+    {id:'UGC管理',name:'UGC管理',count:5},
+    {id:'社区发现',name:'社区发现',count:2},
+    {id:'内容创作',name:'内容创作',count:3},
+    {id:'分析埋点',name:'分析埋点',count:2},
+    {id:'邮件营销',name:'邮件营销',count:1},
+    {id:'广告投放',name:'广告投放',count:2},
+    {id:'用户调研',name:'用户调研',count:1},
+    {id:'媒体PR',name:'媒体PR',count:1},
+    {id:'网络拓展',name:'网络拓展',count:1},
+    {id:'增长服务',name:'增长服务',count:1},
+    {id:'开发工具',name:'开发工具',count:1}
+  ]},
+  {id:'dev',name:'💻 开发者工具',icon:'',section:'devSection',children:[
+    {id:'开发工具',name:'开发工具',count:24},
+    {id:'AI 写作',name:'AI 写作',count:12},
+    {id:'图像处理',name:'图像处理',count:6},
+    {id:'数据分析',name:'数据分析',count:8}
+  ]},
+  {id:'utility',name:'🛠️ 常用小工具',icon:'',section:'utilitySection',children:[
+    {id:'效率工具',name:'效率工具',count:7},
+    {id:'数据分析',name:'数据分析',count:8},
+    {id:'AI 写作',name:'AI 写作',count:12}
+  ]},
+  {id:'ai-products',name:'🤖 AI 产品推荐',icon:'',section:'aiProductsSection',children:[]},
+  {id:'oss',name:'⭐ 开源追踪',icon:'',section:'ossSection',children:[]},
+  {id:'design',name:'🎨 设计工具',icon:'',section:'designSection',children:[]},
+  {id:'games',name:'🎮 小游戏',icon:'',section:'gamesSection',children:[]}
 ];
 
 const AI_CATS=[
@@ -591,7 +585,7 @@ const EFFICIENCY_TOOLS=[
 {icon:"📨",name:"Superhuman",cat:"邮件",desc:"极速邮件客户端，AI 分类 + 快捷操作",price:"Paid",url:"https://superhuman.com",credit:30}
 ];
 
-let currentFilter='all',currentCat='all',currentGroup='all',sidebarOpen={growth:true,dev:true};
+let currentFilter='all',currentCat='all',currentGroup='all',sidebarOpen={growth:false,dev:false,utility:false};
 
 // ========== RENDER ==========
 function renderSidebar(){
@@ -756,13 +750,13 @@ function renderDesign(){
  document.getElementById('designCount').textContent=DESIGN_TOOLS.length;
 }
 
-function renderEfficiency(){
- const el=document.getElementById('efficiencyGrid');
+function renderUtility(){
+ const cats=['效率工具','数据分析','AI 写作'];
+ const all=[...AI_TOOLS,...EFFICIENCY_TOOLS].filter(t=>cats.includes(t.cat));
+ const el=document.getElementById('utilityGrid');
  if(!el)return;
- el.innerHTML=EFFICIENCY_TOOLS.map(t=>{
-   const pc=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
-   return `
-   <a href="${t.url}" target="_blank" class="tool-card">
+ el.innerHTML=all.map(t=>`
+   <a href="${t.url}" class="tool-card">
      <div class="card-top">
        <div class="icon-wrap">${t.icon}</div>
        <div class="card-meta">
@@ -772,12 +766,11 @@ function renderEfficiency(){
      </div>
      <div class="card-desc">${t.desc}</div>
      <div class="card-bottom">
-       <span class="price-tag ${pc}">${t.price}</span>
-       <span class="visit-link">访问 →</span>
+       <span class="price-tag free">Free</span>
+       <span class="visit-link">打开 →</span>
      </div>
-   </a>`;
- }).join('');
- document.getElementById('efficiencyCount').textContent=EFFICIENCY_TOOLS.length;
+   </a>`).join('');
+ document.getElementById('utilityCount').textContent=all.length;
 }
 
 // ========== INTERACTION ==========
@@ -789,9 +782,39 @@ function selectCat(catId,groupId){
    if(el){el.scrollIntoView({behavior:'smooth'});}
  }
  renderSidebar();
- if(catId&&GROWTH_TOOLS[0]&&GROWTH_TOOLS.find(t=>t.cat===catId)){
+ // 如果点击的是出海增长的子分类，过滤出海工具
+ if(groupId==='growth'&&catId!=='all'){
    renderGrowth();
  }
+ // 如果点击的是开发者工具的子分类，过滤开发者工具
+ if(groupId==='dev'&&catId!=='all'){
+   renderAITools(catId);
+ }
+ // 如果点击的是常用小工具的子分类
+ if(groupId==='utility'&&catId!=='all'){
+   renderUtilityCat(catId);
+ }
+}
+
+function renderUtilityCat(cat){
+ const all=[...AI_TOOLS,...EFFICIENCY_TOOLS].filter(t=>t.cat===cat);
+ const el=document.getElementById('utilityGrid');
+ if(!el)return;
+ el.innerHTML=all.map(t=>`
+   <a href="${t.url}" class="tool-card">
+     <div class="card-top">
+       <div class="icon-wrap">${t.icon}</div>
+       <div class="card-meta">
+         <h3>${t.name}</h3>
+         <div class="cat-label">${t.cat}</div>
+       </div>
+     </div>
+     <div class="card-desc">${t.desc}</div>
+     <div class="card-bottom">
+       <span class="price-tag free">Free</span>
+       <span class="visit-link">打开 →</span>
+     </div>
+   </a>`).join('');
 }
 
 function toggleGroup(id){
@@ -932,7 +955,7 @@ renderAITools();
 renderProducts();
 renderOSS();
 renderDesign();
-renderEfficiency();
+renderUtility();
 
 function showCreditModal(){
  const c=CREDIT.get();
