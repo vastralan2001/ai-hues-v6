@@ -52,16 +52,24 @@ a{color:var(--accent);text-decoration:none}
 .app{display:flex;min-height:100vh;padding-top:52px}
 
 /* SIDEBAR */
-.sidebar{width:var(--sidebar-w);position:fixed;top:52px;left:0;bottom:0;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:16px 0;z-index:100}
-.sidebar-section{padding:0 12px;margin-bottom:20px}
-.sidebar-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:8px;padding:0 8px}
-.sidebar-cat{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;cursor:pointer;transition:all .15s;font-size:13px;color:var(--text-secondary);margin-bottom:1px}
+.sidebar{width:var(--sidebar-w);position:fixed;top:52px;left:0;bottom:0;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:12px 0;z-index:100}
+.sidebar-section{padding:0 8px;margin-bottom:8px}
+.sidebar-group{margin-bottom:2px}
+.sidebar-group-header{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:all .15s;font-size:14px;font-weight:700;color:var(--text)}
+.sidebar-group-header:hover{background:rgba(180,83,9,0.06)}
+.sidebar-group-header.active{background:var(--accent-gradient);color:#fff}
+.sidebar-group-header .group-icon{font-size:16px;width:22px;text-align:center}
+.sidebar-group-header .group-name{flex:1}
+.sidebar-group-header .group-arrow{font-size:11px;transition:transform .2s;margin-left:auto}
+.sidebar-group-header .group-arrow.open{transform:rotate(90deg)}
+.sidebar-children{display:none;padding-left:8px}
+.sidebar-children.open{display:block}
+.sidebar-cat{display:flex;align-items:center;gap:8px;padding:6px 10px 6px 36px;border-radius:8px;cursor:pointer;transition:all .15s;font-size:13px;color:var(--text-secondary);margin-bottom:1px}
 .sidebar-cat:hover{background:rgba(180,83,9,0.06);color:var(--text)}
-.sidebar-cat.active{background:var(--accent-gradient);color:#fff;font-weight:600}
-.sidebar-cat .cat-icon{font-size:14px;width:20px;text-align:center}
+.sidebar-cat.active{background:rgba(180,83,9,0.1);color:var(--accent);font-weight:600}
 .sidebar-cat .cat-name{flex:1}
 .sidebar-cat .cat-count{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 7px;border-radius:10px;font-weight:600}
-.sidebar-cat.active .cat-count{background:rgba(255,255,255,0.25);color:#fff}
+.sidebar-cat.active .cat-count{background:var(--accent);color:#fff}
 
 /* MAIN */
 .main{flex:1;margin-left:var(--sidebar-w);min-width:0}
@@ -215,10 +223,7 @@ a{color:var(--accent);text-decoration:none}
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
- <div class="sidebar-section">
-   <div class="sidebar-title">分类</div>
-   <div id="sidebarCats"></div>
- </div>
+ <div class="sidebar-section" id="sidebarContent"></div>
 </aside>
 
 <!-- MAIN -->
@@ -322,7 +327,7 @@ a{color:var(--accent);text-decoration:none}
 </section>
 
 <!-- GAMES -->
-<section class="games-section">
+<section class="games-section" id="gamesSection">
  <div class="main-inner" style="padding:0">
    <div class="section-header"><h2>🎮 小游戏中心</h2></div>
    <div class="games-grid">
@@ -437,30 +442,49 @@ const GROWTH_TOOLS=[
 {icon:"⚡",name:"RapidAPI",cat:"开发工具",desc:"API 集成市场",price:"Freemium",url:"https://rapidapi.com/",credit:15}
 ];
 
-const GROWTH_CATS=[
-{id:"all",name:"全部工具",icon:"📁",count:70},
-{id:"社媒监听",name:"社媒监听",icon:"📡",count:4},
-{id:"社区目录",name:"社区目录",icon:"🗺️",count:20},
-{id:"KOL管理",name:"KOL管理",icon:"👥",count:5},
-{id:"社媒触达",name:"社媒触达",icon:"✉️",count:5},
-{id:"Reddit",name:"Reddit",icon:"🔴",count:7},
-{id:"SEO",name:"SEO",icon:"🔍",count:3},
-{id:"链接追踪",name:"链接追踪",icon:"🔗",count:3},
-{id:"UGC管理",name:"UGC管理",icon:"🎬",count:5},
-{id:"社区发现",name:"社区发现",icon:"🌐",count:2},
-{id:"内容创作",name:"内容创作",icon:"🎨",count:3},
-{id:"分析埋点",name:"分析埋点",icon:"📊",count:2},
-{id:"邮件营销",name:"邮件营销",icon:"📧",count:1},
-{id:"广告投放",name:"广告投放",icon:"📢",count:2},
-{id:"用户调研",name:"用户调研",icon:"🔬",count:1},
-{id:"媒体PR",name:"媒体PR",icon:"📰",count:1},
-{id:"网络拓展",name:"网络拓展",icon:"🤝",count:1},
-{id:"增长服务",name:"增长服务",icon:"🚀",count:1},
-{id:"开发工具",name:"开发工具",icon:"⚡",count:1},
- {id:"AI产品",name:"AI产品推荐",icon:"🤖",count:15},
- {id:"开源追踪",name:"开源追踪",icon:"⭐",count:10},
- {id:"设计工具",name:"设计工具",icon:"🎨",count:8},
- {id:"效率工具",name:"效率工具",icon:"⚡",count:8}
+const SIDEBAR_GROUPS=[
+{id:'all',name:'全部工具',icon:'📂',section:'growthSection',children:[]},
+{id:'growth',name:'🚀 出海增长',icon:'',section:'growthSection',children:[
+ {id:'社媒监听',name:'社媒监听',count:4},
+ {id:'社区目录',name:'社区目录',count:20},
+ {id:'KOL管理',name:'KOL管理',count:5},
+ {id:'社媒触达',name:'社媒触达',count:5},
+ {id:'Reddit',name:'Reddit',count:7},
+ {id:'SEO',name:'SEO',count:3},
+ {id:'链接追踪',name:'链接追踪',count:3},
+ {id:'UGC管理',name:'UGC管理',count:5},
+ {id:'社区发现',name:'社区发现',count:2},
+ {id:'内容创作',name:'内容创作',count:3},
+ {id:'分析埋点',name:'分析埋点',count:2},
+ {id:'邮件营销',name:'邮件营销',count:1},
+ {id:'广告投放',name:'广告投放',count:2},
+ {id:'用户调研',name:'用户调研',count:1},
+ {id:'媒体PR',name:'媒体PR',count:1},
+ {id:'网络拓展',name:'网络拓展',count:1},
+ {id:'增长服务',name:'增长服务',count:1},
+ {id:'开发工具',name:'开发工具',count:1}
+]},
+{id:'ai-products',name:'🤖 AI 产品',icon:'',section:'aiProductsSection',children:[
+ {id:'大语言模型',name:'大语言模型',count:5},
+ {id:'图像生成',name:'图像生成',count:2},
+ {id:'AI 编程',name:'AI 编程',count:2},
+ {id:'AI 搜索',name:'AI 搜索',count:2},
+ {id:'视频生成',name:'视频生成',count:2},
+ {id:'音乐生成',name:'音乐生成',count:1},
+ {id:'语音合成',name:'语音合成',count:1},
+ {id:'开发框架',name:'开发框架',count:1}
+]},
+{id:'dev',name:'💻 开发者工具',icon:'',section:'aiSection',children:[
+ {id:'开发工具',name:'开发工具',count:24},
+ {id:'AI 写作',name:'AI 写作',count:12},
+ {id:'图像处理',name:'图像处理',count:6},
+ {id:'数据分析',name:'数据分析',count:8},
+ {id:'效率工具',name:'效率工具',count:7}
+]},
+{id:'design',name:'🎨 设计工具',icon:'',section:'designSection',children:[]},
+{id:'oss',name:'⭐ 开源追踪',icon:'',section:'ossSection',children:[]},
+{id:'efficiency',name:'⚡ 效率工具',icon:'',section:'efficiencySection',children:[]},
+{id:'games',name:'🎮 小游戏',icon:'',section:'gamesSection',children:[]}
 ];
 
 const AI_CATS=[
@@ -558,27 +582,47 @@ const EFFICIENCY_TOOLS=[
 {icon:"📨",name:"Superhuman",cat:"邮件",desc:"极速邮件客户端，AI 分类 + 快捷操作",price:"Paid",url:"https://superhuman.com",credit:30}
 ];
 
-let currentFilter='all',currentCat='all';
+let currentFilter='all',currentCat='all',currentGroup='all',sidebarOpen={growth:true,dev:true};
 
 // ========== RENDER ==========
 function renderSidebar(){
- const el=document.getElementById('sidebarCats');
- el.innerHTML=GROWTH_CATS.map(c=>`
-   <div class="sidebar-cat ${c.id===currentCat?'active':''}" onclick="selectCat('${c.id}')">
-     <span class="cat-icon">${c.icon}</span>
-     <span class="cat-name">${c.name}</span>
-     <span class="cat-count">${c.count}</span>
-   </div>`).join('');
+ const el=document.getElementById('sidebarContent');
+ let html='';
+ SIDEBAR_GROUPS.forEach(g=>{
+   const hasChildren=g.children&&g.children.length>0;
+   const isOpen=sidebarOpen[g.id]||false;
+   const isActive=currentGroup===g.id;
+   html+=`
+   <div class="sidebar-group" data-group="${g.id}">
+     <div class="sidebar-group-header ${isActive?'active':''}" onclick="toggleGroup('${g.id}')">
+       <span class="group-icon">${g.icon||'•'}</span>
+       <span class="group-name">${g.name}</span>
+       ${hasChildren?`<span class="group-arrow ${isOpen?'open':''}">▶</span>`:''}
+     </div>
+     ${hasChildren?`
+     <div class="sidebar-children ${isOpen?'open':''}">
+       ${g.children.map(c=>`
+         <div class="sidebar-cat ${currentCat===c.id?'active':''}" onclick="selectCat('${c.id}','${g.id}')">
+           <span class="cat-name">${c.name}</span>
+           <span class="cat-count">${c.count}</span>
+         </div>
+       `).join('')}
+     </div>`:''}
+   </div>`;
+ });
+ el.innerHTML=html;
 }
 
 function renderGrowth(){
- let tools=GROWTH_TOOLS;
- if(currentCat!=='all'&&currentCat!=='AI产品'&&currentCat!=='开源追踪'&&currentCat!=='设计工具'&&currentCat!=='效率工具'){
-   tools=tools.filter(t=>t.cat===currentCat);
+ let tools = GROWTH_TOOLS;
+ if (currentCat !== 'all') {
+   tools = tools.filter(t => t.cat === currentCat);
  }
- if(currentFilter!=='all') tools=tools.filter(t=>t.price===currentFilter);
- document.getElementById('growthGrid').innerHTML=tools.map(t=>{
-   const priceClass=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
+ if (currentFilter !== 'all') {
+   tools = tools.filter(t => t.price === currentFilter);
+ }
+ document.getElementById('growthGrid').innerHTML = tools.map(t => {
+   const priceClass = t.price === 'Free' ? 'free' : t.price === 'Paid' ? 'paid' : '';
    return `
    <a href="${t.url}" target="_blank" class="tool-card">
      <div class="card-top">
@@ -592,13 +636,13 @@ function renderGrowth(){
      <div class="card-bottom">
        <div style="display:flex;gap:6px;align-items:center">
          <span class="price-tag ${priceClass}">${t.price}</span>
-         ${t.credit>0?`<span class="credit-tag">${t.credit}</span>`:''}
+         ${t.credit > 0 ? `<span class="credit-tag">${t.credit}</span>` : ''}
        </div>
        <span class="visit-link">访问 →</span>
      </div>
    </a>`;
  }).join('');
- document.getElementById('growthCount').textContent=tools.length;
+ document.getElementById('growthCount').textContent = tools.length;
 }
 
 function renderAICats(){
@@ -728,15 +772,29 @@ function renderEfficiency(){
 }
 
 // ========== INTERACTION ==========
-function selectCat(id){
- currentCat=id;
+function selectCat(catId,groupId){
+ currentCat=catId;currentGroup=groupId;
+ const group=SIDEBAR_GROUPS.find(g=>g.id===groupId);
+ if(group&&group.section){
+   const el=document.getElementById(group.section);
+   if(el){el.scrollIntoView({behavior:'smooth'});}
+ }
  renderSidebar();
- if(id==='AI产品'){renderProducts();document.getElementById('aiProductsSection').scrollIntoView({behavior:'smooth'});return;}
- if(id==='开源追踪'){renderOSS();document.getElementById('ossSection').scrollIntoView({behavior:'smooth'});return;}
- if(id==='设计工具'){renderDesign();document.getElementById('designSection').scrollIntoView({behavior:'smooth'});return;}
- if(id==='效率工具'){renderEfficiency();document.getElementById('efficiencySection').scrollIntoView({behavior:'smooth'});return;}
- renderGrowth();
- document.getElementById('growthSection').scrollIntoView({behavior:'smooth'});
+ if(catId&&GROWTH_TOOLS[0]&&GROWTH_TOOLS.find(t=>t.cat===catId)){
+   renderGrowth();
+ }
+}
+
+function toggleGroup(id){
+ if(sidebarOpen[id]){delete sidebarOpen[id];}
+ else{sidebarOpen[id]=true;}
+ currentGroup=id;
+ const group=SIDEBAR_GROUPS.find(g=>g.id===id);
+ if(group&&group.section&&(!group.children||group.children.length===0)){
+   const el=document.getElementById(group.section);
+   if(el){el.scrollIntoView({behavior:'smooth'});}
+ }
+ renderSidebar();
 }
 
 function filterPrice(price,btn){
@@ -756,23 +814,47 @@ function quickSearch(q){
 }
 
 function doTopSearch(q){
- q=q.toLowerCase();
- if(!q){renderGrowth();return;}
- const filtered=GROWTH_TOOLS.filter(t=>
+ q=q.toLowerCase().trim();
+ if(!q){renderGrowth();renderProducts();renderOSS();renderDesign();renderEfficiency();return;}
+
+ // Search across all tools
+ let growthFiltered=GROWTH_TOOLS.filter(t=>
    t.name.toLowerCase().includes(q)||
-   t.cat.includes(q)||
+   t.cat.toLowerCase().includes(q)||
    t.desc.toLowerCase().includes(q)
  );
- document.getElementById('growthGrid').innerHTML=filtered.map(t=>{
-   const priceClass=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
-   return `
-   <a href="${t.url}" target="_blank" class="tool-card">
-     <div class="card-top"><div class="icon-wrap">${t.icon}</div><div class="card-meta"><h3>${t.name}</h3><div class="cat-label">${t.cat}</div></div></div>
-     <div class="card-desc">${t.desc}</div>
-     <div class="card-bottom"><span class="price-tag ${priceClass}">${t.price}</span><span class="visit-link">访问 →</span></div>
-   </a>`;
- }).join('');
- document.getElementById('growthCount').textContent=filtered.length;
+ let aiFiltered=AI_TOOLS.filter(t=>
+   t.name.toLowerCase().includes(q)||
+   t.cat.toLowerCase().includes(q)||
+   t.desc.toLowerCase().includes(q)
+ );
+ let productFiltered=AI_PRODUCTS.filter(t=>
+   t.name.toLowerCase().includes(q)||
+   t.cat.toLowerCase().includes(q)||
+   t.desc.toLowerCase().includes(q)
+ );
+ let ossFiltered=OSS_TOOLS.filter(t=>
+   t.name.toLowerCase().includes(q)||
+   t.cat.toLowerCase().includes(q)||
+   t.desc.toLowerCase().includes(q)
+ );
+
+ // Update all grids
+ updateGrid('growthGrid',growthFiltered,d=>`
+   <a href="${d.url}" target="_blank" class="tool-card">
+     <div class="card-top"><div class="icon-wrap">${d.icon}</div><div class="card-meta"><h3>${d.name}</h3><div class="cat-label">${d.cat}</div></div></div>
+     <div class="card-desc">${d.desc}</div>
+     <div class="card-bottom"><span class="price-tag ${d.price==='Free'?'free':d.price==='Paid'?'paid':''}">${d.price}</span><span class="visit-link">访问 →</span></div>
+   </a>`);
+
+ document.getElementById('growthCount').textContent=growthFiltered.length;
+}
+
+function updateGrid(gridId,items,templateFn){
+ const el=document.getElementById(gridId);
+ if(!el) return;
+ if(!items.length){el.innerHTML='<div style="padding:40px;text-align:center;color:var(--text-muted)">没有匹配的工具</div>';return;}
+ el.innerHTML=items.map(templateFn).join('');
 }
 
 // AI Agent Search
