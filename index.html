@@ -289,6 +289,38 @@ a{color:var(--accent);text-decoration:none}
  <div class="tools-grid" id="aiGrid"></div>
 </section>
 
+<!-- AI PRODUCTS -->
+<section id="aiProductsSection" style="margin-top:36px">
+ <div class="section-header">
+   <h2>🤖 AI 产品推荐 <span class="section-count" id="productsCount">15</span></h2>
+ </div>
+ <div class="tools-grid" id="productsGrid"></div>
+</section>
+
+<!-- OPEN SOURCE -->
+<section id="ossSection" style="margin-top:36px">
+ <div class="section-header">
+   <h2>⭐ 开源追踪 <span class="section-count" id="ossCount">10</span></h2>
+ </div>
+ <div class="tools-grid" id="ossGrid"></div>
+</section>
+
+<!-- DESIGN TOOLS -->
+<section id="designSection" style="margin-top:36px">
+ <div class="section-header">
+   <h2>🎨 设计工具 <span class="section-count" id="designCount">8</span></h2>
+ </div>
+ <div class="tools-grid" id="designGrid"></div>
+</section>
+
+<!-- EFFICIENCY TOOLS -->
+<section id="efficiencySection" style="margin-top:36px">
+ <div class="section-header">
+   <h2>⚡ 效率工具 <span class="section-count" id="efficiencyCount">8</span></h2>
+ </div>
+ <div class="tools-grid" id="efficiencyGrid"></div>
+</section>
+
 <!-- GAMES -->
 <section class="games-section">
  <div class="main-inner" style="padding:0">
@@ -424,7 +456,11 @@ const GROWTH_CATS=[
 {id:"媒体PR",name:"媒体PR",icon:"📰",count:1},
 {id:"网络拓展",name:"网络拓展",icon:"🤝",count:1},
 {id:"增长服务",name:"增长服务",icon:"🚀",count:1},
-{id:"开发工具",name:"开发工具",icon:"⚡",count:1}
+{id:"开发工具",name:"开发工具",icon:"⚡",count:1},
+ {id:"AI产品",name:"AI产品推荐",icon:"🤖",count:15},
+ {id:"开源追踪",name:"开源追踪",icon:"⭐",count:10},
+ {id:"设计工具",name:"设计工具",icon:"🎨",count:8},
+ {id:"效率工具",name:"效率工具",icon:"⚡",count:8}
 ];
 
 const AI_CATS=[
@@ -465,6 +501,63 @@ const AI_TOOLS=[
 {icon:"🍅",name:"Pomodoro",url:"tools/pomodoro.html",cat:"效率工具",desc:"番茄工作法计时器"}
 ];
 
+// ========== NEW: AI 产品推荐（参考 watcha 风格） ==========
+const AI_PRODUCTS=[
+{icon:"💬",name:"ChatGPT",cat:"大语言模型",desc:"OpenAI 旗舰对话 AI，支持代码、写作、分析",rating:9.2,url:"https://chatgpt.com",tag:"通用"},
+{icon:"🎨",name:"Claude",cat:"大语言模型",desc:"Anthropic 出品，长文本处理和代码能力顶尖",rating:9.0,url:"https://claude.ai",tag:"通用"},
+{icon:"🖼️",name:"Midjourney",cat:"图像生成",desc:"AI 图像生成标杆，艺术风格独特",rating:8.8,url:"https://midjourney.com",tag:"创意"},
+{icon:"💻",name:"Cursor",cat:"AI 编程",desc:"AI 原生 IDE，代码补全和重构体验最佳",rating:9.1,url:"https://cursor.com",tag:"开发"},
+{icon:"🌊",name:"Windsurf",cat:"AI 编程",desc:"Cascade 多文件编辑，Agent 级编程体验",rating:8.6,url:"https://windsurf.com",tag:"开发"},
+{icon:"🔍",name:"Perplexity",cat:"AI 搜索",desc:"AI 搜索引擎，实时信息 + 引用来源",rating:8.9,url:"https://perplexity.ai",tag:"研究"},
+{icon:"📊",name:"Gamma",cat:"演示文稿",desc:"AI 生成 PPT，设计精美、协作流畅",rating:8.5,url:"https://gamma.app",tag:"办公"},
+{icon:"🎥",name:"HeyGen",cat:"视频生成",desc:"AI 数字人视频，多语言口型同步",rating:8.3,url:"https://heygen.com",tag:"视频"},
+{icon:"🎵",name:"Suno",cat:"音乐生成",desc:"AI 音乐创作，从歌词到完整歌曲",rating:8.4,url:"https://suno.com",tag:"创意"},
+{icon:"🎬",name:"Sora",cat:"视频生成",desc:"OpenAI 视频生成模型，物理仿真逼真",rating:8.7,url:"https://openai.com/sora",tag:"视频"},
+{icon:"📄",name:"Jina AI",cat:"AI 搜索",desc:"神经搜索框架，文档理解能力强",rating:8.2,url:"https://jina.ai",tag:"开发"},
+{icon:"🧠",name:"Kimi",cat:"大语言模型",desc:"长文本处理能力突出，200万字上下文",rating:8.8,url:"https://kimi.moonshot.cn",tag:"通用"},
+{icon:"🎙️",name:"ElevenLabs",cat:"语音合成",desc:"最自然的 AI 语音，支持多语言和克隆",rating:8.9,url:"https://elevenlabs.io",tag:"音频"},
+{icon:"📈",name:"Langfuse",cat:"AI 监控",desc:"LLM 应用可观测性平台，追踪成本和性能",rating:8.0,url:"https://langfuse.com",tag:"开发"},
+{icon:"🔧",name:"Vercel AI SDK",cat:"开发框架",desc:"构建 AI 应用的 React/Next.js SDK",rating:8.5,url:"https://sdk.vercel.ai",tag:"开发"}
+];
+
+// ========== NEW: 开源追踪 / 发现 ==========
+const OSS_TOOLS=[
+{icon:"⭐",name:"GitHub Trending",cat:"开源发现",desc:"每日 GitHub 热门仓库排行榜",price:"Free",url:"https://github.com/trending",credit:0},
+{icon:"📈",name:"Star History",cat:"开源分析",desc:"可视化 GitHub 项目的 Star 增长曲线",price:"Free",url:"https://star-history.com",credit:0},
+{icon:"🍕",name:"OpenSauced",cat:"开源发现",desc:"发现热门开源项目，分析贡献者网络",price:"Free",url:"https://opensauced.pizza",credit:0},
+{icon:"🔍",name:"LibHunt",cat:"开源发现",desc:"按语言和主题浏览热门开源库",price:"Free",url:"https://www.libhunt.com",credit:0},
+{icon:"🔄",name:"AlternativeTo",cat:"产品发现",desc:"发现替代软件，按类别和用户评价筛选",price:"Free",url:"https://alternativeto.net",credit:0},
+{icon:"🚀",name:"Product Hunt",cat:"产品发布",desc:"每日新品发布平台，科技产品首发阵地",price:"Free",url:"https://producthunt.com",credit:0},
+{icon:"📰",name:"Hacker News",cat:"技术社区",desc:"Y Combinator 技术新闻社区，Show HN 首发必选",price:"Free",url:"https://news.ycombinator.com",credit:0},
+{icon:"🐙",name:"Awesome Lists",cat:"资源聚合",desc:"GitHub 上 curated 的技术资源列表大全",price:"Free",url:"https://github.com/sindresorhus/awesome",credit:0},
+{icon:"📊",name:"OSS Insight",cat:"开源分析",desc:"GitHub 数据洞察平台，分析开源趋势",price:"Free",url:"https://ossinsight.io",credit:0},
+{icon:"🔥",name:"GitHub Topics",cat:"开源发现",desc:"按主题浏览 GitHub 仓库，发现相关项目",price:"Free",url:"https://github.com/topics",credit:0}
+];
+
+// ========== NEW: 设计工具 ==========
+const DESIGN_TOOLS=[
+{icon:"🎨",name:"Figma",cat:"UI 设计",desc:"协作式界面设计工具，行业标准",price:"Freemium",url:"https://figma.com",credit:10},
+{icon:"🖌️",name:"Canva",cat:"平面设计",desc:"零门槛设计工具，模板丰富",price:"Freemium",url:"https://canva.com",credit:10},
+{icon:"🌈",name:"Arc",cat:"浏览器",desc:"重新定义浏览器体验，空间管理 + AI 搜索",price:"Free",url:"https://arc.net",credit:0},
+{icon:"⚡",name:"Raycast",cat:"启动器",desc:"Mac 效率启动器，AI 集成 + 插件生态",price:"Free",url:"https://raycast.com",credit:0},
+{icon:"🖥️",name:"Warp",cat:"终端",desc:"AI 驱动的现代终端，自然语言命令",price:"Free",url:"https://warp.dev",credit:0},
+{icon:"🎭",name:"Spline",cat:"3D 设计",desc:"浏览器内 3D 设计工具，交互式体验",price:"Freemium",url:"https://spline.design",credit:15},
+{icon:"📐",name:"Excalidraw",cat:"白板",desc:"手绘风格协作白板，轻量快速",price:"Free",url:"https://excalidraw.com",credit:0},
+{icon:"🎞️",name:"LottieFiles",cat:"动画",desc:"轻量级动画格式，跨平台动画资源",price:"Free",url:"https://lottiefiles.com",credit:0}
+];
+
+// ========== NEW: 效率工具 ==========
+const EFFICIENCY_TOOLS=[
+{icon:"📝",name:"Notion",cat:"知识管理",desc:"All-in-one 工作空间，笔记 + 数据库 + 协作",price:"Freemium",url:"https://notion.so",credit:10},
+{icon:"📋",name:"Linear",cat:"项目管理",desc:"极简 issue 跟踪，开发者团队首选",price:"Free",url:"https://linear.app",credit:0},
+{icon:"📚",name:"Obsidian",cat:"知识管理",desc:"本地优先的笔记工具，双向链接 + 图谱",price:"Free",url:"https://obsidian.md",credit:0},
+{icon:"✅",name:"Todoist",cat:"任务管理",desc:"跨平台任务管理，自然语言输入",price:"Freemium",url:"https://todoist.com",credit:10},
+{icon:"📖",name:"Readwise",cat:"阅读管理",desc:"阅读高亮聚合 + 每日复习，知识沉淀",price:"Paid",url:"https://readwise.io",credit:20},
+{icon:"🕐",name:"RescueTime",cat:"时间追踪",desc:"自动追踪时间分配，提升专注力",price:"Freemium",url:"https://rescuetime.com",credit:10},
+{icon:"🔒",name:"1Password",cat:"密码管理",desc:"安全密码管理 + 2FA + 通行密钥",price:"Paid",url:"https://1password.com",credit:20},
+{icon:"📨",name:"Superhuman",cat:"邮件",desc:"极速邮件客户端，AI 分类 + 快捷操作",price:"Paid",url:"https://superhuman.com",credit:30}
+];
+
 let currentFilter='all',currentCat='all';
 
 // ========== RENDER ==========
@@ -480,7 +573,9 @@ function renderSidebar(){
 
 function renderGrowth(){
  let tools=GROWTH_TOOLS;
- if(currentCat!=='all') tools=tools.filter(t=>t.cat===currentCat);
+ if(currentCat!=='all'&&currentCat!=='AI产品'&&currentCat!=='开源追踪'&&currentCat!=='设计工具'&&currentCat!=='效率工具'){
+   tools=tools.filter(t=>t.cat===currentCat);
+ }
  if(currentFilter!=='all') tools=tools.filter(t=>t.price===currentFilter);
  document.getElementById('growthGrid').innerHTML=tools.map(t=>{
    const priceClass=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
@@ -541,10 +636,105 @@ function renderAITools(filter=''){
    </a>`).join('');
 }
 
+// ========== NEW: AI 产品推荐渲染 ==========
+function renderProducts(){
+ const el=document.getElementById('productsGrid');
+ if(!el)return;
+ el.innerHTML=AI_PRODUCTS.map(t=>`
+   <a href="${t.url}" target="_blank" class="tool-card">
+     <div class="card-top">
+       <div class="icon-wrap">${t.icon}</div>
+       <div class="card-meta">
+         <h3>${t.name}</h3>
+         <div class="cat-label">${t.cat} · ${t.tag}</div>
+       </div>
+     </div>
+     <div class="card-desc">${t.desc}</div>
+     <div class="card-bottom">
+       <span style="font-size:13px;font-weight:700;color:var(--accent)">⭐ ${t.rating}</span>
+       <span class="visit-link">访问 →</span>
+     </div>
+   </a>`).join('');
+ document.getElementById('productsCount').textContent=AI_PRODUCTS.length;
+}
+
+function renderOSS(){
+ const el=document.getElementById('ossGrid');
+ if(!el)return;
+ el.innerHTML=OSS_TOOLS.map(t=>`
+   <a href="${t.url}" target="_blank" class="tool-card">
+     <div class="card-top">
+       <div class="icon-wrap">${t.icon}</div>
+       <div class="card-meta">
+         <h3>${t.name}</h3>
+         <div class="cat-label">${t.cat}</div>
+       </div>
+     </div>
+     <div class="card-desc">${t.desc}</div>
+     <div class="card-bottom">
+       <span class="price-tag free">Free</span>
+       <span class="visit-link">访问 →</span>
+     </div>
+   </a>`).join('');
+ document.getElementById('ossCount').textContent=OSS_TOOLS.length;
+}
+
+function renderDesign(){
+ const el=document.getElementById('designGrid');
+ if(!el)return;
+ el.innerHTML=DESIGN_TOOLS.map(t=>{
+   const pc=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
+   return `
+   <a href="${t.url}" target="_blank" class="tool-card">
+     <div class="card-top">
+       <div class="icon-wrap">${t.icon}</div>
+       <div class="card-meta">
+         <h3>${t.name}</h3>
+         <div class="cat-label">${t.cat}</div>
+       </div>
+     </div>
+     <div class="card-desc">${t.desc}</div>
+     <div class="card-bottom">
+       <span class="price-tag ${pc}">${t.price}</span>
+       <span class="visit-link">访问 →</span>
+     </div>
+   </a>`;
+ }).join('');
+ document.getElementById('designCount').textContent=DESIGN_TOOLS.length;
+}
+
+function renderEfficiency(){
+ const el=document.getElementById('efficiencyGrid');
+ if(!el)return;
+ el.innerHTML=EFFICIENCY_TOOLS.map(t=>{
+   const pc=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
+   return `
+   <a href="${t.url}" target="_blank" class="tool-card">
+     <div class="card-top">
+       <div class="icon-wrap">${t.icon}</div>
+       <div class="card-meta">
+         <h3>${t.name}</h3>
+         <div class="cat-label">${t.cat}</div>
+       </div>
+     </div>
+     <div class="card-desc">${t.desc}</div>
+     <div class="card-bottom">
+       <span class="price-tag ${pc}">${t.price}</span>
+       <span class="visit-link">访问 →</span>
+     </div>
+   </a>`;
+ }).join('');
+ document.getElementById('efficiencyCount').textContent=EFFICIENCY_TOOLS.length;
+}
+
 // ========== INTERACTION ==========
 function selectCat(id){
  currentCat=id;
  renderSidebar();
+ if(id==='AI产品'){renderProducts();document.getElementById('aiProductsSection').scrollIntoView({behavior:'smooth'});return;}
+ if(id==='开源追踪'){renderOSS();document.getElementById('ossSection').scrollIntoView({behavior:'smooth'});return;}
+ if(id==='设计工具'){renderDesign();document.getElementById('designSection').scrollIntoView({behavior:'smooth'});return;}
+ if(id==='效率工具'){renderEfficiency();document.getElementById('efficiencySection').scrollIntoView({behavior:'smooth'});return;}
  renderGrowth();
  document.getElementById('growthSection').scrollIntoView({behavior:'smooth'});
 }
@@ -587,7 +777,7 @@ function doTopSearch(q){
 
 // AI Agent Search
 let searchTimer=null;
-const ALL_DB=[...GROWTH_TOOLS.map(t=>({...t,type:'growth'})),...AI_TOOLS.map(t=>({...t,type:'ai'}))];
+const ALL_DB=[...GROWTH_TOOLS.map(t=>({...t,type:'growth'})),...AI_TOOLS.map(t=>({...t,type:'ai'})),...AI_PRODUCTS.map(t=>({...t,type:'product'})),...OSS_TOOLS.map(t=>({...t,type:'oss'})),...DESIGN_TOOLS.map(t=>({...t,type:'design'})),...EFFICIENCY_TOOLS.map(t=>({...t,type:'efficiency'}))];
 
 function aiSearch(){
  clearTimeout(searchTimer);
@@ -647,6 +837,10 @@ renderSidebar();
 renderGrowth();
 renderAICats();
 renderAITools();
+renderProducts();
+renderOSS();
+renderDesign();
+renderEfficiency();
 </script>
 </body>
 </html>
