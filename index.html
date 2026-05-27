@@ -214,6 +214,7 @@ a{color:var(--accent);text-decoration:none}
      <a href="games.html">游戏</a>
      <a href="about.html">关于</a>
    </nav>
+   <div class="credit-display" style="font-size:13px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:4px;cursor:pointer;padding:4px 10px;border-radius:8px;background:rgba(180,83,9,0.06)" onclick="showCreditModal()">🪙 100</div>
    <button class="theme-btn" onclick="toggleTheme()">🌙</button>
  </div>
 </div>
@@ -915,6 +916,7 @@ function setLang(l){
 document.addEventListener('click',e=>{
  if(!e.target.closest('.agent-box')) document.getElementById('aiDropdown').classList.remove('show');
 });
+CREDIT.init();CREDIT.render();
 renderSidebar();
 renderGrowth();
 renderAICats();
@@ -923,6 +925,12 @@ renderProducts();
 renderOSS();
 renderDesign();
 renderEfficiency();
+
+function showCreditModal(){
+ const c=CREDIT.get();
+ alert(`🪙 你的积分余额：${c}\n\n积分规则：\n• 初始赠送 100 积分\n• 玩游戏可赚取积分\n• 使用工具会消耗积分\n• 每日签到额外奖励`);
+}
 </script>
+ <script src="js/credit.js"></script>
 </body>
 </html>
