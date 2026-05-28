@@ -494,6 +494,7 @@ main{position:relative;z-index:1;min-height:calc(100vh - 60px)}
       <li><a href="../collection.html">Collection</a></li>
       <li><a href="../pricing.html">Pricing</a></li>
     </ul>
+    <div class="credit-display" style="font-size:13px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:4px;cursor:pointer;padding:4px 10px;border-radius:8px;background:rgba(212,168,67,0.08)" onclick="showCreditInfo()">🪙 100</div>
   </div>
 </nav>
 
@@ -576,6 +577,9 @@ main{position:relative;z-index:1;min-height:calc(100vh - 60px)}
           <div class="credit-reward">
             <div class="credit-label" data-zh="今日奖励">Today's Reward</div>
             <div class="credit-value">+<span id="credit-value">0</span> Credits</div>
+            <div style="margin-top:6px;font-size:12px;color:var(--text-muted);border-top:1px solid rgba(212,168,67,0.15);padding-top:6px">
+              🪙 当前积分: <span id="global-credit-balance">0</span>
+            </div>
           </div>
         </div>
       </div>
@@ -691,6 +695,7 @@ main{position:relative;z-index:1;min-height:calc(100vh - 60px)}
   <span data-zh="已连续抽签">Consecutive Draws</span>: <span class="streak-num" id="footer-streak">0</span> <span data-zh="天">days</span>
 </div>
 
+<script src="../js/credit.js"></script>
 <script src="../js/i18n.js"></script>
 <script src="../js/theme-system.js"></script>
 <script src="../js/achievements.js"></script>
@@ -761,11 +766,12 @@ const luckyColors = [
 
 const LS_KEY_HISTORY = 'daily-luck-history';
 const LS_KEY_LAST_DRAW = 'daily-luck-last-draw';
-const LS_KEY_CREDITS = 'daily-luck-credits';
-
-// New localStorage keys with aihues_daily_ prefix
 const LS_KEY_STATS = 'aihues_daily_stats';
 const LS_KEY_LEADERBOARD = 'aihues_daily_leaderboard';
+
+// Credit system migrated to global aihues_credit via CREDIT.js
+// Legacy LS_KEY_CREDITS kept for read-only reference if needed
+const LS_KEY_CREDITS_LEGACY = 'daily-luck-credits';
 
 const defaultDailyLeaderboard = [
   {name:'FortuneHunter',streak:23,totalCredits:580,date:'2026-05-18'},
@@ -1093,12 +1099,19 @@ function setLastDrawDate(date) {
 }
 
 function getTotalCredits() {
-  return parseInt(localStorage.getItem(LS_KEY_CREDITS) || '0', 10);
+  // Use global CREDIT system
+  return CREDIT ? CREDIT.get() : 0;
 }
 
 function addCredits(amount) {
-  const total = getTotalCredits() + amount;
-  localStorage.setItem(LS_KEY_CREDITS, String(total));
+  if (CREDIT) {
+    CREDIT.add(amount);
+    return CREDIT.get();
+  }
+  // Fallback
+  const key = LS_KEY_CREDITS_LEGACY;
+  const total = parseInt(localStorage.getItem(key) || '0', 10) + amount;
+  localStorage.setItem(key, String(total));
   return total;
 }
 
@@ -1237,6 +1250,12 @@ function revealFortune() {
   if (streakBonus > 0) creditText += ` (+${streakBonus} streak)`;
   document.getElementById('credit-value').textContent = creditText;
 
+  // Update global credit balance display
+  if (CREDIT) {
+    document.getElementById('global-credit-balance').textContent = CREDIT.get();
+    CREDIT.render();
+  }
+
   // Show fortune stage
   document.getElementById('fortune-stage').classList.add('active');
   playRevealSound();
@@ -1310,6 +1329,12 @@ function viewTodayFortune() {
     color: todayEntry.color || { name: '-', nameZh: '-', hex: '#000' },
     luckyNumber: todayEntry.luckyNumber || 0,
   };
+
+  // Update global credit balance display
+  if (CREDIT) {
+    document.getElementById('global-credit-balance').textContent = CREDIT.get();
+    CREDIT.render();
+  }
 
   // Switch views
   document.getElementById('already-drawn').classList.remove('active');
@@ -1740,9 +1765,32 @@ function downloadShareCard() {
   showToast('Downloaded!');
 }
 
+// ===================== CREDIT INFO =====================
+
+function showCreditInfo() {
+  const balance = CREDIT ? CREDIT.get() : getTotalCredits();
+  showToast(`🪙 积分余额: ${balance}\n• 玩游戏赚积分\n• 使用工具消耗积分`);
+}
+
 // ===================== INIT =====================
 
 function init() {
+  // Init global credit system
+  if (CREDIT) {
+    CREDIT.init();
+    CREDIT.render();
+  }
+
+  // Migrate legacy credits to global if present (one-time)
+  try {
+    const legacy = parseInt(localStorage.getItem(LS_KEY_CREDITS_LEGACY) || '0', 10);
+    if (legacy > 0 && CREDIT) {
+      CREDIT.add(legacy);
+      localStorage.removeItem(LS_KEY_CREDITS_LEGACY);
+      console.log('Migrated', legacy, 'legacy credits to global system');
+    }
+  } catch(e) { /* ignore */ }
+
   updateStreakDisplay();
 
   // Initialize leaderboard if empty
