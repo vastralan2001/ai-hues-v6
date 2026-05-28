@@ -948,7 +948,12 @@ if(localStorage.getItem('aihues_theme')==='dark') document.documentElement.setAt
 
 // Language
 function setLang(l){
- document.querySelectorAll('.lang-nav a').forEach(a=>a.classList.toggle('active',a.dataset.lang===l||a.textContent===(l==='zh'?'中文':'EN')));
+  if (typeof i18n !== 'undefined' && i18n.setLang) {
+    i18n.setLang(l);
+  } else {
+    // Fallback: just update UI
+    document.querySelectorAll('.lang-nav a').forEach(a=>a.classList.toggle('active',a.dataset.lang===l||a.textContent===(l==='zh'?'中文':'EN')));
+  }
 }
 
 // Init
