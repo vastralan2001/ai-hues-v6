@@ -627,7 +627,7 @@ function renderGrowth(){
  document.getElementById('growthGrid').innerHTML = tools.map(t => {
    const priceClass = t.price === 'Free' ? 'free' : t.price === 'Paid' ? 'paid' : '';
    return `
-   <a href="${t.url}" target="_blank" class="tool-card">
+   <div class="tool-card" onclick="goTool('${t.url}',${t.credit},'${t.name}')" style="cursor:pointer">
      <div class="card-top">
        <div class="icon-wrap">${t.icon}</div>
        <div class="card-meta">
@@ -639,11 +639,11 @@ function renderGrowth(){
      <div class="card-bottom">
        <div style="display:flex;gap:6px;align-items:center">
          <span class="price-tag ${priceClass}">${t.price}</span>
-         ${t.credit > 0 ? `<span class="credit-tag">${t.credit}</span>` : ''}
+         ${t.credit > 0 ? `<span class="credit-tag">🪙 ${t.credit}</span>` : ''}
        </div>
        <span class="visit-link">访问 →</span>
      </div>
-   </a>`;
+   </div>`;
  }).join('');
  document.getElementById('growthCount').textContent = tools.length;
 }
@@ -688,7 +688,7 @@ function renderProducts(){
  const el=document.getElementById('productsGrid');
  if(!el)return;
  el.innerHTML=AI_PRODUCTS.map(t=>`
-   <a href="${t.url}" target="_blank" class="tool-card">
+   <div class="tool-card" onclick="goTool('${t.url}',${t.credit||0},'${t.name}')" style="cursor:pointer">
      <div class="card-top">
        <div class="icon-wrap">${t.icon}</div>
        <div class="card-meta">
@@ -701,7 +701,7 @@ function renderProducts(){
        <span style="font-size:13px;font-weight:700;color:var(--accent)">⭐ ${t.rating}</span>
        <span class="visit-link">访问 →</span>
      </div>
-   </a>`).join('');
+   </div>`).join('');
  document.getElementById('productsCount').textContent=AI_PRODUCTS.length;
 }
 
@@ -709,7 +709,7 @@ function renderOSS(){
  const el=document.getElementById('ossGrid');
  if(!el)return;
  el.innerHTML=OSS_TOOLS.map(t=>`
-   <a href="${t.url}" target="_blank" class="tool-card">
+   <div class="tool-card" onclick="goTool('${t.url}',${t.credit||0},'${t.name}')" style="cursor:pointer">
      <div class="card-top">
        <div class="icon-wrap">${t.icon}</div>
        <div class="card-meta">
@@ -722,7 +722,7 @@ function renderOSS(){
        <span class="price-tag free">Free</span>
        <span class="visit-link">访问 →</span>
      </div>
-   </a>`).join('');
+   </div>`).join('');
  document.getElementById('ossCount').textContent=OSS_TOOLS.length;
 }
 
@@ -732,7 +732,7 @@ function renderDesign(){
  el.innerHTML=DESIGN_TOOLS.map(t=>{
    const pc=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
    return `
-   <a href="${t.url}" target="_blank" class="tool-card">
+   <div class="tool-card" onclick="goTool('${t.url}',${t.credit||0},'${t.name}')" style="cursor:pointer">
      <div class="card-top">
        <div class="icon-wrap">${t.icon}</div>
        <div class="card-meta">
@@ -745,7 +745,7 @@ function renderDesign(){
        <span class="price-tag ${pc}">${t.price}</span>
        <span class="visit-link">访问 →</span>
      </div>
-   </a>`;
+   </div>`;
  }).join('');
  document.getElementById('designCount').textContent=DESIGN_TOOLS.length;
 }
@@ -756,7 +756,7 @@ function renderUtility(){
  const el=document.getElementById('utilityGrid');
  if(!el)return;
  el.innerHTML=all.map(t=>`
-   <a href="${t.url}" class="tool-card">
+   <div class="tool-card" onclick="goTool('${t.url}',${t.credit||0},'${t.name}')" style="cursor:pointer">
      <div class="card-top">
        <div class="icon-wrap">${t.icon}</div>
        <div class="card-meta">
@@ -769,7 +769,7 @@ function renderUtility(){
        <span class="price-tag free">Free</span>
        <span class="visit-link">打开 →</span>
      </div>
-   </a>`).join('');
+   </div>`).join('');
  document.getElementById('utilityCount').textContent=all.length;
 }
 
@@ -925,9 +925,17 @@ function aiGo(){
  if(match){window.open(match.url,'_blank');}
 }
 
-function goTool(url,type){
- if(type==='growth') window.open(url,'_blank');
- else location.href=url;
+function goTool(url,credit,name){
+ if(credit>0){
+   const ok=confirm(`🪙 使用 "${name}" 将消耗 ${credit} 积分\n\n当前余额: ${CREDIT.get()} 积分\n\n确认访问?`);
+   if(!ok) return;
+   if(!CREDIT.spend(credit)){
+     alert(`🪙 积分不足! 需要 ${credit} 积分, 当前只有 ${CREDIT.get()} 积分\n\n去玩游戏赚取积分吧~`);
+     return;
+   }
+   CREDIT.render();
+ }
+ window.open(url,'_blank');
 }
 
 // Theme
