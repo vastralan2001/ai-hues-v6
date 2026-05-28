@@ -39,7 +39,7 @@ button{cursor:pointer;font-family:inherit}
 .nav{position:sticky;top:0;z-index:100;background:rgba(26,20,37,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:var(--text)}
-.logo-mark{width:34px;height:34px;border-radius:8px;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
+.logo-mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#b45309,#d97706);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{font-size:14px;color:var(--text-secondary);font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--accent-light)}
@@ -246,6 +246,7 @@ main{position:relative;z-index:1}
       <li><a href="../collection.html">Collection</a></li>
       <li><a href="../pricing.html">Pricing</a></li>
     </ul>
+    <div class="credit-display" style="font-size:13px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:4px;cursor:pointer;padding:4px 10px;border-radius:8px;background:rgba(240,160,48,0.08)" onclick="showCreditInfo()">🪙 100</div>
   </div>
 </nav>
 
@@ -1262,9 +1263,18 @@ function calculateCreditReward(score) {
 
 function addCredits(amount) {
   try {
+    if (CREDIT) {
+      CREDIT.add(amount);
+      CREDIT.render();
+      return;
+    }
     const current = parseInt(localStorage.getItem(LS_CREDIT) || '0', 10);
     localStorage.setItem(LS_CREDIT, String(current + amount));
   } catch (e) { /* ignore */ }
+}
+function showCreditInfo() {
+  const balance = CREDIT ? CREDIT.get() : parseInt(localStorage.getItem(LS_CREDIT) || '0', 10);
+  showToast(`🪙 Credits: ${balance}\n• Score hoops to win credits\n• Use credits on tools`);
 }
 
 // ===================== HISTORY =====================
