@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIHues Logo v4 — 机器人 × 色环</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#faf9f6;color:#1c1917;padding:40px 20px}
+.header{text-align:center;margin-bottom:40px}
+.header h1{font-size:28px;font-weight:800;margin-bottom:8px}
+.header p{color:#78716c;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:900px;margin:0 auto}
+.card{background:#fff;border:1px solid #e8e2d9;border-radius:20px;padding:32px;text-align:center}
+.card-label{font-size:12px;font-weight:700;color:#b45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.card-title{font-size:20px;font-weight:700;margin-bottom:8px}
+.card-desc{font-size:13px;color:#78716c;line-height:1.5;margin-bottom:24px}
+.logo-box{width:160px;height:160px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;background:#faf9f6;border-radius:16px}
+.logo-box svg{width:130px;height:130px}
+.mockup{background:#1c1917;border-radius:14px;padding:20px;margin-top:20px;text-align:left}
+.mockup-nav{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.mockup-logo{width:28px;height:28px}
+.mockup-nav span{font-size:12px;color:#a8a29e}
+.mockup-nav span.active{color:#fff;font-weight:600}
+.mockup-credit{margin-left:auto;font-size:12px;font-weight:700;color:#f59e0b}
+.mockup-hero{background:linear-gradient(135deg,#292524,#44403c);border-radius:10px;padding:28px;text-align:center}
+.mockup-hero h3{font-size:18px;color:#fff;margin-bottom:6px}
+.mockup-hero p{font-size:13px;color:#a8a29e}
+
+@media(max-width:768px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎨 AIHues Logo v4 — 机器人 × 色环</h1>
+  <p>A 的趣味角色 + B 的简洁色环，两种融合方式</p>
+</div>
+
+<div class="grid">
+
+<!-- v4a: 机器人在色环内 -->
+<div class="card">
+  <div class="card-label">方案 v4a</div>
+  <div class="card-title">机器人在色环内</div>
+  <div class="card-desc">小机器人居中 + 彩虹色环环绕<br>像行星轨道一样有空间感</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rainbow12" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#dc2626"/>
+          <stop offset="8%" stop-color="#ea580c"/>
+          <stop offset="17%" stop-color="#f97316"/>
+          <stop offset="25%" stop-color="#f59e0b"/>
+          <stop offset="33%" stop-color="#eab308"/>
+          <stop offset="42%" stop-color="#84cc16"/>
+          <stop offset="50%" stop-color="#22c55e"/>
+          <stop offset="58%" stop-color="#14b8a6"/>
+          <stop offset="67%" stop-color="#3b82f6"/>
+          <stop offset="75%" stop-color="#6366f1"/>
+          <stop offset="83%" stop-color="#a855f7"/>
+          <stop offset="92%" stop-color="#d946ef"/>
+          <stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient>
+        <filter id="soft-glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+      
+      <!-- Rainbow ring -->
+      <circle cx="60" cy="60" r="52" fill="none" stroke="url(#rainbow12)" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+      
+      <!-- Inner soft ring -->
+      <circle cx="60" cy="60" r="44" fill="none" stroke="#f5f0e8" stroke-width="1.5" opacity="0.6"/>
+      
+      <!-- Tiny robot body -->
+      <rect x="48" y="54" width="24" height="20" rx="6" fill="#d97706"/>
+      
+      <!-- Robot head -->
+      <rect x="50" y="40" width="20" height="16" rx="5" fill="#f59e0b"/>
+      
+      <!-- Eyes -->
+      <circle cx="55" cy="48" r="2.5" fill="#fff"/>
+      <circle cx="65" cy="48" r="2.5" fill="#fff"/>
+      <circle cx="55" cy="48" r="1.2" fill="#1c1917"/>
+      <circle cx="65" cy="48" r="1.2" fill="#1c1917"/>
+      
+      <!-- Tiny antenna -->
+      <line x1="60" y1="40" x2="60" y2="34" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="60" cy="32" r="2.5" fill="#ec4899"/>
+      
+      <!-- Tiny palette -->
+      <ellipse cx="76" cy="64" rx="8" ry="5" fill="#f5f0e8" stroke="#d4c8b8" stroke-width="0.8" transform="rotate(-20 76 64)"/>
+      <circle cx="73" cy="62" r="1.5" fill="#dc2626"/>
+      <circle cx="76" cy="61" r="1.5" fill="#22c55e"/>
+      <circle cx="79" cy="63" r="1.5" fill="#3b82f6"/>
+      
+      <!-- Tiny arm -->
+      <line x1="70" y1="58" x2="75" y2="62" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-nav">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120" width="28" height="28">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="url(#rainbow12)" stroke-width="10"/>
+          <rect x="48" y="54" width="24" height="20" rx="6" fill="#d97706"/>
+          <rect x="50" y="40" width="20" height="16" rx="5" fill="#f59e0b"/>
+          <circle cx="55" cy="48" r="2.5" fill="#fff"/><circle cx="65" cy="48" r="2.5" fill="#fff"/>
+          <circle cx="55" cy="48" r="1.2" fill="#1c1917"/><circle cx="65" cy="48" r="1.2" fill="#1c1917"/>
+          <line x1="60" y1="40" x2="60" y2="34" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="60" cy="32" r="2.5" fill="#ec4899"/>
+        </svg>
+      </div>
+      <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🤖 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+<!-- v4b: 机器人 + 色环叠加 -->
+<div class="card">
+  <div class="card-label">方案 v4b</div>
+  <div class="card-title">机器人 + 色环叠加</div>
+  <div class="card-desc">机器人和色环并排组合<br>角色在前、色环在后像光环</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rainbow12b" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#dc2626"/>
+          <stop offset="17%" stop-color="#f59e0b"/>
+          <stop offset="33%" stop-color="#22c55e"/>
+          <stop offset="50%" stop-color="#3b82f6"/>
+          <stop offset="67%" stop-color="#a855f7"/>
+          <stop offset="83%" stop-color="#d946ef"/>
+          <stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- Background rainbow arc (like a halo) -->
+      <path d="M 18 70 A 50 50 0 0 1 102 70" fill="none" stroke="url(#rainbow12b)" stroke-width="10" stroke-linecap="round" opacity="0.85"/>
+      
+      <!-- Robot body -->
+      <rect x="42" y="62" width="36" height="30" rx="10" fill="#d97706"/>
+      
+      <!-- Robot head -->
+      <rect x="46" y="38" width="28" height="24" rx="8" fill="#f59e0b"/>
+      
+      <!-- Eyes -->
+      <circle cx="55" cy="50" r="4" fill="#fff"/>
+      <circle cx="65" cy="50" r="4" fill="#fff"/>
+      <circle cx="55" cy="50" r="2" fill="#1c1917"/>
+      <circle cx="65" cy="50" r="2" fill="#1c1917"/>
+      
+      <!-- Antenna -->
+      <line x1="60" y1="38" x2="60" y2="26" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="22" r="5" fill="#ec4899"/>
+      
+      <!-- Small palette in hand -->
+      <ellipse cx="86" cy="74" rx="12" ry="7" fill="#f5f0e8" stroke="#d4c8b8" stroke-width="1.2" transform="rotate(-25 86 74)"/>
+      <circle cx="82" cy="71" r="2" fill="#dc2626"/>
+      <circle cx="86" cy="69" r="2" fill="#f59e0b"/>
+      <circle cx="90" cy="72" r="2" fill="#22c55e"/>
+      <circle cx="88" cy="76" r="2" fill="#3b82f6"/>
+      
+      <!-- Arm -->
+      <line x1="76" y1="68" x2="82" y2="72" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+      
+      <!-- Smile -->
+      <path d="M54 58 Q60 62 66 58" stroke="#1c1917" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-nav">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120" width="28" height="28">
+          <path d="M 18 70 A 50 50 0 0 1 102 70" fill="none" stroke="url(#rainbow12b)" stroke-width="10" stroke-linecap="round"/>
+          <rect x="42" y="62" width="36" height="30" rx="10" fill="#d97706"/>
+          <rect x="46" y="38" width="28" height="24" rx="8" fill="#f59e0b"/>
+          <circle cx="55" cy="50" r="4" fill="#fff"/><circle cx="65" cy="50" r="4" fill="#fff"/>
+          <circle cx="55" cy="50" r="2" fill="#1c1917"/><circle cx="65" cy="50" r="2" fill="#1c1917"/>
+          <line x1="60" y1="38" x2="60" y2="26" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="60" cy="22" r="5" fill="#ec4899"/>
+        </svg>
+      </div>
+      <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🤖 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

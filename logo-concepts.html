@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIHues Logo Concepts</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#faf9f6;color:#1c1917;padding:40px 20px}
+.header{text-align:center;margin-bottom:40px}
+.header h1{font-size:28px;font-weight:800;margin-bottom:8px}
+.header p{color:#78716c;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:1200px;margin:0 auto}
+.card{background:#fff;border:1px solid #e8e2d9;border-radius:16px;padding:28px;text-align:center;transition:all .2s}
+.card:hover{border-color:#d4c8b8;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.card-label{font-size:12px;font-weight:700;color:#b45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.card-title{font-size:18px;font-weight:700;margin-bottom:8px}
+.card-desc{font-size:13px;color:#78716c;line-height:1.5;margin-bottom:20px}
+.logo-box{width:140px;height:140px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.logo-box svg{width:100%;height:100%}
+.mockup{background:#faf9f6;border-radius:12px;padding:16px;margin-top:16px}
+.mockup-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #e8e2d9}
+.mockup-logo{width:28px;height:28px}
+.mockup-logo svg{width:100%;height:100%}
+.mockup-nav{display:flex;gap:16px;flex:1}
+.mockup-nav span{font-size:12px;color:#78716c}
+.mockup-nav span.active{color:#b45309;font-weight:600}
+.mockup-credit{font-size:12px;font-weight:700;color:#b45309}
+.mockup-hero{background:linear-gradient(135deg,#1c1917,#292524);border-radius:10px;padding:20px;text-align:center;color:#fff}
+.mockup-hero h3{font-size:16px;margin-bottom:4px}
+.mockup-hero p{font-size:12px;color:#a8a29e}
+
+@media(max-width:768px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎨 AIHues Logo 概念方案</h1>
+  <p>三个方向，选一个推进</p>
+</div>
+
+<div class="grid">
+
+<!-- A: 调色板 × AI -->
+<div class="card">
+  <div class="card-label">方案 A</div>
+  <div class="card-title">调色板 × AI</div>
+  <div class="card-desc">小机器人手持调色板<br>体现 "AI 帮你找到对的色调"</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradA" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#b45309"/>
+          <stop offset="100%" style="stop-color:#d97706"/>
+        </linearGradient>
+        <linearGradient id="gradA2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#d97706"/>
+          <stop offset="100%" style="stop-color:#f59e0b"/>
+        </linearGradient>
+      </defs>
+      <!-- Robot body -->
+      <rect x="38" y="55" width="44" height="38" rx="10" fill="url(#gradA)"/>
+      <!-- Robot head -->
+      <rect x="42" y="32" width="36" height="28" rx="8" fill="url(#gradA2)"/>
+      <!-- Eyes -->
+      <circle cx="52" cy="46" r="4" fill="#fff"/>
+      <circle cx="68" cy="46" r="4" fill="#fff"/>
+      <circle cx="52" cy="46" r="2" fill="#1c1917"/>
+      <circle cx="68" cy="46" r="2" fill="#1c1917"/>
+      <!-- Antenna -->
+      <line x1="60" y1="32" x2="60" y2="22" stroke="url(#gradA)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="20" r="4" fill="url(#gradA2)"/>
+      <!-- Palette -->
+      <ellipse cx="82" cy="75" rx="18" ry="12" fill="#f5f0e8" stroke="url(#gradA)" stroke-width="2" transform="rotate(-15 82 75)"/>
+      <circle cx="76" cy="72" r="3" fill="#dc2626"/>
+      <circle cx="82" cy="69" r="3" fill="#2563eb"/>
+      <circle cx="88" cy="72" r="3" fill="#059669"/>
+      <circle cx="82" cy="78" r="3" fill="#b45309"/>
+      <!-- Arm holding palette -->
+      <line x1="75" y1="65" x2="82" y2="72" stroke="url(#gradA)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120"><use href="#robot-logo"/></svg>
+      </div>
+      <div class="mockup-nav">
+        <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      </div>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🤖 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+<!-- B: 渐变色环 -->
+<div class="card">
+  <div class="card-label">方案 B</div>
+  <div class="card-title">渐变色环</div>
+  <div class="card-desc">几何圆环渐变<br>负空间形成抽象的 "H"</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradB" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#b45309"/>
+          <stop offset="50%" style="stop-color:#d97706"/>
+          <stop offset="100%" style="stop-color:#f59e0b"/>
+        </linearGradient>
+        <linearGradient id="gradB2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#d97706"/>
+          <stop offset="100%" style="stop-color:#b45309"/>
+        </linearGradient>
+      </defs>
+      <!-- Outer ring -->
+      <circle cx="60" cy="60" r="48" fill="none" stroke="url(#gradB)" stroke-width="12" stroke-linecap="round"/>
+      <!-- Inner arc (creates H shape with negative space) -->
+      <path d="M 36 36 L 36 84" stroke="url(#gradB2)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M 84 36 L 84 84" stroke="url(#gradB2)" stroke-width="12" stroke-linecap="round"/>
+      <!-- Center bridge -->
+      <line x1="36" y1="60" x2="84" y2="60" stroke="url(#gradB)" stroke-width="10" stroke-linecap="round"/>
+      <!-- Dot accent -->
+      <circle cx="60" cy="60" r="6" fill="#fff"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120"><use href="#ring-logo"/></svg>
+      </div>
+      <div class="mockup-nav">
+        <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      </div>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🎯 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+<!-- C: 光谱棱镜 -->
+<div class="card">
+  <div class="card-label">方案 C</div>
+  <div class="card-title">光谱棱镜</div>
+  <div class="card-desc">光线穿过棱镜<br>折射出彩色光谱</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="prism-light" x1="0%" y1="50%" x2="100%" y2="50%">
+          <stop offset="0%" style="stop-color:#fff;stop-opacity:.8"/>
+          <stop offset="100%" style="stop-color:#fff;stop-opacity:.2"/>
+        </linearGradient>
+        <linearGradient id="spectrum1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#b45309"/>
+          <stop offset="50%" style="stop-color:#d97706"/>
+          <stop offset="100%" style="stop-color:#f59e0b"/>
+        </linearGradient>
+        <linearGradient id="spectrum2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#d97706"/>
+          <stop offset="100%" style="stop-color:#fbbf24"/>
+        </linearGradient>
+        <linearGradient id="spectrum3" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#f59e0b"/>
+          <stop offset="100%" style="stop-color:#fcd34d"/>
+        </linearGradient>
+      </defs>
+      <!-- Prism triangle -->
+      <polygon points="60,20 90,80 30,80" fill="url(#prism-light)" stroke="url(#spectrum1)" stroke-width="3" stroke-linejoin="round"/>
+      <!-- Light beam entering -->
+      <line x1="10" y1="50" x2="42" y2="52" stroke="#e8e2d9" stroke-width="3" stroke-linecap="round"/>
+      <!-- Spectrum rays exiting -->
+      <line x1="90" y1="75" x2="115" y2="68" stroke="url(#spectrum1)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="80" x2="112" y2="80" stroke="url(#spectrum2)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="85" x2="115" y2="92" stroke="url(#spectrum3)" stroke-width="4" stroke-linecap="round"/>
+      <!-- Glow -->
+      <circle cx="60" cy="50" r="35" fill="none" stroke="url(#spectrum1)" stroke-width="1" opacity=".15"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120"><use href="#prism-logo"/></svg>
+      </div>
+      <div class="mockup-nav">
+        <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      </div>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🔮 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Hidden defs for mockup reuse -->
+<svg style="display:none">
+  <defs>
+    <g id="robot-logo">
+      <rect x="38" y="55" width="44" height="38" rx="10" fill="url(#gradA)"/>
+      <rect x="42" y="32" width="36" height="28" rx="8" fill="url(#gradA2)"/>
+      <circle cx="52" cy="46" r="4" fill="#fff"/>
+      <circle cx="68" cy="46" r="4" fill="#fff"/>
+      <circle cx="52" cy="46" r="2" fill="#1c1917"/>
+      <circle cx="68" cy="46" r="2" fill="#1c1917"/>
+      <line x1="60" y1="32" x2="60" y2="22" stroke="url(#gradA)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="20" r="4" fill="url(#gradA2)"/>
+      <ellipse cx="82" cy="75" rx="18" ry="12" fill="#f5f0e8" stroke="url(#gradA)" stroke-width="2" transform="rotate(-15 82 75)"/>
+      <circle cx="76" cy="72" r="3" fill="#dc2626"/>
+      <circle cx="82" cy="69" r="3" fill="#2563eb"/>
+      <circle cx="88" cy="72" r="3" fill="#059669"/>
+      <circle cx="82" cy="78" r="3" fill="#b45309"/>
+      <line x1="75" y1="65" x2="82" y2="72" stroke="url(#gradA)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <g id="ring-logo">
+      <circle cx="60" cy="60" r="48" fill="none" stroke="url(#gradB)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M 36 36 L 36 84" stroke="url(#gradB2)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M 84 36 L 84 84" stroke="url(#gradB2)" stroke-width="12" stroke-linecap="round"/>
+      <line x1="36" y1="60" x2="84" y2="60" stroke="url(#gradB)" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="60" cy="60" r="6" fill="#fff"/>
+    </g>
+    <g id="prism-logo">
+      <polygon points="60,20 90,80 30,80" fill="url(#prism-light)" stroke="url(#spectrum1)" stroke-width="3" stroke-linejoin="round"/>
+      <line x1="10" y1="50" x2="42" y2="52" stroke="#e8e2d9" stroke-width="3" stroke-linecap="round"/>
+      <line x1="90" y1="75" x2="115" y2="68" stroke="url(#spectrum1)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="80" x2="112" y2="80" stroke="url(#spectrum2)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="85" x2="115" y2="92" stroke="url(#spectrum3)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="60" cy="50" r="35" fill="none" stroke="url(#spectrum1)" stroke-width="1" opacity=".15"/>
+    </g>
+  </defs>
+</svg>
+
+</body>
+</html>

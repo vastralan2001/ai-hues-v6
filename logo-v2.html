@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIHues Logo v2 — A+B 融合</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#faf9f6;color:#1c1917;padding:40px 20px}
+.header{text-align:center;margin-bottom:48px}
+.header h1{font-size:32px;font-weight:800;margin-bottom:10px}
+.header p{color:#78716c;font-size:15px;max-width:500px;margin:0 auto;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:1000px;margin:0 auto}
+.card{background:#fff;border:1px solid #e8e2d9;border-radius:20px;padding:32px;text-align:center}
+.card-label{font-size:12px;font-weight:700;color:#b45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
+.card-title{font-size:20px;font-weight:700;margin-bottom:8px}
+.card-desc{font-size:13px;color:#78716c;line-height:1.5;margin-bottom:24px}
+.logo-box{width:160px;height:160px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;background:#faf9f6;border-radius:16px}
+.logo-box svg{width:120px;height:120px}
+.mockup{background:#1c1917;border-radius:14px;padding:20px;margin-top:16px;text-align:left}
+.mockup-nav{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.mockup-logo{width:28px;height:28px}
+.mockup-nav span{font-size:12px;color:#a8a29e}
+.mockup-nav span.active{color:#fff;font-weight:600}
+.mockup-credit{margin-left:auto;font-size:12px;font-weight:700;color:#f59e0b}
+.mockup-hero{background:linear-gradient(135deg,#292524,#44403c);border-radius:10px;padding:24px;text-align:center}
+.mockup-hero h3{font-size:18px;color:#fff;margin-bottom:6px}
+.mockup-hero p{font-size:13px;color:#a8a29e}
+
+@media(max-width:768px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎨 AIHues Logo v2 — A + B 融合</h1>
+  <p>A 的趣味（角色感 + 调色板）+ B 的简洁（几何极简）+ 七彩光谱</p>
+</div>
+
+<div class="grid">
+
+<!-- v2a: 七彩机器人 -->
+<div class="card">
+  <div class="card-label">方案 v2a</div>
+  <div class="card-title">七彩小机器人</div>
+  <div class="card-desc">圆润几何轮廓 + 彩虹色块排列<br>像emoji一样亲切，又像品牌标一样简洁</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 七彩渐变定义 -->
+        <linearGradient id="r1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#dc2626"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+        <linearGradient id="r2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ea580c"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
+        <linearGradient id="r3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#eab308"/></linearGradient>
+        <linearGradient id="r4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#eab308"/><stop offset="100%" stop-color="#22c55e"/></linearGradient>
+        <linearGradient id="r5" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient>
+        <linearGradient id="r6" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#a855f7"/></linearGradient>
+      </defs>
+      
+      <!-- 主体圆形（B的简洁） -->
+      <circle cx="60" cy="56" r="44" fill="#faf9f6" stroke="#e8e2d9" stroke-width="2"/>
+      
+      <!-- 天线 -->
+      <line x1="60" y1="12" x2="60" y2="22" stroke="#78716c" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="9" r="5" fill="#f59e0b"/>
+      
+      <!-- 七彩色条（调色板的抽象） -->
+      <rect x="28" y="38" width="64" height="8" rx="4" fill="url(#r1)"/>
+      <rect x="28" y="48" width="64" height="8" rx="4" fill="url(#r2)"/>
+      <rect x="28" y="58" width="64" height="8" rx="4" fill="url(#r3)"/>
+      <rect x="28" y="68" width="64" height="8" rx="4" fill="url(#r4)"/>
+      <rect x="28" y="78" width="64" height="8" rx="4" fill="url(#r5)"/>
+      <rect x="28" y="88" width="64" height="8" rx="4" fill="url(#r6)"/>
+      
+      <!-- 眼睛（A的趣味） -->
+      <circle cx="44" cy="28" r="6" fill="#1c1917"/>
+      <circle cx="46" cy="26" r="2.5" fill="#fff"/>
+      <circle cx="76" cy="28" r="6" fill="#1c1917"/>
+      <circle cx="78" cy="26" r="2.5" fill="#fff"/>
+      
+      <!-- 小嘴 -->
+      <path d="M52 34 Q60 38 68 34" stroke="#1c1917" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-nav">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="56" r="44" fill="#faf9f6" stroke="#e8e2d9" stroke-width="2"/><line x1="60" y1="12" x2="60" y2="22" stroke="#78716c" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="9" r="5" fill="#f59e0b"/><rect x="28" y="38" width="64" height="8" rx="4" fill="#dc2626"/><rect x="28" y="48" width="64" height="8" rx="4" fill="#ea580c"/><rect x="28" y="58" width="64" height="8" rx="4" fill="#f59e0b"/><rect x="28" y="68" width="64" height="8" rx="4" fill="#eab308"/><rect x="28" y="78" width="64" height="8" rx="4" fill="#22c55e"/><rect x="28" y="88" width="64" height="8" rx="4" fill="#3b82f6"/><circle cx="44" cy="28" r="6" fill="#1c1917"/><circle cx="46" cy="26" r="2.5" fill="#fff"/><circle cx="76" cy="28" r="6" fill="#1c1917"/><circle cx="78" cy="26" r="2.5" fill="#fff"/></svg>
+      </div>
+      <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🤖 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+<!-- v2b: 光谱圆盘 -->
+<div class="card">
+  <div class="card-label">方案 v2b</div>
+  <div class="card-title">光谱圆盘</div>
+  <div class="card-desc">圆形色盘像唱片/CD一样转动<br>七彩光谱条 + 简洁圆环轮廓</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 七彩扇形 -->
+        <path id="s1" d="M60 60 L60 10 A50 50 0 0 1 103 35 Z" fill="#dc2626"/>
+        <path id="s2" d="M60 60 L103 35 A50 50 0 0 1 110 60 Z" fill="#ea580c"/>
+        <path id="s3" d="M60 60 L110 60 A50 50 0 0 1 103 85 Z" fill="#f59e0b"/>
+        <path id="s4" d="M60 60 L103 85 A50 50 0 0 1 60 110 Z" fill="#22c55e"/>
+        <path id="s5" d="M60 60 L60 110 A50 50 0 0 1 17 85 Z" fill="#3b82f6"/>
+        <path id="s6" d="M60 60 L17 85 A50 50 0 0 1 10 60 Z" fill="#a855f7"/>
+        <path id="s7" d="M60 60 L10 60 A50 50 0 0 1 60 10 Z" fill="#ec4899"/>
+        
+        <clipPath id="disc-clip">
+          <circle cx="60" cy="60" r="46"/>
+        </clipPath>
+      </defs>
+      
+      <!-- 外圆环 -->
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#e8e2d9" stroke-width="2"/>
+      
+      <!-- 七彩扇形（被圆裁剪） -->
+      <g clip-path="url(#disc-clip)">
+        <use href="#s1"/><use href="#s2"/><use href="#s3"/><use href="#s4"/><use href="#s5"/><use href="#s6"/><use href="#s7"/>
+      </g>
+      
+      <!-- 内圆（留白，形成唱片感） -->
+      <circle cx="60" cy="60" r="20" fill="#faf9f6" stroke="#e8e2d9" stroke-width="1.5"/>
+      
+      <!-- 中心点（像唱片中心） -->
+      <circle cx="60" cy="60" r="6" fill="#1c1917"/>
+      <circle cx="61" cy="59" r="2.5" fill="#fff"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-nav">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#e8e2d9" stroke-width="2"/><circle cx="60" cy="60" r="46" fill="#dc2626"/><circle cx="60" cy="60" r="46" fill="#ea580c"/><circle cx="60" cy="60" r="46" fill="#f59e0b"/><circle cx="60" cy="60" r="46" fill="#22c55e"/><circle cx="60" cy="60" r="46" fill="#3b82f6"/><circle cx="60" cy="60" r="46" fill="#a855f7"/><circle cx="60" cy="60" r="46" fill="#ec4899"/><circle cx="60" cy="60" r="20" fill="#faf9f6" stroke="#e8e2d9" stroke-width="1.5"/><circle cx="60" cy="60" r="6" fill="#1c1917"/><circle cx="61" cy="59" r="2.5" fill="#fff"/></svg>
+      </div>
+      <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>💿 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

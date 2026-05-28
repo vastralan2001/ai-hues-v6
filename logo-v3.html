@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIHues Logo v3 — 七彩色环精修</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#faf9f6;color:#1c1917;padding:40px 20px}
+.header{text-align:center;margin-bottom:40px}
+.header h1{font-size:28px;font-weight:800;margin-bottom:8px}
+.header p{color:#78716c;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:900px;margin:0 auto}
+.card{background:#fff;border:1px solid #e8e2d9;border-radius:20px;padding:32px;text-align:center}
+.card-label{font-size:12px;font-weight:700;color:#b45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.card-title{font-size:20px;font-weight:700;margin-bottom:8px}
+.card-desc{font-size:13px;color:#78716c;line-height:1.5;margin-bottom:24px}
+.logo-box{width:160px;height:160px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;background:#faf9f6;border-radius:16px}
+.logo-box svg{width:120px;height:120px}
+.mockup{background:#1c1917;border-radius:14px;padding:20px;margin-top:20px;text-align:left}
+.mockup-nav{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.mockup-logo{width:28px;height:28px}
+.mockup-nav span{font-size:12px;color:#a8a29e}
+.mockup-nav span.active{color:#fff;font-weight:600}
+.mockup-credit{margin-left:auto;font-size:12px;font-weight:700;color:#f59e0b}
+.mockup-hero{background:linear-gradient(135deg,#292524,#44403c);border-radius:10px;padding:28px;text-align:center}
+.mockup-hero h3{font-size:18px;color:#fff;margin-bottom:6px}
+.mockup-hero p{font-size:13px;color:#a8a29e}
+
+@media(max-width:768px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎨 AIHues Logo v3 — 七彩色环精修</h1>
+  <p>更平滑的彩虹渐变 · 更丰富的层次 · 更精致的细节</p>
+</div>
+
+<div class="grid">
+
+<!-- v3a: 平滑彩虹色环 + 内阴影 -->
+<div class="card">
+  <div class="card-label">方案 v3a</div>
+  <div class="card-title">平滑彩虹 + 内发光</div>
+  <div class="card-desc">12色渐变让过渡更自然<br>内发光层增加立体感</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 12色平滑彩虹环 -->
+        <linearGradient id="rainbow-ring" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#dc2626"/>
+          <stop offset="8%" stop-color="#ea580c"/>
+          <stop offset="17%" stop-color="#f97316"/>
+          <stop offset="25%" stop-color="#f59e0b"/>
+          <stop offset="33%" stop-color="#eab308"/>
+          <stop offset="42%" stop-color="#84cc16"/>
+          <stop offset="50%" stop-color="#22c55e"/>
+          <stop offset="58%" stop-color="#14b8a6"/>
+          <stop offset="67%" stop-color="#3b82f6"/>
+          <stop offset="75%" stop-color="#6366f1"/>
+          <stop offset="83%" stop-color="#a855f7"/>
+          <stop offset="92%" stop-color="#d946ef"/>
+          <stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient>
+        
+        <!-- 内发光滤镜 -->
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+        
+        <!-- 暖色H -->
+        <linearGradient id="warm-h" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f59e0b"/>
+          <stop offset="100%" stop-color="#d97706"/>
+        </linearGradient>
+      </defs>
+      
+      <!-- 外发光层 -->
+      <circle cx="60" cy="60" r="50" fill="none" stroke="url(#rainbow-ring)" stroke-width="16" opacity="0.15" filter="url(#glow)"/>
+      
+      <!-- 主彩虹环 -->
+      <circle cx="60" cy="60" r="48" fill="none" stroke="url(#rainbow-ring)" stroke-width="14" stroke-linecap="round"/>
+      
+      <!-- 内侧高光 -->
+      <circle cx="60" cy="60" r="42" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.4"/>
+      
+      <!-- 内侧暖色弧线 -->
+      <circle cx="60" cy="60" r="40" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.2"/>
+      
+      <!-- H 负空间 -->
+      <path d="M 36 34 L 36 86" stroke="url(#warm-h)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M 84 34 L 84 86" stroke="url(#warm-h)" stroke-width="12" stroke-linecap="round"/>
+      <line x1="36" y1="60" x2="84" y2="60" stroke="url(#rainbow-ring)" stroke-width="10" stroke-linecap="round"/>
+      
+      <!-- 中心精致圆点 -->
+      <circle cx="60" cy="60" r="7" fill="#fff" stroke="#e8e2d9" stroke-width="1.5"/>
+      <circle cx="60" cy="60" r="3.5" fill="url(#rainbow-ring)"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-nav">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120" width="28" height="28">
+          <circle cx="60" cy="60" r="48" fill="none" stroke="url(#rainbow-ring)" stroke-width="14"/>
+          <path d="M 36 34 L 36 86" stroke="url(#warm-h)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M 84 34 L 84 86" stroke="url(#warm-h)" stroke-width="12" stroke-linecap="round"/>
+          <line x1="36" y1="60" x2="84" y2="60" stroke="url(#rainbow-ring)" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="7" fill="#fff" stroke="#e8e2d9" stroke-width="1.5"/>
+          <circle cx="60" cy="60" r="3.5" fill="url(#rainbow-ring)"/>
+        </svg>
+      </div>
+      <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🎯 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+<!-- v3b: 双色环叠加 + 立体 -->
+<div class="card">
+  <div class="card-label">方案 v3b</div>
+  <div class="card-title">双色环 + 立体感</div>
+  <div class="card-desc">外环冷色 → 内环暖色的过渡<br>双层叠加营造空间深度</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 外环：冷色蓝紫 -->
+        <linearGradient id="outer-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6"/>
+          <stop offset="25%" stop-color="#6366f1"/>
+          <stop offset="50%" stop-color="#a855f7"/>
+          <stop offset="75%" stop-color="#d946ef"/>
+          <stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient>
+        
+        <!-- 内环：暖色红黄 -->
+        <linearGradient id="inner-ring" x1="100%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#dc2626"/>
+          <stop offset="25%" stop-color="#ea580c"/>
+          <stop offset="50%" stop-color="#f59e0b"/>
+          <stop offset="75%" stop-color="#eab308"/>
+          <stop offset="100%" stop-color="#22c55e"/>
+        </linearGradient>
+        
+        <!-- 阴影滤镜 -->
+        <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.12"/>
+        </filter>
+      </defs>
+      
+      <!-- 外环 -->
+      <circle cx="60" cy="60" r="52" fill="none" stroke="url(#outer-ring)" stroke-width="8" opacity="0.9"/>
+      
+      <!-- 中间过渡环 -->
+      <circle cx="60" cy="60" r="45" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.3"/>
+      
+      <!-- 内环 -->
+      <circle cx="60" cy="60" r="40" fill="none" stroke="url(#inner-ring)" stroke-width="10" filter="url(#drop-shadow)"/>
+      
+      <!-- H 形状 -->
+      <path d="M 36 34 L 36 86" stroke="#d97706" stroke-width="12" stroke-linecap="round"/>
+      <path d="M 84 34 L 84 86" stroke="#d97706" stroke-width="12" stroke-linecap="round"/>
+      <line x1="36" y1="60" x2="84" y2="60" stroke="url(#inner-ring)" stroke-width="10" stroke-linecap="round"/>
+      
+      <!-- 中心点 -->
+      <circle cx="60" cy="60" r="6" fill="#fff"/>
+      <circle cx="60" cy="60" r="3" fill="#d97706"/>
+    </svg>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-nav">
+      <div class="mockup-logo">
+        <svg viewBox="0 0 120 120" width="28" height="28">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="url(#outer-ring)" stroke-width="8"/>
+          <circle cx="60" cy="60" r="45" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.3"/>
+          <circle cx="60" cy="60" r="40" fill="none" stroke="url(#inner-ring)" stroke-width="10"/>
+          <path d="M 36 34 L 36 86" stroke="#d97706" stroke-width="12" stroke-linecap="round"/>
+          <path d="M 84 34 L 84 86" stroke="#d97706" stroke-width="12" stroke-linecap="round"/>
+          <line x1="36" y1="60" x2="84" y2="60" stroke="url(#inner-ring)" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="6" fill="#fff"/>
+          <circle cx="60" cy="60" r="3" fill="#d97706"/>
+        </svg>
+      </div>
+      <span class="active">发现</span><span>收藏</span><span>游戏</span>
+      <span class="mockup-credit">🪙 100</span>
+    </div>
+    <div class="mockup-hero">
+      <h3>🎯 AIHues · AI Vibe Navigator</h3>
+      <p>100+ AI 工具、出海增长工具和小游戏</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

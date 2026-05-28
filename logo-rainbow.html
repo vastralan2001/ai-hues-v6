@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIHues Logo — 第一版 · 七彩配色</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#faf9f6;color:#1c1917;padding:40px 20px}
+.header{text-align:center;margin-bottom:40px}
+.header h1{font-size:28px;font-weight:800;margin-bottom:8px}
+.header p{color:#78716c;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1200px;margin:0 auto}
+.card{background:#fff;border:1px solid #e8e2d9;border-radius:16px;padding:28px;text-align:center;transition:all .2s}
+.card:hover{border-color:#d4c8b8;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.card-label{font-size:12px;font-weight:700;color:#b45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.card-title{font-size:18px;font-weight:700;margin-bottom:6px}
+.card-desc{font-size:13px;color:#78716c;line-height:1.5;margin-bottom:20px}
+.logo-box{width:140px;height:140px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.logo-box svg{width:100%;height:100%}
+
+@media(max-width:768px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎨 AIHues Logo — 第一版 · 七彩配色</h1>
+  <p>三个概念 × 彩虹色，选一个推进</p>
+</div>
+
+<div class="grid">
+
+<!-- A: 七彩调色板机器人 -->
+<div class="card">
+  <div class="card-label">方案 A</div>
+  <div class="card-title">七彩调色板机器人</div>
+  <div class="card-desc">小机器人手持七彩调色板<br>天线也是彩虹渐变</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="a-body" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#b45309"/>
+          <stop offset="100%" stop-color="#d97706"/>
+        </linearGradient>
+        <linearGradient id="a-head" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#d97706"/>
+          <stop offset="100%" stop-color="#f59e0b"/>
+        </linearGradient>
+        <linearGradient id="a-antenna" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#dc2626"/>
+          <stop offset="20%" stop-color="#f59e0b"/>
+          <stop offset="40%" stop-color="#22c55e"/>
+          <stop offset="60%" stop-color="#3b82f6"/>
+          <stop offset="80%" stop-color="#a855f7"/>
+          <stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient>
+      </defs>
+      <!-- Robot body -->
+      <rect x="38" y="55" width="44" height="38" rx="10" fill="url(#a-body)"/>
+      <!-- Robot head -->
+      <rect x="42" y="32" width="36" height="28" rx="8" fill="url(#a-head)"/>
+      <!-- Eyes -->
+      <circle cx="52" cy="46" r="4" fill="#fff"/>
+      <circle cx="68" cy="46" r="4" fill="#fff"/>
+      <circle cx="52" cy="46" r="2" fill="#1c1917"/>
+      <circle cx="68" cy="46" r="2" fill="#1c1917"/>
+      <!-- Rainbow antenna -->
+      <line x1="60" y1="32" x2="60" y2="18" stroke="url(#a-antenna)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="60" cy="14" r="5" fill="#ec4899"/>
+      <!-- Palette -->
+      <ellipse cx="82" cy="75" rx="18" ry="12" fill="#f5f0e8" stroke="#d4c8b8" stroke-width="1.5" transform="rotate(-15 82 75)"/>
+      <!-- Palette colors: rainbow -->
+      <circle cx="74" cy="70" r="3.5" fill="#dc2626"/>
+      <circle cx="80" cy="67" r="3.5" fill="#f59e0b"/>
+      <circle cx="86" cy="70" r="3.5" fill="#22c55e"/>
+      <circle cx="88" cy="76" r="3.5" fill="#3b82f6"/>
+      <circle cx="82" cy="80" r="3.5" fill="#a855f7"/>
+      <!-- Arm -->
+      <line x1="75" y1="65" x2="82" y2="72" stroke="#b45309" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<!-- B: 七彩渐变色环 -->
+<div class="card">
+  <div class="card-label">方案 B</div>
+  <div class="card-title">七彩渐变色环</div>
+  <div class="card-desc">彩虹色环代替单色渐变<br>负空间 "H" 更醒目</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="b-ring" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#dc2626"/>
+          <stop offset="16%" stop-color="#ea580c"/>
+          <stop offset="33%" stop-color="#f59e0b"/>
+          <stop offset="50%" stop-color="#22c55e"/>
+          <stop offset="66%" stop-color="#3b82f6"/>
+          <stop offset="83%" stop-color="#a855f7"/>
+          <stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient>
+        <linearGradient id="b-h" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f59e0b"/>
+          <stop offset="100%" stop-color="#d97706"/>
+        </linearGradient>
+      </defs>
+      <!-- Rainbow outer ring -->
+      <circle cx="60" cy="60" r="48" fill="none" stroke="url(#b-ring)" stroke-width="14" stroke-linecap="round"/>
+      <!-- Inner H shape -->
+      <path d="M 36 36 L 36 84" stroke="url(#b-h)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M 84 36 L 84 84" stroke="url(#b-h)" stroke-width="12" stroke-linecap="round"/>
+      <line x1="36" y1="60" x2="84" y2="60" stroke="url(#b-ring)" stroke-width="10" stroke-linecap="round"/>
+      <!-- Center dot -->
+      <circle cx="60" cy="60" r="6" fill="#fff"/>
+    </svg>
+  </div>
+</div>
+
+<!-- C: 七彩光谱棱镜 -->
+<div class="card">
+  <div class="card-label">方案 C</div>
+  <div class="card-title">七彩光谱棱镜</div>
+  <div class="card-desc">光线穿过棱镜<br>折射出彩虹七色光谱</div>
+  
+  <div class="logo-box">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="c-prism" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#fff" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#fff" stop-opacity=".3"/>
+        </linearGradient>
+        <!-- 7 spectrum rays -->
+        <linearGradient id="ray1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#dc2626"/><stop offset="100%" stop-color="#dc2626" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="ray2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ea580c"/><stop offset="100%" stop-color="#ea580c" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="ray3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#f59e0b" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="ray4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#22c55e" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="ray5" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#3b82f6" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="ray6" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#a855f7" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="ray7" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#ec4899" stop-opacity=".6"/></linearGradient>
+      </defs>
+      <!-- Prism -->
+      <polygon points="60,18 92,82 28,82" fill="url(#c-prism)" stroke="#d4c8b8" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Light beam -->
+      <line x1="8" y1="50" x2="40" y2="52" stroke="#e8e2d9" stroke-width="3" stroke-linecap="round"/>
+      <!-- 7 spectrum rays -->
+      <line x1="90" y1="70" x2="116" y2="62" stroke="url(#ray1)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="74" x2="116" y2="68" stroke="url(#ray2)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="78" x2="116" y2="74" stroke="url(#ray3)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="82" x2="116" y2="80" stroke="url(#ray4)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="86" x2="116" y2="86" stroke="url(#ray5)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="90" x2="116" y2="92" stroke="url(#ray6)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="90" y1="94" x2="116" y2="98" stroke="url(#ray7)" stroke-width="4" stroke-linecap="round"/>
+      <!-- Glow -->
+      <circle cx="60" cy="50" r="38" fill="none" stroke="#f59e0b" stroke-width="1" opacity=".1"/>
+    </svg>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
