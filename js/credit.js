@@ -42,3 +42,4 @@ function creditAnimation(el,delta){
 
 // 初始化
 CREDIT.init();
+CREDIT.render();

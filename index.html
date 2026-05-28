@@ -955,7 +955,7 @@ function setLang(l){
 document.addEventListener('click',e=>{
  if(!e.target.closest('.agent-box')) document.getElementById('aiDropdown').classList.remove('show');
 });
-CREDIT.init();CREDIT.render();
+if(typeof CREDIT!=='undefined'){CREDIT.init();CREDIT.render();}
 renderSidebar();
 renderGrowth();
 renderAICats();
@@ -970,6 +970,6 @@ function showCreditModal(){
  alert(`🪙 你的积分余额：${c}\n\n积分规则：\n• 初始赠送 100 积分\n• 玩游戏可赚取积分\n• 使用工具会消耗积分\n• 每日签到额外奖励`);
 }
 </script>
- <script src="js/credit.js"></script>
+<script src="js/credit.js"></script>
 </body>
 </html>
