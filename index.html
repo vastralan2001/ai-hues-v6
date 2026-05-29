@@ -38,10 +38,10 @@ a{color:var(--accent);text-decoration:none}
 .lang-nav{display:flex;gap:4px}
 .lang-nav a{font-size:12px;color:var(--text-muted);padding:4px 8px;border-radius:6px;transition:all .2s}
 .lang-nav a.active{color:var(--accent);font-weight:600;background:rgba(180,83,9,0.08)}
-.topbar-search{flex:1;max-width:400px;margin:0 20px;position:relative}
-.topbar-search input{width:100%;padding:8px 14px 8px 34px;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;outline:none}
-.topbar-search input:focus{border-color:var(--accent)}
-.topbar-search::before{content:'🔍';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.5}
+.topbar-filters{flex:1;display:flex;justify-content:center;gap:6px}
+.tf-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-muted);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.tf-btn:hover{border-color:var(--accent-light);color:var(--accent)}
+.tf-btn.active{background:var(--accent-gradient);color:#fff;border-color:transparent}
 .topbar-right{display:flex;align-items:center;gap:12px}
 .topbar-nav{display:flex;gap:16px}
 .topbar-nav a{font-size:13px;color:var(--text-secondary);font-weight:500}
@@ -206,7 +206,12 @@ a{color:var(--accent);text-decoration:none}
       <a href="#" data-lang="en" onclick="setLang('en');return false;">EN</a>
     </nav>
  </div>
- <div class="topbar-search"><input type="text" id="topSearch" placeholder="搜索工具..." data-en-placeholder="Search tools..." oninput="doTopSearch(this.value)"></div>
+ <div class="topbar-filters">
+   <button class="tf-btn active" data-filter="all" onclick="filterGlobal('all',this)">全部</button>
+   <button class="tf-btn" data-filter="Free" onclick="filterGlobal('Free',this)">Free</button>
+   <button class="tf-btn" data-filter="Freemium" onclick="filterGlobal('Freemium',this)">Freemium</button>
+   <button class="tf-btn" data-filter="Paid" onclick="filterGlobal('Paid',this)">Paid</button>
+ </div>
  <div class="topbar-right">
    <nav class="topbar-nav">
      <a href="discover.html">发现</a>
@@ -687,7 +692,9 @@ function renderAITools(filter=''){
 function renderProducts(){
  const el=document.getElementById('productsGrid');
  if(!el)return;
- el.innerHTML=AI_PRODUCTS.map(t=>`
+ let products=AI_PRODUCTS;
+ if(currentFilter!=='all'){products=products.filter(t=>t.price===currentFilter);}
+ el.innerHTML=products.map(t=>`
    <div class="tool-card" onclick="goTool('${t.url}',${t.credit||0},'${t.name}')" style="cursor:pointer">
      <div class="card-top">
        <div class="icon-wrap">${t.icon}</div>
@@ -702,7 +709,7 @@ function renderProducts(){
        <span class="visit-link">访问 →</span>
      </div>
    </div>`).join('');
- document.getElementById('productsCount').textContent=AI_PRODUCTS.length;
+ document.getElementById('productsCount').textContent=products.length;
 }
 
 function renderOSS(){
@@ -729,7 +736,9 @@ function renderOSS(){
 function renderDesign(){
  const el=document.getElementById('designGrid');
  if(!el)return;
- el.innerHTML=DESIGN_TOOLS.map(t=>{
+ let tools=DESIGN_TOOLS;
+ if(currentFilter!=='all'){tools=tools.filter(t=>t.price===currentFilter);}
+ el.innerHTML=tools.map(t=>{
    const pc=t.price==='Free'?'free':t.price==='Paid'?'paid':'';
    return `
    <div class="tool-card" onclick="goTool('${t.url}',${t.credit||0},'${t.name}')" style="cursor:pointer">
@@ -747,7 +756,7 @@ function renderDesign(){
      </div>
    </div>`;
  }).join('');
- document.getElementById('designCount').textContent=DESIGN_TOOLS.length;
+ document.getElementById('designCount').textContent=tools.length;
 }
 
 function renderUtility(){
@@ -836,6 +845,27 @@ function filterPrice(price,btn){
  renderGrowth();
 }
 
+function filterGlobal(price,btn){
+ currentFilter=price;
+ // 同步顶部按钮
+ document.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('active'));
+ if(btn) btn.classList.add('active');
+ // 同步 section 内过滤按钮
+ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+ document.querySelectorAll('.filter-btn').forEach(b=>{
+   if(price==='all' && b.textContent==='全部') b.classList.add('active');
+   if(price==='Free' && b.textContent==='Free') b.classList.add('active');
+   if(price==='Freemium' && b.textContent==='Freemium') b.classList.add('active');
+   if(price==='Paid' && b.textContent==='Paid') b.classList.add('active');
+ });
+ // 重新渲染所有 section
+ renderGrowth();
+ renderProducts();
+ renderOSS();
+ renderDesign();
+ renderUtility();
+}
+
 function filterAICat(cat){
  renderAITools(cat);
 }
@@ -843,43 +873,6 @@ function filterAICat(cat){
 function quickSearch(q){
  document.getElementById('agentInput').value=q;
  aiSearch();
-}
-
-function doTopSearch(q){
- q=q.toLowerCase().trim();
- if(!q){renderGrowth();renderProducts();renderOSS();renderDesign();renderEfficiency();return;}
-
- // Search across all tools
- let growthFiltered=GROWTH_TOOLS.filter(t=>
-   t.name.toLowerCase().includes(q)||
-   t.cat.toLowerCase().includes(q)||
-   t.desc.toLowerCase().includes(q)
- );
- let aiFiltered=AI_TOOLS.filter(t=>
-   t.name.toLowerCase().includes(q)||
-   t.cat.toLowerCase().includes(q)||
-   t.desc.toLowerCase().includes(q)
- );
- let productFiltered=AI_PRODUCTS.filter(t=>
-   t.name.toLowerCase().includes(q)||
-   t.cat.toLowerCase().includes(q)||
-   t.desc.toLowerCase().includes(q)
- );
- let ossFiltered=OSS_TOOLS.filter(t=>
-   t.name.toLowerCase().includes(q)||
-   t.cat.toLowerCase().includes(q)||
-   t.desc.toLowerCase().includes(q)
- );
-
- // Update all grids
- updateGrid('growthGrid',growthFiltered,d=>`
-   <a href="${d.url}" target="_blank" class="tool-card">
-     <div class="card-top"><div class="icon-wrap">${d.icon}</div><div class="card-meta"><h3>${d.name}</h3><div class="cat-label">${d.cat}</div></div></div>
-     <div class="card-desc">${d.desc}</div>
-     <div class="card-bottom"><span class="price-tag ${d.price==='Free'?'free':d.price==='Paid'?'paid':''}">${d.price}</span><span class="visit-link">访问 →</span></div>
-   </a>`);
-
- document.getElementById('growthCount').textContent=growthFiltered.length;
 }
 
 function updateGrid(gridId,items,templateFn){
