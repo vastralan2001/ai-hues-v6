@@ -115,6 +115,20 @@ body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman
   <p data-zh="3款小游戏，玩完还能赚Credit积分！">3 mini games. Play and earn free Credits!</p>
 </div>
 
+<!-- CREDIT BALANCE BAR -->
+<div style="max-width:1300px;margin:0 auto;padding:0 32px 16px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="font-size:28px;">🪙</span>
+      <div>
+        <div style="font-size:12px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;" data-zh="当前积分">Your Credits</div>
+        <div style="font-size:22px;font-weight:800;color:var(--accent);line-height:1.2;">100</div>
+      </div>
+    </div>
+    <button onclick="toggleRules()" id="rulesBtn" style="padding:8px 16px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text-secondary);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;" data-zh="积分规则 ▼">How it works ▼</button>
+  </div>
+</div>
+
 <!-- STATS -->
 <div class="stats-bar">
   <div class="stats-item">
@@ -126,8 +140,45 @@ body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman
     <div class="stats-label" data-zh="免费游玩">Free Play</div>
   </div>
   <div class="stats-item">
-    <div class="stats-num">🪙</div>
-    <div class="stats-label" data-zh="赚积分">Earn Credits</div>
+    <div class="stats-num" style="font-size:22px;">+5~100</div>
+    <div class="stats-label" data-zh="积分/局">Credits/Game</div>
+  </div>
+</div>
+
+<!-- CREDIT RULES PANEL -->
+<div id="credit-rules" style="max-width:1300px;margin:0 auto;padding:0 32px 24px;display:none;">
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;">
+    <h4 style="font-size:15px;font-weight:700;margin-bottom:14px;color:var(--text);display:flex;align-items:center;gap:8px;"><span>🪙</span> <span data-zh="积分规则">Credit Rules</span></h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+        <span style="font-size:22px;">🎁</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;" data-zh="初始奖励">Initial Bonus</div>
+          <div style="font-size:12px;color:var(--text-muted);" data-zh="新用户赠送 100 积分">Start with 100 credits</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+        <span style="font-size:22px;">🎮</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;" data-zh="玩游戏赚积分">Play to Earn</div>
+          <div style="font-size:12px;color:var(--text-muted);" data-zh="每局游戏 +5~100 积分">+5~100 credits per game</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+        <span style="font-size:22px;">🔧</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;" data-zh="使用工具消耗">Use Tools</div>
+          <div style="font-size:12px;color:var(--text-muted);" data-zh="高级工具消耗积分解锁">Spend credits on premium tools</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+        <span style="font-size:22px;">📅</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;" data-zh="每日签到">Daily Check-in</div>
+          <div style="font-size:12px;color:var(--text-muted);" data-zh="连续签到有加成">+10 credits daily, streak bonus</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -157,6 +208,7 @@ body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman
       <div class="game-meta">
         <span>🎰 3×3 reels</span>
         <span>🆓 3 spins/day</span>
+        <span>🪙 +5~100/spin</span>
         <span>🏆 Leaderboard</span>
       </div>
       <span class="play-btn" data-zh="开始旋转 →">Spin Now →</span>
@@ -171,6 +223,7 @@ body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman
       <div class="game-meta">
         <span>⏱️ 60 seconds</span>
         <span>🏀 Physics</span>
+        <span>🪙 +10~50/game</span>
         <span>🏆 Leaderboard</span>
       </div>
       <span class="play-btn" data-zh="开始投篮 →">Play Now →</span>
@@ -196,6 +249,17 @@ body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman
 <script src="js/i18n.js"></script>
 <script src="js/theme-system.js"></script>
 <script>
+function toggleRules(){
+  const panel=document.getElementById('credit-rules');
+  const btn=document.getElementById('rulesBtn');
+  if(panel.style.display==='none'){
+    panel.style.display='block';
+    btn.textContent=btn.getAttribute('data-zh-close')||'How it works ▲';
+  }else{
+    panel.style.display='none';
+    btn.textContent=btn.getAttribute('data-zh')||'How it works ▼';
+  }
+}
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
